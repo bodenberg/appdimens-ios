@@ -1,117 +1,74 @@
-/**
- * Author & Developer: Jean Bodenberg
- * GIT: https://github.com/bodenberg/appdimens.git
- * Date: 2025-01-15
- *
- * Library: AppDimens iOS
- *
- * Description:
- * Environment system for SwiftUI integration with AppDimens.
- * Provides screen dimensions and adjustment factors through SwiftUI's environment.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+#if canImport(SwiftUI)
 import SwiftUI
-import Foundation
+import AppDimens
 
-// MARK: - Environment Keys
-
-/// Environment key for storing UI Mode type (device type).
-public struct UiModeTypeKey: EnvironmentKey {
-    public static let defaultValue: DeviceType = .current()
+private struct DimensionContextKey: EnvironmentKey {
+    static let defaultValue = DimensionContext(width: 360, height: 800)
 }
 
 public extension EnvironmentValues {
-    var uiModeType: DeviceType {
-        get { self[UiModeTypeKey.self] }
-        set { self[UiModeTypeKey.self] = newValue }
+    var appDimens: DimensionContext {
+        get { self[DimensionContextKey.self] }
+        set { self[DimensionContextKey.self] = newValue }
     }
 }
 
-/// Environment key for storing screen dimensions (width, height).
-public struct ScreenDimensionsKey: EnvironmentKey {
-    // Default value to prevent crashes
-    public static let defaultValue: (width: CGFloat, height: CGFloat) = (375, 667)
-}
+/// Reads the actual SwiftUI container (including split-screen/window resizing), never `UIScreen.main`.
+public struct AppDimensProvider<Content: View>: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+    private let content: () -> Content
 
-public extension EnvironmentValues {
-    var screenDimensions: (width: CGFloat, height: CGFloat) {
-        get { self[ScreenDimensionsKey.self] }
-        set { self[ScreenDimensionsKey.self] = newValue }
-    }
-}
-
-/// Environment key for storing adjustment factors (Fixed/Dynamic/AR).
-public struct AdjustmentFactorsKey: EnvironmentKey {
-    // Default neutral factor
-    public static let defaultValue = ScreenAdjustmentFactors(
-        withArFactorLowest: 1.0,
-        withArFactorHighest: 1.0,
-        withoutArFactor: 1.0,
-        adjustmentFactorLowest: 1.0,
-        adjustmentFactorHighest: 1.0
-    )
-}
-
-public extension EnvironmentValues {
-    var adjustmentFactors: ScreenAdjustmentFactors {
-        get { self[AdjustmentFactorsKey.self] }
-        set { self[AdjustmentFactorsKey.self] = newValue }
-    }
-}
-
-// MARK: - DimensProvider
-
-/// Essential view wrapper that captures screen dimensions (GeometryReader)
-/// and injects dimensions and adjustment factors into the Environment.
-public struct DimensProvider<Content: View>: View {
-    @ViewBuilder public let content: Content
-
-    public init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
+    public init(@ViewBuilder content: @escaping () -> Content) { self.content = content }
 
     public var body: some View {
-        GeometryReader { geometry in
-            let screenWidth = geometry.size.width
-            let screenHeight = geometry.size.height
-
-            // 1. Calculate adjustment factors ONCE per dimension change
-            let factors = AppDimensAdjustmentFactors.calculateAdjustmentFactors(
-                width: screenWidth, 
-                height: screenHeight
-            )
-
-            content
-                // 2. Inject UI Mode type
-                .environment(\.uiModeType, DeviceType.current())
-                // 3. Inject screen dimensions
-                .environment(\.screenDimensions, (width: screenWidth, height: screenHeight))
-                // 4. Inject adjustment factors
-                .environment(\.adjustmentFactors, factors)
+        GeometryReader { proxy in
+            content().environment(\.appDimens, context(size: proxy.size))
         }
+    }
+
+    private func context(size: CGSize) -> DimensionContext {
+        DimensionContext(width: size.width, height: size.height, displayScale: displayScale,
+                         dynamicTypeScale: dynamicTypeSize.appDimensScale, idiom: currentIdiom,
+                         horizontalSizeClass: horizontalSizeClass.map(AdaptiveSizeClass.init),
+                         verticalSizeClass: verticalSizeClass.map(AdaptiveSizeClass.init))
+    }
+
+    private var displayScale: CGFloat {
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+        return WKInterfaceDeviceOrUIScreen.scale
+        #else
+        return 1
+        #endif
     }
 }
 
-// MARK: - Environment Extensions
+private extension AdaptiveSizeClass {
+    init(_ value: UserInterfaceSizeClass) { self = value == .compact ? .compact : .regular }
+}
 
-public extension View {
-    /// Provides AppDimens environment to the view hierarchy.
-    /// This is essential for AppDimens to work properly in SwiftUI.
-    func appDimensEnvironment() -> some View {
-        DimensProvider {
-            self
-        }
+private extension DynamicTypeSize {
+    var appDimensScale: CGFloat {
+        switch self { case .xSmall: 0.88; case .small: 0.94; case .medium: 0.97; case .large: 1
+        case .xLarge: 1.12; case .xxLarge: 1.23; case .xxxLarge: 1.35
+        case .accessibility1: 1.64; case .accessibility2: 1.95; case .accessibility3: 2.35
+        case .accessibility4: 2.76; case .accessibility5: 3.12; @unknown default: 1 }
     }
 }
+
+#if canImport(UIKit)
+import UIKit
+private enum WKInterfaceDeviceOrUIScreen { static var scale: CGFloat { UIScreen.main.scale } }
+private var currentIdiom: DeviceIdiom {
+    switch UIDevice.current.userInterfaceIdiom { case .phone: .phone; case .pad: .pad; case .tv: .tv; case .carPlay: .carPlay
+    case .mac: .mac; default: .unspecified }
+}
+#elseif canImport(WatchKit)
+import WatchKit
+private enum WKInterfaceDeviceOrUIScreen { static var scale: CGFloat { WKInterfaceDevice.current().screenScale } }
+private var currentIdiom: DeviceIdiom { .watch }
+#else
+private var currentIdiom: DeviceIdiom { .mac }
+#endif
+#endif
