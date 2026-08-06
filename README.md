@@ -1,4 +1,4 @@
-# AppDimens Dynamic for Apple — principal library
+# AppDimens Dynamic for Apple (iOS)
 
 <p align="center">
   <a href="https://github.com/bodenberg/appdimens-ios/actions/workflows/ci.yml"><img alt="Swift Package CI" src="https://img.shields.io/github/actions/workflow/status/bodenberg/appdimens-ios/ci.yml?branch=main&amp;style=for-the-badge&amp;logo=swift"></a>
