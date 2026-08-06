@@ -57,6 +57,7 @@ public extension View { func appDimens() -> some View { AppDimensProvider { self
 
 private extension ContentSizeCategory {
     var appDimensScale: Double {
+        #if os(iOS) || os(visionOS)
         switch self {
         case .extraSmall: return 0.82; case .small: return 0.88; case .medium: return 0.94
         case .large: return 1; case .extraLarge: return 1.12; case .extraExtraLarge: return 1.23
@@ -65,6 +66,10 @@ private extension ContentSizeCategory {
         case .accessibilityExtraExtraLarge: return 2.76; case .accessibilityExtraExtraExtraLarge: return 3.12
         @unknown default: return 1
         }
+        #else
+        // These platforms do not expose the same complete accessibility curve.
+        return 1
+        #endif
     }
 }
 #endif
@@ -97,18 +102,18 @@ public extension DimensConfiguration {
         let scene = view?.window?.windowScene ?? UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }.first { $0.activationState == .foregroundActive }
         let window = view?.window ?? scene?.windows.first(where: \.isKeyWindow)
+        let fallback = CGRect(x: 0, y: 0, width: 300, height: 533)
         let sceneBounds = scene?.coordinateSpace.bounds
         #if os(visionOS)
-        let fallback = CGRect(x: 0, y: 0, width: 300, height: 533)
         let bounds = window?.bounds ?? sceneBounds ?? fallback
         let maximum = bounds
         let traits = window?.traitCollection ?? UITraitCollection()
         let scale = traits.displayScale > 0 ? traits.displayScale : 1
         #else
-        let bounds = window?.bounds ?? sceneBounds ?? UIScreen.main.bounds
-        let maximum = scene?.screen.bounds ?? UIScreen.main.bounds
-        let traits = window?.traitCollection ?? UIScreen.main.traitCollection
-        let scale = scene?.screen.scale ?? UIScreen.main.scale
+        let bounds = window?.bounds ?? sceneBounds ?? fallback
+        let maximum = scene?.screen.bounds ?? bounds
+        let traits = window?.traitCollection ?? UITraitCollection()
+        let scale = scene?.screen.scale ?? (traits.displayScale > 0 ? traits.displayScale : 1)
         #endif
         let font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traits).pointSize / 17
         return .init(screenWidth: Double(bounds.width), screenHeight: Double(bounds.height),

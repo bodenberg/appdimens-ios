@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: raven-actions/actionlint@v2
 
   swiftpm:
@@ -27,11 +27,11 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Select stable Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: 16.4
       - name: Show toolchain
         run: |
           swift --version
@@ -64,11 +64,11 @@ jobs:
           - name: macOS
             destination: platform=macOS
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Select stable Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: 16.4
       - name: List generated package schemes
         run: xcodebuild -list
       - name: Build aggregate module
