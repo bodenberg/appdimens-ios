@@ -74,14 +74,19 @@ import UIKit
 
 private extension UiModeType {
     static var automaticApple: UiModeType {
+        #if os(visionOS)
+        return .vision
+        #elseif targetEnvironment(macCatalyst)
+        return .mac
+        #else
         let idiom = UIDevice.current.userInterfaceIdiom
-        if #available(iOS 14, tvOS 14, *), idiom == .mac { return .mac }
         switch idiom {
         case .phone, .pad: return .normal
         case .tv: return .television
         case .carPlay: return .car
         default: return .undefined
         }
+        #endif
     }
 }
 
@@ -92,12 +97,22 @@ public extension DimensConfiguration {
         let scene = view?.window?.windowScene ?? UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }.first { $0.activationState == .foregroundActive }
         let window = view?.window ?? scene?.windows.first(where: \.isKeyWindow)
-        let bounds = window?.bounds ?? scene?.coordinateSpace.bounds ?? UIScreen.main.bounds
+        let sceneBounds = scene?.coordinateSpace.bounds
+        #if os(visionOS)
+        let fallback = CGRect(x: 0, y: 0, width: 300, height: 533)
+        let bounds = window?.bounds ?? sceneBounds ?? fallback
+        let maximum = bounds
+        let traits = window?.traitCollection ?? UITraitCollection()
+        let scale = traits.displayScale > 0 ? traits.displayScale : 1
+        #else
+        let bounds = window?.bounds ?? sceneBounds ?? UIScreen.main.bounds
         let maximum = scene?.screen.bounds ?? UIScreen.main.bounds
         let traits = window?.traitCollection ?? UIScreen.main.traitCollection
+        let scale = scene?.screen.scale ?? UIScreen.main.scale
+        #endif
         let font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traits).pointSize / 17
         return .init(screenWidth: Double(bounds.width), screenHeight: Double(bounds.height),
-            displayScale: Double(scene?.screen.scale ?? UIScreen.main.scale), fontScale: Double(font),
+            displayScale: Double(scale), fontScale: Double(font),
             uiMode: .automaticApple, maximumWindowWidth: Double(maximum.width), maximumWindowHeight: Double(maximum.height))
     }
 }

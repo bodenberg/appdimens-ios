@@ -8,3 +8,4 @@
 - Added automatic SwiftUI/UIKit window discovery and cross-module parity tests.
 - Expanded the README and dedicated API, strategy, Apple integration, and performance documentation.
 - Replaced the invalid package scheme CI invocation with the aggregate `AppDimensDynamic` scheme and added SDK matrices for all supported Apple platforms.
+- Added workflow linting and removed unavailable `UIScreen`/user-interface-idiom paths from visionOS and Catalyst builds.
