@@ -32,6 +32,7 @@ Porte Apple-native da [AppDimens Dynamic para Android](https://github.com/bodenb
 - [Resize](#resize)
 - [SwiftUI](#swiftui)
 - [UIKit](#uikit)
+- [Metal](#metal)
 - [Equivalência Android → Apple](#equivalência-android--apple)
 - [Concorrência, cache e desempenho](#concorrência-cache-e-desempenho)
 - [Testes](#testes)
@@ -108,6 +109,7 @@ targets: [
 | `AppDimensCore` | `import AppDimensCore` | contexto, engine e dimensão adaptativa | código de domínio e pacotes sem UI |
 | `AppDimensStrategies` | `import AppDimensStrategies` | 14 estratégias, resize e unidades físicas | cálculos avançados sem SwiftUI |
 | `AppDimensUI` | `import AppDimensUI` | reexporta Core/Strategies e adiciona SwiftUI/UIKit | aplicativos Apple |
+| `AppDimensMetal` | `import AppDimensMetal` | snapshot pré-calculado, ABI de uniforms e binding Metal | jogos, renderers e visualização GPU |
 | `AppDimens` | módulos acima | produto conveniente que vincula os três targets | seleção agregada no Xcode |
 
 O grafo é unidirecional: UI → Strategies → Core. O Core não importa frameworks gráficos Apple.
@@ -541,6 +543,55 @@ label.font = UIFont.systemFont(ofSize: 17)
 
 Para texto, prefira estilos semânticos e `UIFontMetrics`. `ssp` existe para equivalência conceitual com Android, mas não substitui automaticamente todas as regras de acessibilidade tipográfica do UIKit.
 
+## Metal
+
+Adicione o produto `AppDimensMetal` ao target e importe o módulo. O layout de
+`AppDimensMetalUniforms` ocupa exatamente 64 bytes, em quatro lanes `float4`, evitando
+padding ambíguo entre Swift e Metal Shading Language:
+
+```swift
+import AppDimensMetal
+
+let context = DimensContext.current(in: metalView)
+let uniforms = AppDimensMetalUniforms(context: context)
+let buffer = AppDimensMetal.makeBuffer(device: device, context: context)!
+
+// Atualize o mesmo buffer somente quando viewport/traits mudarem.
+AppDimensMetal.update(buffer, context: context)
+AppDimensMetal.bind(buffer, to: encoder, vertexIndex: 2, fragmentIndex: 2)
+```
+
+No shader, copie a declaração disponibilizada por
+`AppDimensMetalUniforms.metalDeclaration`:
+
+```metal
+struct AppDimensUniforms {
+    float4 viewport; // width, height, smallest, longest
+    float4 ratios;   // smallest, width, height, diagonal
+    float4 display;  // displayScale, textScale, aspectRatio, isMultiWindow
+    float4 reserved;
+};
+```
+
+Para loops de CPU sensíveis a latência, construa um `DimensSnapshot` apenas quando o
+viewport mudar. Ele pré-calcula razões lineares, diagonal e perímetro e possui uma API
+batch in-place sem alocações:
+
+```swift
+let snapshot = DimensSnapshot(context)
+let radius = snapshot.resolve(12, strategy: .power)
+
+input.withUnsafeBufferPointer { source in
+    output.withUnsafeMutableBufferPointer { destination in
+        snapshot.resolve(source, into: destination, strategy: .scaled)
+    }
+}
+```
+
+Não crie `MTLBuffer` por frame. Retenha um buffer compartilhado, compare o novo
+`DimensContext` com o anterior e chame `update` apenas após resize, rotação, troca de
+tela ou Dynamic Type. Consulte o [guia Metal](Documentation/METAL.md).
+
 ---
 
 ## Equivalência Android → Apple
@@ -580,6 +631,8 @@ Para texto, prefira estilos semânticos e `UIFontMetrics`. `ssp` existe para equ
 - Cálculos comuns são `O(1)` e não fazem I/O.
 - Não há singleton mutável de tamanho de tela.
 - `AdaptiveDimension` usa value semantics.
+- `DimensSnapshot` pré-calcula fatores e oferece resolução batch sem alocação.
+- Uniforms Metal possuem ABI fixa de 64 bytes e atualização in-place do buffer.
 - Resize usa busca binária `O(log n)`.
 - O Core compila sem UIKit e SwiftUI, facilitando testes Linux/headless.
 
@@ -616,6 +669,7 @@ O workflow macOS em `.github/workflows/ci.yml` adiciona validação com o SDK iO
 - [Auditoria do porte](Documentation/AUDIT.md)
 - [Exemplo SwiftUI](Examples/SwiftUIExample.swift)
 - [Exemplo UIKit](Examples/UIKitExample.swift)
+- [Integração Metal](Documentation/METAL.md)
 - [Changelog](CHANGELOG.md)
 
 ## Licença

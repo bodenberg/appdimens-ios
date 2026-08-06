@@ -9,13 +9,16 @@ let package = Package(
         .library(name: "AppDimens", targets: ["AppDimensCore", "AppDimensStrategies", "AppDimensUI"]),
         .library(name: "AppDimensCore", targets: ["AppDimensCore"]),
         .library(name: "AppDimensStrategies", targets: ["AppDimensStrategies"]),
-        .library(name: "AppDimensUI", targets: ["AppDimensUI"])
+        .library(name: "AppDimensUI", targets: ["AppDimensUI"]),
+        .library(name: "AppDimensMetal", targets: ["AppDimensMetal"])
     ],
     targets: [
         .target(name: "AppDimensCore"),
         .target(name: "AppDimensStrategies", dependencies: ["AppDimensCore"]),
         .target(name: "AppDimensUI", dependencies: ["AppDimensCore", "AppDimensStrategies"]),
+        .target(name: "AppDimensMetal", dependencies: ["AppDimensCore", "AppDimensStrategies"]),
         .testTarget(name: "AppDimensCoreTests", dependencies: ["AppDimensCore"]),
-        .testTarget(name: "AppDimensStrategiesTests", dependencies: ["AppDimensCore", "AppDimensStrategies"])
+        .testTarget(name: "AppDimensStrategiesTests", dependencies: ["AppDimensCore", "AppDimensStrategies"]),
+        .testTarget(name: "AppDimensMetalTests", dependencies: ["AppDimensCore", "AppDimensStrategies", "AppDimensMetal"])
     ]
 )

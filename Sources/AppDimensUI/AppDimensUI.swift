@@ -29,11 +29,18 @@ public struct AppDimensProvider<Content: View>: View {
     }
     public var body: some View {
         GeometryReader { proxy in
-            content.environment(\.dimensContext, DimensContext(width: proxy.size.width,
-                height: proxy.size.height, displayScale: displayScale,
-                dynamicTypeScale: dynamicTypeScale, interfaceMode: mode))
+            let context = DimensContext(width: proxy.size.width, height: proxy.size.height,
+                displayScale: displayScale, dynamicTypeScale: dynamicTypeScale, interfaceMode: mode)
+            content.modifier(DimensEnvironmentModifier(context: context))
         }
     }
+}
+
+/// Equatable boundary lets SwiftUI skip propagating an identical context when an
+/// unrelated parent state invalidates the provider.
+private struct DimensEnvironmentModifier: ViewModifier, Equatable {
+    let context: DimensContext
+    func body(content: Content) -> some View { content.environment(\.dimensContext, context) }
 }
 
 public struct DynamicDimension: DynamicProperty {

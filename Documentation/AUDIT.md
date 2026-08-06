@@ -27,3 +27,21 @@ O porte foi redesenhado após inventário do upstream 3.1.6: artefato principal,
 | Android configuration cache | deliberadamente substituído por contexto value-semantic |
 
 Validação automatizada cobre baseline, eixos, texto, conversão de pixels, multi-janela, prioridades, todas as estratégias, fórmulas canônicas, clamps, resize e unidades físicas. A compilação Linux valida que Core/Strategies não dependem acidentalmente de frameworks Apple; a compilação Apple deve ser executada pelo CI/Xcode em macOS.
+
+## Comparação com a antiga branch main iOS
+
+A nova árvore é menor principalmente porque a versão anterior repetia calculadoras,
+extensões e caches entre arquivos e mantinha módulos de jogos que não pertencem ao
+upstream Android. Menos linhas, neste caso, não significa menos estratégias: as 14
+famílias upstream estão concentradas em um engine comum e opções tipadas.
+
+Recursos antigos de inferência por tipo de elemento, monitor global de performance,
+helpers específicos de SpriteKit/SceneKit e caches globais não foram mantidos: eles
+não fazem parte da AppDimens Dynamic Android e adicionavam estado, branches e trabalho
+por frame. Compatibilidade Metal, porém, é relevante para a plataforma Apple e foi
+restaurada como produto isolado `AppDimensMetal`, sem contaminar Core ou SwiftUI.
+
+O caminho de alta performance agora é explícito: `DimensSnapshot` pré-calcula fatores
+por viewport; a resolução batch escreve em memória fornecida pelo chamador; uniforms
+Metal possuem ABI fixa; buffers são atualizados in-place; e o provider SwiftUI usa uma
+fronteira equatable para evitar propagar contextos idênticos.
