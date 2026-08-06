@@ -1,5 +1,20 @@
 # AppDimens Dynamic for Apple — principal library
 
+**[CI status](https://github.com/bodenberg/appdimens-ios/actions)** ·
+**[License](LICENSE)** ·
+**[Swift Package](Package.swift)** ·
+**[Complete documentation](Documentation/README.md)**
+
+<p align="center"><strong>Responsive points and Dynamic Type for SwiftUI and UIKit, directly inspired by AppDimens Dynamic for Android.</strong></p>
+
+<p align="center">
+<a href="#installation">Install</a> · <a href="#swiftui--automatic-window-metrics">SwiftUI</a> · <a href="#uikit--automatic-window-metrics">UIKit</a> · <a href="#strategies">Strategies</a> · <a href="Documentation/README.md">Full documentation</a> · <a href="GUIDE-FOR-BEGINNERS.md">Beginner guide</a>
+</p>
+
+> [!IMPORTANT]
+> AppDimens reads one active window/scene configuration. Child view bounds never redefine `sdp`, so the same value remains consistent throughout a window.
+
+
 Complete modular Apple port of **AppDimens Dynamic**: the principal artifact, all thirteen Android satellite artifacts, an aggregate module, and the Apple-specific Metal bridge.
 
 ## Contract
@@ -167,7 +182,7 @@ let millimeters = DimensUnits.points(10, from: .millimeter, configuration: confi
 
 See [the complete module matrix](Documentation/MODULES.md) and [principal parity audit](Documentation/PRINCIPAL-PARITY.md).
 
----
+Individual strategy products reexport the shared strategy API, so applications can express intent in their dependency graph while using the same tested engine.
 
 ## Product selection
 
@@ -484,12 +499,18 @@ Provide verified PPI. Display scale alone cannot determine physical dimensions.
 
 ## Documentation
 
+- [Documentation hub](Documentation/README.md)
+- [Beginner guide](GUIDE-FOR-BEGINNERS.md)
 - [Complete API reference](Documentation/API.md)
-- [Strategy formulas and guidance](Documentation/STRATEGIES.md)
+- [Strategy catalog and individual guides](Documentation/STRATEGIES.md)
+- [Mathematics and calculus](Documentation/MATHEMATICS-AND-CALCULUS.md)
 - [SwiftUI and UIKit integration](Documentation/APPLE-INTEGRATION.md)
+- [Android migration map](Documentation/MIGRATION.md)
 - [Performance and recomposition](Documentation/PERFORMANCE.md)
+- [Troubleshooting](Documentation/TROUBLESHOOTING.md)
 - [Complete module matrix](Documentation/MODULES.md)
 - [Principal parity audit](Documentation/PRINCIPAL-PARITY.md)
+- [Codex usage skill](skills/appdimens-ios/SKILL.md)
 
 ## Validation commands
 
@@ -501,4 +522,4 @@ swift test --sanitize=thread
 swift build -c release
 ```
 
-The GitHub workflow additionally builds `AppDimensDynamic` against iOS, tvOS, watchOS, visionOS, and macOS SDKs without code signing.
+The GitHub workflow additionally builds `AppDimensDynamic` against iOS, tvOS, visionOS, and macOS SDKs without code signing.

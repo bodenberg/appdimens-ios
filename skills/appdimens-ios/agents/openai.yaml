@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use AppDimens iOS"
+  short_description: "Implement responsive Apple layouts with AppDimens"
+  default_prompt: "Use AppDimens Dynamic for Apple to implement or review this responsive SwiftUI/UIKit layout."

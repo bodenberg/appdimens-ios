@@ -60,8 +60,6 @@ jobs:
             destination: generic/platform=iOS
           - name: tvOS
             destination: generic/platform=tvOS
-          - name: watchOS
-            destination: generic/platform=watchOS
           - name: visionOS
             destination: generic/platform=visionOS
           - name: macOS

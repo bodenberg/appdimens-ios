@@ -1,2 +1,15 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# This repository is intentionally source-only. Explicitly classify every
+# distributed format as text so patch-based branch updates never treat docs,
+# package metadata, workflows, or Swift sources as binary payloads.
+*.swift text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.plist text eol=lf
+*.pbxproj text eol=lf
+*.xcconfig text eol=lf
+*.metal text eol=lf
