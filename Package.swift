@@ -24,31 +24,7 @@ let package = Package(
         .library(name: "AppDimensMetal", targets: ["AppDimensMetal"])
     ],
     targets: [
-        .target(
-            name: "AppDimens",
-            exclude: [
-                "AppDimens.swift",
-                "AppDimensAdjustmentFactors.swift",
-                "AppDimensAutoCache.swift",
-                "AppDimensConvenience.swift",
-                "AppDimensCore.swift",
-                "AppDimensDynamic.swift",
-                "AppDimensDynamicCalculator.swift",
-                "AppDimensEnvironment.swift",
-                "AppDimensExtensions.swift",
-                "AppDimensFixed.swift",
-                "AppDimensFixedCalculator.swift",
-                "AppDimensFluid.swift",
-                "AppDimensItemCalculator.swift",
-                "AppDimensPhysicalUnits.swift",
-                "AppDimensProtocols.swift",
-                "AppDimensTypes.swift",
-                "ElementType.swift",
-                "InferenceContext.swift",
-                "PerformanceMonitor.swift",
-                "ScalingStrategy.swift",
-            ]
-        ),
+        .target(name: "AppDimens"),
         .target(name: "AppDimensStrategies", dependencies: ["AppDimens"]),
         .target(name: "AppDimensDensity", dependencies: ["AppDimensStrategies"]),
         .target(name: "AppDimensDiagonal", dependencies: ["AppDimensStrategies"]),
@@ -65,10 +41,6 @@ let package = Package(
         .target(name: "AppDimensUnits", dependencies: ["AppDimens"]),
         .target(name: "AppDimensMetal", dependencies: ["AppDimens", "AppDimensStrategies"]),
         .target(name: "AppDimensDynamic", dependencies: ["AppDimens", "AppDimensStrategies", "AppDimensAuto", "AppDimensResize", "AppDimensUnits", "AppDimensMetal"]),
-        .testTarget(
-            name: "AppDimensTests",
-            dependencies: ["AppDimensDynamic"],
-            exclude: ["BaseOrientationTests.swift"]
-        )
+        .testTarget(name: "AppDimensTests", dependencies: ["AppDimensDynamic"])
     ]
 )

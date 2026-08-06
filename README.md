@@ -182,7 +182,7 @@ let millimeters = DimensUnits.points(10, from: .millimeter, configuration: confi
 
 See [the complete module matrix](Documentation/MODULES.md) and [principal parity audit](Documentation/PRINCIPAL-PARITY.md).
 
----
+Individual strategy products reexport the shared strategy API, so applications can express intent in their dependency graph while using the same tested engine.
 
 ## Product selection
 
