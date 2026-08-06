@@ -41,7 +41,11 @@ public enum DynamicDimens {
         case .fluid:
             let d = c.dimension(o.qualifier, inverter: o.inverter)
             let span = o.fluidViewport.upperBound - o.fluidViewport.lowerBound
-            if span == 0 { return value * o.fluidScale.upperBound }
+            if span == 0 {
+                let scale = d < o.fluidViewport.lowerBound
+                    ? o.fluidScale.lowerBound : o.fluidScale.upperBound
+                return value * scale
+            }
             let t = min(max((d - o.fluidViewport.lowerBound) / span, 0), 1)
             return value * (o.fluidScale.lowerBound + t * (o.fluidScale.upperBound - o.fluidScale.lowerBound))
         case .interpolated:

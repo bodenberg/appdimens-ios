@@ -140,7 +140,7 @@ let built = 16.scaledDp
 The engine is stateless, allocation-free and `@inlinable` on calculation paths. Configuration is captured once at the SwiftUI root or resolved from the UIKit window; it is not read from every child view. No global dictionary, lock, notification observer or per-value cache is required for an O(1) multiplication. SwiftUI's `Hashable` environment value invalidates consumers only when window metrics actually change; install exactly one provider. For a render loop, create `DimensFactors` once per changed configuration and call `resolve(_:strategy:)` to reuse its ratios.
 
 > [!NOTE]
-> watchOS supports the deterministic core, strategies, units, resize and aggregate imports. The window-level SwiftUI provider is deliberately excluded because its display-scale contract is unavailable at the package's watchOS 6 deployment target.
+> watchOS supports the deterministic core, strategies, units, resize and aggregate imports. The window-level SwiftUI provider is excluded, and the Metal satellite becomes an empty compatibility module because those contracts are unavailable on the package's watchOS 6 target.
 
 ## Complete module installation
 

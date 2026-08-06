@@ -43,4 +43,4 @@ Never allocate a new buffer per frame. Keep layout values in points and use `dis
 
 ## Validation
 
-CI runs debug tests, Thread Sanitizer, release compilation, and aggregate module builds against iOS, tvOS, watchOS, visionOS, and macOS SDKs. The watch build proves that the aggregate import remains free of UI APIs unavailable at the watchOS 6 deployment target.
+CI runs debug tests, Thread Sanitizer, release compilation, and aggregate module builds against iOS, tvOS, watchOS, visionOS, and macOS SDKs. The watch build proves that unavailable UI, SIMD-uniform, and Metal APIs are removed at compilation while the aggregate module remains importable.

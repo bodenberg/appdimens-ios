@@ -72,7 +72,12 @@ final class AppDimensTests: XCTestCase {
     }
     func testDegenerateFluidViewportRemainsFinite() {
         let options = StrategyOptions(fluidViewport: 400...400, fluidScale: 0.8...1.2)
-        XCTAssertEqual(10.fluidDp(baseline, options: options), 12)
+        let below = DimensConfiguration(screenWidth: 300, screenHeight: 533)
+        let atBreakpoint = DimensConfiguration(screenWidth: 400, screenHeight: 700)
+        let above = DimensConfiguration(screenWidth: 430, screenHeight: 932)
+        XCTAssertEqual(10.fluidDp(below, options: options), 8)
+        XCTAssertEqual(10.fluidDp(atBreakpoint, options: options), 12)
+        XCTAssertEqual(10.fluidDp(above, options: options), 12)
     }
     func testAutoModulePriority() {
         let value = 10.autoScaledDp
