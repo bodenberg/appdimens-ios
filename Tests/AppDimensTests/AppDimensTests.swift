@@ -1,5 +1,5 @@
 import XCTest
-@testable import AppDimens
+@testable import AppDimensDynamic
 
 final class AppDimensTests: XCTestCase {
     let baseline = DimensConfiguration(screenWidth: 300, screenHeight: 533, displayScale: 3, fontScale: 1.25)
@@ -52,5 +52,28 @@ final class AppDimensTests: XCTestCase {
             configuration: baseline), 20)
         XCTAssertEqual(AppDimensPlain.qualifier(10, branch: 30, qualifier: .width,
             minimum: 300, configuration: baseline), 30)
+    }
+    func testEveryStrategyModule() {
+        for strategy in DimensStrategy.allCases {
+            XCTAssertTrue(16.dynamic(strategy, baseline).isFinite, "\(strategy)")
+        }
+        XCTAssertEqual(100.percentDp(baseline, percent: 50, qualifier: .width), 150)
+        XCTAssertEqual(16.fitDp(baseline), 16, accuracy: 0.000001)
+        XCTAssertEqual(16.fillDp(baseline), 16, accuracy: 0.001)
+    }
+    func testAutoModulePriority() {
+        let value = 10.autoScaledDp
+            .rotate(15, .portrait)
+            .qualifier(20, .width, minimum: 300)
+            .screen(30, condition: .init(mode: .undefined, qualifier: .width, minimum: 300))
+        XCTAssertEqual(value.resolve(baseline), 30)
+        XCTAssertEqual(10.autoSp.resolve(baseline), 12.5)
+    }
+    func testResizeUnitsAndMetalABI() {
+        let steps = DimensResize.steps(minimum: 10, maximum: 20, step: 2)
+        XCTAssertEqual(DimensResize.largestFitting(steps) { $0 <= 16 }, 16)
+        XCTAssertEqual(DimensUnits.points(1, from: .inch, configuration: baseline), 72)
+        XCTAssertEqual(DimensUnits.pixels(1, from: .inch, configuration: baseline, pixelsPerInch: 460), 460)
+        XCTAssertEqual(MemoryLayout<AppDimensUniforms>.stride, 64)
     }
 }

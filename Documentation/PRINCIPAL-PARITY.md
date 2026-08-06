@@ -27,6 +27,6 @@ For a given window and configuration, a base value has one result. UIKit child b
 - Android `Configuration` maps to the active `UIWindowScene`/SwiftUI root window container.
 - Global mutable cache is omitted because the formula is O(1) and the configuration is a small `Hashable`, `Sendable` value.
 
-## Deferred
+## Satellite boundary
 
-No satellite strategy is claimed in this phase: auto, density, diagonal, fill, fit, fluid, interpolated, logarithmic, percent, perimeter, power, resize and units remain future work. Metal is also deferred until the principal contract is accepted.
+The principal remains independently importable. All satellite strategies are now implemented as separate SwiftPM products and share this accepted window invariant; see `MODULES.md`.

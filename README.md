@@ -1,6 +1,6 @@
 # AppDimens Dynamic for Apple — principal library
 
-Direct Apple port of the **principal `appdimens-dynamic` artifact** from Android, focused in this phase on `common`, `core`, `plain` and `scaled`. Satellite strategies (`auto`, `percent`, `power`, `fluid`, Metal and others) are intentionally deferred to later phases.
+Complete modular Apple port of **AppDimens Dynamic**: the principal artifact, all thirteen Android satellite artifacts, an aggregate module, and the Apple-specific Metal bridge.
 
 ## Contract
 
@@ -16,7 +16,7 @@ In Xcode choose **File › Add Package Dependencies…** and enter:
 https://github.com/bodenberg/appdimens-ios
 ```
 
-Select the `AppDimens` product. With SwiftPM:
+Select `AppDimensDynamic` for everything, `AppDimens` for the principal artifact, or an individual satellite product. With SwiftPM:
 
 ```swift
 .package(url: "https://github.com/bodenberg/appdimens-ios", branch: "main")
@@ -123,18 +123,46 @@ let built = 16.scaledDp
 
 The engine is stateless, allocation-free and `@inlinable` on calculation paths. Configuration is captured once at the SwiftUI root or resolved from the UIKit window; it is not read from every child view. No global dictionary, lock, notification observer or per-value cache is required for an O(1) multiplication.
 
-## Scope of this phase
+## Complete module installation
 
-Implemented now:
+```swift
+import AppDimensDynamic // every module
+// or import AppDimens, AppDimensAuto, AppDimensPercent, etc.
+```
 
-- common enums and all eight inverters;
-- window-based configuration;
-- scaled dp/sp/em families and `a`/`i` variants;
-- rotation, qualifier and UI-mode facilitators;
-- value-semantic `scaledDp` builder;
-- automatic SwiftUI and UIKit integration;
-- deterministic tests.
+The package provides `AppDimens`, `AppDimensAuto`, `AppDimensDensity`, `AppDimensDiagonal`, `AppDimensFill`, `AppDimensFit`, `AppDimensFluid`, `AppDimensInterpolated`, `AppDimensLogarithmic`, `AppDimensPercent`, `AppDimensPerimeter`, `AppDimensPower`, `AppDimensResize`, `AppDimensUnits`, `AppDimensMetal`, and the aggregate `AppDimensDynamic`.
 
-Deferred deliberately: every satellite artifact and Metal. They will be ported individually only after the principal contract is stable.
+## Strategies
 
-See [principal parity audit](Documentation/PRINCIPAL-PARITY.md).
+```swift
+let power = 16.powerDp(configuration)
+let fluid = 16.fluidDp(configuration)
+let halfWidth = 100.percentDp(configuration, percent: 50, qualifier: .width)
+let any = 16.dynamic(.diagonal, configuration)
+```
+
+All strategies accept `StrategyOptions` for qualifier, inverter, aspect ratio, multi-window, sensitivity, percent, power, interpolation, and fluid ranges.
+
+## Auto
+
+```swift
+let value = 16.autoScaledDp
+    .qualifier(24, .width, minimum: 600)
+    .rotate(14, .landscape)
+    .mode(28, .television)
+    .resolve(configuration)
+```
+
+## Resize and units
+
+```swift
+let steps = DimensResize.steps(minimum: 12, maximum: 48, step: 1)
+let fitted = DimensResize.largestFitting(steps) { measure($0) <= available }
+let millimeters = DimensUnits.points(10, from: .millimeter, configuration: configuration)
+```
+
+## Metal
+
+`AppDimensUniforms` is a fixed 64-byte CPU/GPU ABI. Create one shared `MTLBuffer` and update it only when the window configuration changes.
+
+See [the complete module matrix](Documentation/MODULES.md) and [principal parity audit](Documentation/PRINCIPAL-PARITY.md).
