@@ -1,17 +1,74 @@
-name: Swift
+name: Swift Package CI
 
 on:
   push:
+    branches: ['**']
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: swift-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  test:
+  swiftpm:
+    name: SwiftPM tests and release build
     runs-on: macos-15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Select stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Show toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Validate manifest
+        run: swift package dump-package > /tmp/package.json
       - name: Unit tests
-        run: swift test
+        run: swift test --parallel
+      - name: Thread Sanitizer
+        run: swift test --sanitize=thread
       - name: Release build
         run: swift build -c release
-      - name: iOS SDK build
-        run: xcodebuild -scheme AppDimens-Package -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build
+
+  apple-sdk:
+    name: ${{ matrix.name }} SDK build
+    runs-on: macos-15
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: iOS
+            destination: generic/platform=iOS
+          - name: tvOS
+            destination: generic/platform=tvOS
+          - name: watchOS
+            destination: generic/platform=watchOS
+          - name: visionOS
+            destination: generic/platform=visionOS
+          - name: macOS
+            destination: platform=macOS
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: List generated package schemes
+        run: xcodebuild -list
+      - name: Build aggregate module
+        run: >-
+          xcodebuild
+          -scheme AppDimensDynamic
+          -destination '${{ matrix.destination }}'
+          -configuration Release
+          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_REQUIRED=NO
+          build
