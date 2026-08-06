@@ -61,6 +61,19 @@ final class AppDimensTests: XCTestCase {
         XCTAssertEqual(16.fitDp(baseline), 16, accuracy: 0.000001)
         XCTAssertEqual(16.fillDp(baseline), 16, accuracy: 0.001)
     }
+    func testPrecomputedFactorsMatchDynamicStrategies() {
+        let configuration = DimensConfiguration(screenWidth: 430, screenHeight: 932, displayScale: 3)
+        let factors = DimensFactors(configuration)
+        for strategy in [DimensStrategy.scaled, .auto, .density, .diagonal, .perimeter, .fill, .fit, .plain, .physical] {
+            XCTAssertEqual(factors.resolve(16, strategy: strategy),
+                DynamicDimens.resolve(16, strategy: strategy, configuration: configuration),
+                accuracy: 0.000_001, "\(strategy)")
+        }
+    }
+    func testDegenerateFluidViewportRemainsFinite() {
+        let options = StrategyOptions(fluidViewport: 400...400, fluidScale: 0.8...1.2)
+        XCTAssertEqual(10.fluidDp(baseline, options: options), 12)
+    }
     func testAutoModulePriority() {
         let value = 10.autoScaledDp
             .rotate(15, .portrait)

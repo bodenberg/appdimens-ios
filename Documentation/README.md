@@ -42,5 +42,6 @@ flowchart TD
 | tvOS | 13 | SwiftUI + UIKit | Yes | Yes |
 | macOS | 10.15 | SwiftUI | Yes | Yes |
 | visionOS | 1 | SwiftUI + UIKit | Yes | Yes |
+| watchOS | 6 | Deterministic API (no window provider) | Yes | No-op bridge |
 
-watchOS is intentionally not advertised: the current public package depends on window and Metal APIs that do not form a complete watchOS contract.
+The watchOS contract intentionally excludes `AppDimensProvider`, `@ScaledDimension`, and automatic window discovery. Supply a `DimensConfiguration` and use the deterministic API; this keeps the aggregate product buildable back to watchOS 6 without referencing newer SwiftUI environment APIs.
