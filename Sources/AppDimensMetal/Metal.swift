@@ -25,7 +25,9 @@ public enum AppDimensMetal {
         var u = AppDimensUniforms(configuration)
         withUnsafeBytes(of: &u) { buffer.contents().copyMemory(from: $0.baseAddress!, byteCount: $0.count) }
         #if os(macOS)
-        if buffer.storageMode == .managed { buffer.didModifyRange(.init(location: 0, length: MemoryLayout<AppDimensUniforms>.stride)) }
+        if buffer.storageMode == .managed {
+            buffer.didModifyRange(0..<MemoryLayout<AppDimensUniforms>.stride)
+        }
         #endif
     }
 }
