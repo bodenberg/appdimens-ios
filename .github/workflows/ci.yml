@@ -1,0 +1,87 @@
+name: Swift Package CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: swift-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  workflow-lint:
+    name: Validate GitHub Actions
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: raven-actions/actionlint@v2
+
+  swiftpm:
+    name: SwiftPM tests and release build
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 16.4
+      - name: Show toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Validate manifest
+        run: swift package dump-package > /tmp/package.json
+      - name: Unit tests
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test --parallel 2>&1 | tee unit-tests.log
+      - name: Thread Sanitizer
+        run: swift test --sanitize=thread
+      - name: Release build
+        run: swift build -c release
+
+  apple-sdk:
+    name: ${{ matrix.name }} SDK build
+    runs-on: macos-15
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: iOS
+            destination: generic/platform=iOS
+          - name: tvOS
+            destination: generic/platform=tvOS
+          - name: watchOS
+            destination: generic/platform=watchOS
+          - name: visionOS
+            destination: generic/platform=visionOS
+          - name: macOS
+            destination: platform=macOS
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 16.4
+      - name: List generated package schemes
+        run: xcodebuild -list
+      - name: Build aggregate module
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -scheme AppDimensDynamic \
+            -destination '${{ matrix.destination }}' \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build 2>&1 | tee xcodebuild-${{ matrix.name }}.log
