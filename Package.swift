@@ -1,58 +1,74 @@
-// swift-tools-version:5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
+// swift-tools-version: 5.9
 import PackageDescription
 
 let package = Package(
-    name: "AppDimens",
-    platforms: [
-        .iOS(.v13),
-        .macOS(.v10_15),
-        .tvOS(.v13),
-        .watchOS(.v6)
-    ],
+    name: "AppDimensDynamic",
+    platforms: [.iOS(.v13), .macOS(.v10_15), .tvOS(.v13), .visionOS(.v1)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "AppDimens",
-            targets: ["AppDimens", "AppDimensUI", "AppDimensGames"]
-        ),
-        .library(
-            name: "AppDimensUI",
-            targets: ["AppDimensUI"]
-        ),
-        .library(
-            name: "AppDimensGames",
-            targets: ["AppDimensGames"]
-        )
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.6"),
+        .library(name: "AppDimens", targets: ["AppDimens"]),
+        .library(name: "AppDimensDynamic", targets: ["AppDimensDynamic"]),
+        .library(name: "AppDimensAuto", targets: ["AppDimensAuto"]),
+        .library(name: "AppDimensStrategies", targets: ["AppDimensStrategies"]),
+        .library(name: "AppDimensDensity", targets: ["AppDimensDensity"]),
+        .library(name: "AppDimensDiagonal", targets: ["AppDimensDiagonal"]),
+        .library(name: "AppDimensFill", targets: ["AppDimensFill"]),
+        .library(name: "AppDimensFit", targets: ["AppDimensFit"]),
+        .library(name: "AppDimensFluid", targets: ["AppDimensFluid"]),
+        .library(name: "AppDimensInterpolated", targets: ["AppDimensInterpolated"]),
+        .library(name: "AppDimensLogarithmic", targets: ["AppDimensLogarithmic"]),
+        .library(name: "AppDimensPercent", targets: ["AppDimensPercent"]),
+        .library(name: "AppDimensPerimeter", targets: ["AppDimensPerimeter"]),
+        .library(name: "AppDimensPower", targets: ["AppDimensPower"]),
+        .library(name: "AppDimensResize", targets: ["AppDimensResize"]),
+        .library(name: "AppDimensUnits", targets: ["AppDimensUnits"]),
+        .library(name: "AppDimensMetal", targets: ["AppDimensMetal"])
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "AppDimensUI",
-            dependencies: ["AppDimens"],
-            path: "Sources/AppDimensUI"
-        ),
-        .target(
-            name: "AppDimensGames",
-            dependencies: ["AppDimens"],
-            path: "Sources/AppDimensGames"
-        ),
         .target(
             name: "AppDimens",
-            dependencies: [],
-            path: "Sources/AppDimens"
+            exclude: [
+                "AppDimens.swift",
+                "AppDimensAdjustmentFactors.swift",
+                "AppDimensAutoCache.swift",
+                "AppDimensConvenience.swift",
+                "AppDimensCore.swift",
+                "AppDimensDynamic.swift",
+                "AppDimensDynamicCalculator.swift",
+                "AppDimensEnvironment.swift",
+                "AppDimensExtensions.swift",
+                "AppDimensFixed.swift",
+                "AppDimensFixedCalculator.swift",
+                "AppDimensFluid.swift",
+                "AppDimensItemCalculator.swift",
+                "AppDimensPhysicalUnits.swift",
+                "AppDimensProtocols.swift",
+                "AppDimensTypes.swift",
+                "ElementType.swift",
+                "InferenceContext.swift",
+                "PerformanceMonitor.swift",
+                "ScalingStrategy.swift",
+            ]
         ),
+        .target(name: "AppDimensStrategies", dependencies: ["AppDimens"]),
+        .target(name: "AppDimensDensity", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensDiagonal", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensFill", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensFit", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensFluid", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensInterpolated", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensLogarithmic", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensPercent", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensPerimeter", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensPower", dependencies: ["AppDimensStrategies"]),
+        .target(name: "AppDimensAuto", dependencies: ["AppDimens"]),
+        .target(name: "AppDimensResize", dependencies: ["AppDimens"]),
+        .target(name: "AppDimensUnits", dependencies: ["AppDimens"]),
+        .target(name: "AppDimensMetal", dependencies: ["AppDimens", "AppDimensStrategies"]),
+        .target(name: "AppDimensDynamic", dependencies: ["AppDimens", "AppDimensStrategies", "AppDimensAuto", "AppDimensResize", "AppDimensUnits", "AppDimensMetal"]),
         .testTarget(
             name: "AppDimensTests",
-            dependencies: ["AppDimens", "AppDimensUI", "AppDimensGames"],
-            path: "Tests"
+            dependencies: ["AppDimensDynamic"],
+            exclude: ["BaseOrientationTests.swift"]
         )
     ]
 )
-
