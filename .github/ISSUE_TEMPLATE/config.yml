@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Usage documentation
+    url: https://github.com/bodenberg/appdimens-ios/tree/main/Documentation
+    about: Read the API, strategy, migration, and troubleshooting guides first.
+  - name: Security report
+    url: https://github.com/bodenberg/appdimens-ios/security/advisories/new
+    about: Report vulnerabilities privately; do not open a public issue.

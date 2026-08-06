@@ -1,0 +1,36 @@
+name: Release validation
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-validation:
+    name: Validate tagged Swift package
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 16.4
+      - name: Validate manifest
+        run: swift package dump-package > /tmp/package.json
+      - name: Test
+        run: swift test --parallel
+      - name: Release build
+        run: swift build -c release
+      - name: Validate iOS SDK
+        run: >-
+          xcodebuild -scheme AppDimensDynamic
+          -destination 'generic/platform=iOS'
+          -configuration Release
+          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_REQUIRED=NO
+          build

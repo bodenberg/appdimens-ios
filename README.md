@@ -511,6 +511,8 @@ Provide verified PPI. Display scale alone cannot determine physical dimensions.
 - [Complete module matrix](Documentation/MODULES.md)
 - [Principal parity audit](Documentation/PRINCIPAL-PARITY.md)
 - [Codex usage skill](skills/appdimens-ios/SKILL.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
 
 ## Validation commands
 
