@@ -17,7 +17,7 @@ public struct AppDimensProvider<Content: View>: View {
     @Environment(\.displayScale) private var displayScale
     @Environment(\.sizeCategory) private var sizeCategory
     private let content: Content
-    public init(@ViewBuilder content: () -> Content) { content = content() }
+    public init(@ViewBuilder content: () -> Content) { self.content = content() }
 
     public var body: some View {
         GeometryReader { proxy in
@@ -36,9 +36,9 @@ public extension View { func appDimens() -> some View { AppDimensProvider { self
     @Environment(\.appDimensConfiguration) private var configuration
     private let value: Double, qualifier: DpQualifier
     private let font: Bool, fontScale: Bool, aspect: Bool, ignoreMultiWindow: Bool
-    public init(wrappedValue: Double, _ qualifier: DpQualifier = .smallWidth,
+    public init(wrappedValue: CGFloat, _ qualifier: DpQualifier = .smallWidth,
                 aspectRatio: Bool = false, ignoreMultiWindow: Bool = false) {
-        value = wrappedValue; self.qualifier = qualifier; font = false; fontScale = false
+        value = Double(wrappedValue); self.qualifier = qualifier; font = false; fontScale = false
         aspect = aspectRatio; self.ignoreMultiWindow = ignoreMultiWindow
     }
     public init(text wrappedValue: Double, _ qualifier: DpQualifier = .smallWidth,
