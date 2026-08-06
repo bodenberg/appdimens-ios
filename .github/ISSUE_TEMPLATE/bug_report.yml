@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a reproducible AppDimens behavior or integration defect.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve AppDimens Dynamic for Apple.
+  - type: input
+    id: version
+    attributes:
+      label: Package version or commit
+      placeholder: v1.0.0 or commit SHA
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options: [iOS, iPadOS, tvOS, macOS, visionOS, Linux/headless]
+    validations:
+      required: true
+  - type: dropdown
+    id: ui
+    attributes:
+      label: Integration
+      options: [SwiftUI, UIKit, Metal, Core/headless]
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include configuration, input, expected value, actual value, and minimal code.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Xcode, Swift, OS, device/simulator, orientation, window mode, and Dynamic Type size.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I installed `.appDimens()` once at the SwiftUI scene root or used the correct UIKit window.
+          required: true
+        - label: I searched existing issues and troubleshooting documentation.
+          required: true

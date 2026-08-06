@@ -1,0 +1,32 @@
+name: Documentation validation
+
+on:
+  push:
+    paths:
+      - '**.md'
+      - 'skills/**'
+      - '.github/workflows/documentation.yml'
+  pull_request:
+    paths:
+      - '**.md'
+      - 'skills/**'
+      - '.github/workflows/documentation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  documentation:
+    name: Links, skill, and text-only policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate documentation and skill
+        shell: bash
+        run: python3 .github/scripts/validate_repository.py
