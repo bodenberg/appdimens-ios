@@ -14,7 +14,14 @@ public extension EnvironmentValues {
 /// Install once at the WindowGroup root. It observes the window container and all
 /// relevant environment metrics; callers never pass screen or view dimensions.
 public struct AppDimensProvider<Content: View>: View {
+    #if os(macOS) || os(watchOS)
+    // EnvironmentValues.displayScale is newer than our macOS 10.15/watchOS 6
+    // deployment targets. Keep those targets source-compatible without an
+    // availability branch in every body evaluation.
+    private let displayScale = 1.0
+    #else
     @Environment(\.displayScale) private var displayScale
+    #endif
     @Environment(\.sizeCategory) private var sizeCategory
     private let content: Content
     public init(@ViewBuilder content: () -> Content) { self.content = content() }
