@@ -39,7 +39,10 @@ jobs:
       - name: Validate manifest
         run: swift package dump-package > /tmp/package.json
       - name: Unit tests
-        run: swift test --parallel
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test --parallel 2>&1 | tee unit-tests.log
       - name: Thread Sanitizer
         run: swift test --sanitize=thread
       - name: Release build
@@ -72,11 +75,13 @@ jobs:
       - name: List generated package schemes
         run: xcodebuild -list
       - name: Build aggregate module
-        run: >-
-          xcodebuild
-          -scheme AppDimensDynamic
-          -destination '${{ matrix.destination }}'
-          -configuration Release
-          CODE_SIGNING_ALLOWED=NO
-          CODE_SIGNING_REQUIRED=NO
-          build
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -scheme AppDimensDynamic \
+            -destination '${{ matrix.destination }}' \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build 2>&1 | tee xcodebuild-${{ matrix.name }}.log

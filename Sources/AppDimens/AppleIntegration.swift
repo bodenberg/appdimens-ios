@@ -83,11 +83,12 @@ private extension UiModeType {
         return .vision
         #elseif targetEnvironment(macCatalyst)
         return .mac
+        #elseif os(tvOS)
+        return .television
         #else
         let idiom = UIDevice.current.userInterfaceIdiom
         switch idiom {
         case .phone, .pad: return .normal
-        case .tv: return .television
         case .carPlay: return .car
         default: return .undefined
         }
