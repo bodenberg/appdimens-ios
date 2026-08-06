@@ -15,5 +15,3 @@ jobs:
         run: swift build -c release
       - name: iOS SDK build
         run: xcodebuild -scheme AppDimens-Package -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build
-      - name: Metal module iOS SDK build
-        run: xcodebuild -scheme AppDimensMetal -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build

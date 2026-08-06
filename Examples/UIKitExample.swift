@@ -1,10 +1,6 @@
 import UIKit
-import AppDimensUI
+import AppDimens
 
-@MainActor
-func configure(_ view: UIView, label: UILabel) {
-    let context = DimensContext.current(in: view)
-    let inset = CGFloat(16.sdp(in: context))
-    view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
-    label.font = UIFont.systemFont(ofSize: inset).appDimensScaled()
+@MainActor func configure(_ view: UIView) {
+    view.layer.cornerRadius = 12.sdp(in: view)
 }

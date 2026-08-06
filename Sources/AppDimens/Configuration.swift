@@ -1,0 +1,56 @@
+import Foundation
+
+public enum DpQualifier: String, Sendable, CaseIterable { case smallWidth, height, width }
+public enum DimensOrientation: String, Sendable, CaseIterable { case portrait, landscape }
+public enum UiModeType: String, Sendable, CaseIterable {
+    case normal, television, car, watch, desk, appliance, vision, mac, undefined
+}
+public enum Inverter: String, Sendable, CaseIterable {
+    case phToLw, pwToLh, lhToPw, lwToPh, swToLh, swToLw, swToPh, swToPw, `default`
+}
+
+/// Apple equivalent of Android Configuration. Width and height always describe the
+/// current window/scene in points, never an arbitrary child view.
+@frozen public struct DimensConfiguration: Hashable, Sendable {
+    public let screenWidth: Double
+    public let screenHeight: Double
+    public let displayScale: Double
+    public let fontScale: Double
+    public let uiMode: UiModeType
+    public let maximumWindowWidth: Double
+    public let maximumWindowHeight: Double
+
+    public init(screenWidth: Double, screenHeight: Double, displayScale: Double = 1,
+                fontScale: Double = 1, uiMode: UiModeType = .undefined,
+                maximumWindowWidth: Double? = nil, maximumWindowHeight: Double? = nil) {
+        precondition(screenWidth > 0 && screenHeight > 0 && screenWidth.isFinite && screenHeight.isFinite)
+        precondition(displayScale > 0 && displayScale.isFinite && fontScale > 0 && fontScale.isFinite)
+        self.screenWidth = screenWidth; self.screenHeight = screenHeight
+        self.displayScale = displayScale; self.fontScale = fontScale; self.uiMode = uiMode
+        self.maximumWindowWidth = maximumWindowWidth ?? screenWidth
+        self.maximumWindowHeight = maximumWindowHeight ?? screenHeight
+    }
+
+    public var smallestScreenWidth: Double { min(screenWidth, screenHeight) }
+    public var orientation: DimensOrientation { screenWidth > screenHeight ? .landscape : .portrait }
+    public var aspectRatio: Double { max(screenWidth, screenHeight) / smallestScreenWidth }
+    public var isMultiWindow: Bool {
+        screenWidth < maximumWindowWidth * 0.95 || screenHeight < maximumWindowHeight * 0.95
+    }
+
+    @inlinable public func dimension(_ qualifier: DpQualifier, inverter: Inverter = .default) -> Double {
+        let effective: DpQualifier
+        switch inverter {
+        case .phToLw where orientation == .landscape && qualifier == .height: effective = .width
+        case .pwToLh where orientation == .landscape && qualifier == .width: effective = .height
+        case .lhToPw where orientation == .portrait && qualifier == .height: effective = .width
+        case .lwToPh where orientation == .portrait && qualifier == .width: effective = .height
+        case .swToLh where orientation == .landscape && qualifier == .smallWidth: effective = .height
+        case .swToLw where orientation == .landscape && qualifier == .smallWidth: effective = .width
+        case .swToPh where orientation == .portrait && qualifier == .smallWidth: effective = .height
+        case .swToPw where orientation == .portrait && qualifier == .smallWidth: effective = .width
+        default: effective = qualifier
+        }
+        switch effective { case .smallWidth: return smallestScreenWidth; case .height: return screenHeight; case .width: return screenWidth }
+    }
+}
