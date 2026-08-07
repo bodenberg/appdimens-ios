@@ -43,4 +43,4 @@ Never allocate a new buffer per frame. Keep layout values in points and use `dis
 
 ## Validation
 
-CI runs debug tests, Thread Sanitizer, release compilation, and aggregate module builds against iOS, tvOS, visionOS, and macOS SDKs, plus a deterministic-core build against the watchOS SDK. The watch build validates the supported core API directly without pulling aggregate dependencies whose UI and Metal declarations are intentionally unavailable. Every SDK job uploads its complete `xcodebuild` log and prints extracted compiler diagnostics in the job summary on failure.
+CI runs debug tests, Thread Sanitizer, release compilation, and aggregate module builds against iOS, tvOS, watchOS, visionOS, and macOS SDKs. The watch build proves that unavailable UI, SIMD-uniform, and Metal APIs are removed at compilation while the aggregate module remains importable. Every SDK job uploads its complete `xcodebuild` log and prints extracted compiler diagnostics in the job summary on failure.
