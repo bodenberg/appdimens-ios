@@ -100,7 +100,7 @@ jobs:
           exit "$status"
       - name: Upload SDK build log
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: xcodebuild-${{ matrix.name }}
           path: xcodebuild-${{ matrix.name }}.log

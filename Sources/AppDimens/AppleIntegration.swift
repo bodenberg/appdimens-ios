@@ -81,7 +81,7 @@ private extension ContentSizeCategory {
 }
 #endif
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 private extension UiModeType {
@@ -146,7 +146,7 @@ public extension BinaryFloatingPoint {
 }
 #endif
 
-#if !canImport(UIKit)
+#if !canImport(UIKit) || os(watchOS)
 private extension UiModeType {
     static var automaticApple: UiModeType {
         #if os(macOS)
