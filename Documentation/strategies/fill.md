@@ -1,28 +1,55 @@
-# Cover / fill
+# Cover / fill scaling
 
 [Strategy catalog](../STRATEGIES.md) · [Mathematics](../MATHEMATICS-AND-CALCULUS.md) · [API](../API.md)
 
-## Purpose
+## What it is
 
-Backgrounds or dominant visuals that must cover.
+Use **fill** for backgrounds and media that must cover the reference canvas.
 
-## Formula / behavior
+## Mathematical theory
 
-maximum of width and height ratios.
+**Formula:** `result = v × max(w/300, h/533)`.
+
+The larger normalized axis wins. This is aspect-fill geometry: it guarantees coverage but lets the other axis extend beyond its boundary.
+
+## Worked calculation
+
+At `390×844`, fill selects `844/533 ≈ 1.583`; a 300-point token becomes about `475.05 pt`.
 
 ## Swift usage
 
-`16.fillDp(c)`; may crop or oversize.
-
 ```swift
-let configuration = DimensConfiguration(screenWidth: 390, screenHeight: 844)
-let value = DynamicDimens.resolve(16, strategy: .fill, configuration: configuration)
+import AppDimensDynamic
+
+let c = DimensConfiguration(screenWidth: 390, screenHeight: 844, displayScale: 3)
+`let backdrop = 300.fillDp(c)`
+`let hero = DynamicDimens.resolve(240, strategy: .fill, configuration: c)`
 ```
 
-## Selection guidance
+Use the numeric extension for concise token code or `DynamicDimens.resolve` when the strategy is selected at runtime. Both return `Double`; convert to `CGFloat` at the view boundary.
 
-Start with `scaled`. Adopt this strategy only when its behavior matches an explicit design requirement, then test the 300-point baseline, phone portrait/landscape, tablet full screen, and a narrow multi-window allocation.
+## Recommended use
+
+Use for backgrounds, bleed artwork, and dominant visuals where uncovered edges are unacceptable.
+
+## Advantages
+
+* Deterministic and stateless: identical configuration produces identical output.
+* Constant-time calculation with no I/O, global cache, or UI-framework dependency.
+* Supports explicit qualifiers through `StrategyOptions`.
+
+## Trade-offs and misuse
+
+Cropping or oversized content is inherent. Do not use for text, tap targets, or content that must remain visible.
+
+## Validation checklist
+
+1. Verify the identity/reference behavior at `300 × 533`.
+2. Compare phone portrait and landscape.
+3. Test iPad full screen and a narrow split-view window.
+4. Resize continuously on macOS or iPadOS and look for unintended jumps.
+5. Test large Dynamic Type separately; geometric strategies do not automatically apply `fontScale`.
 
 ## Performance
 
-Resolution is stateless and allocation-free. For repeated rendering, construct `DimensFactors` once when the window configuration changes rather than rediscovering metrics per element.
+Resolution is `O(1)`. For repeated rendering, construct `DimensFactors` once per window configuration where the strategy has a precomputed fast path; otherwise reuse `DimensConfiguration` and avoid rediscovering window metrics per element.
