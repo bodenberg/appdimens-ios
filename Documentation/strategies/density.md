@@ -1,28 +1,55 @@
-# Density-aware
+# Density-aware scaling
 
 [Strategy catalog](../STRATEGIES.md) · [Mathematics](../MATHEMATICS-AND-CALCULUS.md) · [API](../API.md)
 
-## Purpose
+## What it is
 
-Pixel-oriented assets and legacy density behavior.
+Use **density** for pixel buffers, bitmap kernels, and legacy pixel specifications.
 
-## Formula / behavior
+## Mathematical theory
 
-scaled factor multiplied by `displayScale`.
+**Formula:** `result = v × d / 300 × displayScale`.
+
+The first factor performs ordinary geometric scaling; the display scale then converts logical points into device pixels. A 2× Retina display therefore produces twice the numeric pixel count, not twice the visible size.
+
+## Worked calculation
+
+With `v=16`, `d=390`, and `displayScale=3`, the result is `62.4 px`. The corresponding logical length remains `20.8 pt`.
 
 ## Swift usage
 
-`16.densityDp(c)`; avoid for ordinary SwiftUI layout points.
-
 ```swift
-let configuration = DimensConfiguration(screenWidth: 390, screenHeight: 844)
-let value = DynamicDimens.resolve(16, strategy: .density, configuration: configuration)
+import AppDimensDynamic
+
+let c = DimensConfiguration(screenWidth: 390, screenHeight: 844, displayScale: 3)
+`let pixels = 1.densityDp(c)`
+`let bufferSide = 64.dynamic(.density, c)`
 ```
 
-## Selection guidance
+Use the numeric extension for concise token code or `DynamicDimens.resolve` when the strategy is selected at runtime. Both return `Double`; convert to `CGFloat` at the view boundary.
 
-Start with `scaled`. Adopt this strategy only when its behavior matches an explicit design requirement, then test the 300-point baseline, phone portrait/landscape, tablet full screen, and a narrow multi-window allocation.
+## Recommended use
+
+Use only at an API boundary that explicitly consumes pixels, such as a raster buffer. Use scaled points for SwiftUI frames, UIKit constraints, padding, and corner radii.
+
+## Advantages
+
+* Deterministic and stateless: identical configuration produces identical output.
+* Constant-time calculation with no I/O, global cache, or UI-framework dependency.
+* Supports explicit qualifiers through `StrategyOptions`.
+
+## Trade-offs and misuse
+
+Using this value as points double-applies density and creates oversized UI. It is not physical PPI.
+
+## Validation checklist
+
+1. Verify the identity/reference behavior at `300 × 533`.
+2. Compare phone portrait and landscape.
+3. Test iPad full screen and a narrow split-view window.
+4. Resize continuously on macOS or iPadOS and look for unintended jumps.
+5. Test large Dynamic Type separately; geometric strategies do not automatically apply `fontScale`.
 
 ## Performance
 
-Resolution is stateless and allocation-free. For repeated rendering, construct `DimensFactors` once when the window configuration changes rather than rediscovering metrics per element.
+Resolution is `O(1)`. For repeated rendering, construct `DimensFactors` once per window configuration where the strategy has a precomputed fast path; otherwise reuse `DimensConfiguration` and avoid rediscovering window metrics per element.
