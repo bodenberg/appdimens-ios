@@ -1,7 +1,10 @@
-#if !os(watchOS)
 @_exported import AppDimens
 @_exported import AppDimensStrategies
 
+// Keep this target as a real re-exporting module on watchOS. Guard only the
+// declarations that require SIMD/Metal rather than compiling the whole source
+// file away; AppDimensDynamic can then import its dependency for every SDK.
+#if !os(watchOS)
 @frozen public struct AppDimensUniforms: Sendable, Equatable {
     public var viewport, ratios, display, reserved: SIMD4<Float>
     @inlinable public init(_ c: DimensConfiguration) {
