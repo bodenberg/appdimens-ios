@@ -1,5 +1,7 @@
 # Principal artifact parity audit
 
+> **Audit scope:** public concepts and modules exposed by AppDimens Dynamic for Android are mapped to native Apple equivalents. Platform UI plumbing is intentionally adapted rather than copied: Android `Configuration` becomes an immutable Apple window configuration, and watchOS uses the deterministic form.
+
 This phase inventories only Android `library/`, not the satellite modules.
 
 | Android principal area | Apple port |
@@ -26,6 +28,7 @@ For a given window and configuration, a base value has one result. UIKit child b
 - Android font scale maps to Dynamic Type size categories.
 - Android `Configuration` maps to the active `UIWindowScene`/SwiftUI root window container.
 - Global mutable cache is omitted because the formula is O(1) and the configuration is a small `Hashable`, `Sendable` value.
+- Repeated frame calculations can reuse `DimensFactors`; strategy branches avoid calculating ratios they do not consume.
 
 ## Satellite boundary
 
