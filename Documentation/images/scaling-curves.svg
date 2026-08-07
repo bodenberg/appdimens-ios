@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-labelledby="title desc">
+ <title id="title">AppDimens scaling curve comparison</title><desc id="desc">Curves cross the reference ratio one. Power and logarithmic curves grow more slowly than scaled; fluid is bounded.</desc>
+ <rect width="900" height="440" rx="24" fill="#101827"/><g stroke="#334155" stroke-width="1"><path d="M90 40V360H850"/><path d="M90 280H850M90 200H850M90 120H850" stroke-dasharray="5 7"/></g>
+ <g fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="16"><text x="38" y="365">0</text><text x="42" y="285">0.5</text><text x="50" y="205">1</text><text x="42" y="125">1.5</text><text x="160" y="390">0.5</text><text x="460" y="390">1 (reference)</text><text x="800" y="390">1.5 ratio</text></g>
+ <path d="M170 280L510 200L830 120" fill="none" stroke="#38bdf8" stroke-width="5"/><path d="M170 268C300 232 400 211 510 200C640 182 745 164 830 148" fill="none" stroke="#a78bfa" stroke-width="5"/><path d="M170 250C310 220 420 205 510 200C650 190 755 181 830 174" fill="none" stroke="#34d399" stroke-width="5"/><path d="M170 260L300 240L700 160L830 145" fill="none" stroke="#f59e0b" stroke-width="5"/>
+ <g font-family="system-ui,sans-serif" font-weight="600" font-size="16"><text x="690" y="105" fill="#38bdf8">scaled</text><text x="690" y="145" fill="#a78bfa">power 0.75</text><text x="690" y="180" fill="#34d399">logarithmic</text><text x="350" y="250" fill="#f59e0b">fluid (bounded)</text></g>
+</svg>

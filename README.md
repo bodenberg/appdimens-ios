@@ -2,6 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/bodenberg/appdimens-ios/actions/workflows/ci.yml"><img alt="Swift Package CI" src="https://img.shields.io/github/actions/workflow/status/bodenberg/appdimens-ios/ci.yml?branch=main&amp;style=for-the-badge&amp;logo=swift"></a>
+  <img alt="Version 3.1.6" src="https://img.shields.io/badge/version-3.1.6-6f42c1?style=for-the-badge">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-6f42c1?style=for-the-badge"></a>
   <img alt="Apple platforms" src="https://img.shields.io/badge/Apple-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20visionOS-111?style=for-the-badge&amp;logo=apple">
 </p>
@@ -32,10 +33,10 @@ In Xcode choose **File › Add Package Dependencies…** and enter:
 https://github.com/bodenberg/appdimens-ios
 ```
 
-Select `AppDimensDynamic` for everything, `AppDimens` for the principal artifact, or an individual satellite product. With SwiftPM:
+Select version `3.1.6`, then choose `AppDimensDynamic` for everything, `AppDimens` for the principal artifact, or an individual satellite product. With SwiftPM:
 
 ```swift
-.package(url: "https://github.com/bodenberg/appdimens-ios", branch: "main")
+.package(url: "https://github.com/bodenberg/appdimens-ios", exact: "3.1.6")
 // .product(name: "AppDimens", package: "appdimens-ios")
 ```
 

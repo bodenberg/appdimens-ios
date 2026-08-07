@@ -2,27 +2,54 @@
 
 [Strategy catalog](../STRATEGIES.md) · [Mathematics](../MATHEMATICS-AND-CALCULUS.md) · [API](../API.md)
 
-## Purpose
+## What it is
 
-Controlled growth over a known device band.
+Use **fluid** for responsive values that grow only within a known viewport band.
 
-## Formula / behavior
+## Mathematical theory
 
-linear interpolation between viewport and scale ranges.
+**Formula:** `t = clamp((d−L)/(U−L),0,1)`; `result = v × lerp(a,b,t)`.
+
+This is piecewise linear: constant below `L`, linear between `L` and `U`, and constant above `U`. It is continuous at both bounds.
+
+## Worked calculation
+
+For `d=544`, the default band gives `t=0.5`, scale `1.0`, and a 24-point token remains `24 pt`.
 
 ## Swift usage
 
-Use `.fluid` with `StrategyOptions(fluidViewport: 320...768, fluidScale: 0.8...1.2)`.
-
 ```swift
-let configuration = DimensConfiguration(screenWidth: 390, screenHeight: 844)
-let value = DynamicDimens.resolve(16, strategy: .fluid, configuration: configuration)
+import AppDimensDynamic
+
+let c = DimensConfiguration(screenWidth: 390, screenHeight: 844, displayScale: 3)
+`let options = StrategyOptions(qualifier: .width, fluidViewport: 320...768, fluidScale: 0.8...1.2)`
+`let gutter = 24.fluidDp(c, options: options)`
 ```
 
-## Selection guidance
+Use the numeric extension for concise token code or `DynamicDimens.resolve` when the strategy is selected at runtime. Both return `Double`; convert to `CGFloat` at the view boundary.
 
-Start with `scaled`. Adopt this strategy only when its behavior matches an explicit design requirement, then test the 300-point baseline, phone portrait/landscape, tablet full screen, and a narrow multi-window allocation.
+## Recommended use
+
+Use for gutters, hero typography, and desktop-capable layouts with explicit minimum and maximum visual sizes.
+
+## Advantages
+
+* Deterministic and stateless: identical configuration produces identical output.
+* Constant-time calculation with no I/O, global cache, or UI-framework dependency.
+* Supports explicit qualifiers through `StrategyOptions`.
+
+## Trade-offs and misuse
+
+The bounds are product decisions, not device categories. A zero-width viewport range becomes a step; reversed ranges should be avoided.
+
+## Validation checklist
+
+1. Verify the identity/reference behavior at `300 × 533`.
+2. Compare phone portrait and landscape.
+3. Test iPad full screen and a narrow split-view window.
+4. Resize continuously on macOS or iPadOS and look for unintended jumps.
+5. Test large Dynamic Type separately; geometric strategies do not automatically apply `fontScale`.
 
 ## Performance
 
-Resolution is stateless and allocation-free. For repeated rendering, construct `DimensFactors` once when the window configuration changes rather than rediscovering metrics per element.
+Resolution is `O(1)`. For repeated rendering, construct `DimensFactors` once per window configuration where the strategy has a precomputed fast path; otherwise reuse `DimensConfiguration` and avoid rediscovering window metrics per element.

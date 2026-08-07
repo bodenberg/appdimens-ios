@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — complete direct port
+## 3.1.6 — complete direct port
 
 - Ported the principal common/core/plain/scaled API with a stable window/scene configuration.
 - Ported all Android satellite modules: auto, density, diagonal, fill, fit, fluid, interpolated, logarithmic, percent, perimeter, power, resize and units.
