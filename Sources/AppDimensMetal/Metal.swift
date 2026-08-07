@@ -1,3 +1,4 @@
+#if !os(watchOS)
 @_exported import AppDimens
 @_exported import AppDimensStrategies
 
@@ -12,12 +13,12 @@
     }
     public static let metalDeclaration = "struct AppDimensUniforms { float4 viewport; float4 ratios; float4 display; float4 reserved; };"
 }
-#if canImport(Metal) && !os(watchOS)
+#if canImport(Metal)
 import Foundation
 import Metal
 /// CPU-to-GPU buffer helpers for Apple platforms that expose Metal command
-/// buffers. watchOS can still use `AppDimensUniforms` as a portable value, but
-/// its SDK does not expose the buffer APIs used by this bridge.
+/// buffers. The enclosing platform guard removes this bridge and its SIMD
+/// uniforms from watchOS compilation.
 public enum AppDimensMetal {
     public static func makeBuffer(device: MTLDevice, configuration: DimensConfiguration) -> MTLBuffer? {
         var u = AppDimensUniforms(configuration)
@@ -34,4 +35,5 @@ public enum AppDimensMetal {
         #endif
     }
 }
+#endif
 #endif

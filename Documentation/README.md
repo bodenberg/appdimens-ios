@@ -42,5 +42,6 @@ flowchart TD
 | tvOS | 13 | SwiftUI + UIKit | Yes | Yes |
 | macOS | 10.15 | SwiftUI | Yes | Yes |
 | visionOS | 1 | SwiftUI + UIKit | Yes | Yes |
+| watchOS | 7 | Deterministic API (no window provider) | Yes | Not included |
 
-watchOS is intentionally not advertised: the current public package depends on window and Metal APIs that do not form a complete watchOS contract.
+The watchOS contract intentionally excludes `AppDimensProvider`, `@ScaledDimension`, automatic window discovery, and Metal APIs. Supply a `DimensConfiguration` and use the deterministic API; `AppDimensMetal` is an empty compatibility module on watchOS so the aggregate product remains importable without compiling SIMD or Metal declarations for the device SDK. The minimum is watchOS 7, the oldest deployment target supported by the Xcode 16 toolchain used by CI.

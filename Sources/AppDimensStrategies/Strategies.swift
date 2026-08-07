@@ -27,27 +27,37 @@ public enum DynamicDimens {
     @inlinable public static func resolve(_ value: Double, strategy: DimensStrategy,
         configuration c: DimensConfiguration, options o: StrategyOptions = .init()) -> Double {
         if o.ignoreMultiWindows && c.isMultiWindow { return value }
-        let d = c.dimension(o.qualifier, inverter: o.inverter)
-        let linear = d / AppDimens.baseRatio
-        let wr = c.screenWidth / 300, hr = c.screenHeight / 533
         switch strategy {
         case .plain, .physical: return value
         case .scaled, .auto: return AppDimens.dp(value, configuration: c, qualifier: o.qualifier,
             inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
             applyAspectRatio: o.applyAspectRatio, sensitivity: o.sensitivity)
-        case .density: return value * linear * c.displayScale
+        case .density:
+            return value * c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio * c.displayScale
         case .diagonal: return value * hypot(c.screenWidth, c.screenHeight) / hypot(300, 533)
         case .perimeter: return value * (c.screenWidth + c.screenHeight) / 833
-        case .fill: return value * max(wr, hr)
-        case .fit: return value * min(wr, hr)
+        case .fill: return value * max(c.screenWidth / 300, c.screenHeight / 533)
+        case .fit: return value * min(c.screenWidth / 300, c.screenHeight / 533)
         case .fluid:
+            let d = c.dimension(o.qualifier, inverter: o.inverter)
             let span = o.fluidViewport.upperBound - o.fluidViewport.lowerBound
+            if span == 0 {
+                let scale = d < o.fluidViewport.lowerBound
+                    ? o.fluidScale.lowerBound : o.fluidScale.upperBound
+                return value * scale
+            }
             let t = min(max((d - o.fluidViewport.lowerBound) / span, 0), 1)
             return value * (o.fluidScale.lowerBound + t * (o.fluidScale.upperBound - o.fluidScale.lowerBound))
-        case .interpolated: return value * (1 + (linear - 1) * min(max(o.interpolation, 0), 1))
-        case .logarithmic: return value * (linear >= 1 ? 1 + 0.4 * log(linear) : 1 - 0.4 * log(1 / linear))
-        case .percent: return d * o.percent * value / 10_000
-        case .power: return value * pow(linear, o.power)
+        case .interpolated:
+            let linear = c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio
+            return value * (1 + (linear - 1) * min(max(o.interpolation, 0), 1))
+        case .logarithmic:
+            let linear = c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio
+            return value * (linear >= 1 ? 1 + 0.4 * log(linear) : 1 - 0.4 * log(1 / linear))
+        case .percent:
+            return c.dimension(o.qualifier, inverter: o.inverter) * o.percent * value / 10_000
+        case .power:
+            return value * pow(c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio, o.power)
         }
     }
 }
@@ -68,6 +78,20 @@ public extension BinaryFloatingPoint {
         height = c.screenHeight / 300; diagonal = hypot(c.screenWidth, c.screenHeight) / hypot(300, 533)
         perimeter = (c.screenWidth + c.screenHeight) / 833
         fit = min(c.screenWidth / 300, c.screenHeight / 533); fill = max(c.screenWidth / 300, c.screenHeight / 533)
+    }
+
+    /// Allocation-free fast path for strategies whose factor depends only on the window.
+    @inlinable public func resolve(_ value: Double, strategy: DimensStrategy) -> Double {
+        switch strategy {
+        case .scaled, .auto: return value * smallest
+        case .density: return value * smallest * configuration.displayScale
+        case .diagonal: return value * diagonal
+        case .perimeter: return value * perimeter
+        case .fill: return value * fill
+        case .fit: return value * fit
+        case .plain, .physical: return value
+        default: return DynamicDimens.resolve(value, strategy: strategy, configuration: configuration)
+        }
     }
 }
 

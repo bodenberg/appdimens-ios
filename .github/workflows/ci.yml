@@ -62,6 +62,8 @@ jobs:
             destination: generic/platform=tvOS
           - name: visionOS
             destination: generic/platform=visionOS
+          - name: watchOS
+            destination: generic/platform=watchOS
           - name: macOS
             destination: platform=macOS
     steps:
@@ -76,10 +78,31 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          log='xcodebuild-${{ matrix.name }}.log'
+          set +e
           xcodebuild \
             -scheme AppDimensDynamic \
             -destination '${{ matrix.destination }}' \
             -configuration Release \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            build 2>&1 | tee xcodebuild-${{ matrix.name }}.log
+            build 2>&1 | tee "$log"
+          status=${PIPESTATUS[0]}
+          set -e
+          if (( status != 0 )); then
+            {
+              echo '### ${{ matrix.name }} SDK diagnostics'
+              echo '```text'
+              rg -n -i 'error:|fatal error:|BUILD FAILED|unsupported|deployment target' "$log" || tail -n 120 "$log"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$status"
+      - name: Upload SDK build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild-${{ matrix.name }}
+          path: xcodebuild-${{ matrix.name }}.log
+          if-no-files-found: error
+          retention-days: 7

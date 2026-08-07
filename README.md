@@ -1,9 +1,10 @@
 # AppDimens Dynamic for Apple — principal library
 
-**[CI status](https://github.com/bodenberg/appdimens-ios/actions)** ·
-**[License](LICENSE)** ·
-**[Swift Package](Package.swift)** ·
-**[Complete documentation](Documentation/README.md)**
+<p align="center">
+  <a href="https://github.com/bodenberg/appdimens-ios/actions/workflows/ci.yml"><img alt="Swift Package CI" src="https://img.shields.io/github/actions/workflow/status/bodenberg/appdimens-ios/ci.yml?branch=main&amp;style=for-the-badge&amp;logo=swift"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-6f42c1?style=for-the-badge"></a>
+  <img alt="Apple platforms" src="https://img.shields.io/badge/Apple-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20visionOS-111?style=for-the-badge&amp;logo=apple">
+</p>
 
 <p align="center"><strong>Responsive points and Dynamic Type for SwiftUI and UIKit, directly inspired by AppDimens Dynamic for Android.</strong></p>
 
@@ -136,7 +137,10 @@ let built = 16.scaledDp
 
 ## Performance
 
-The engine is stateless, allocation-free and `@inlinable` on calculation paths. Configuration is captured once at the SwiftUI root or resolved from the UIKit window; it is not read from every child view. No global dictionary, lock, notification observer or per-value cache is required for an O(1) multiplication.
+The engine is stateless, allocation-free and `@inlinable` on calculation paths. Configuration is captured once at the SwiftUI root or resolved from the UIKit window; it is not read from every child view. No global dictionary, lock, notification observer or per-value cache is required for an O(1) multiplication. SwiftUI's `Hashable` environment value invalidates consumers only when window metrics actually change; install exactly one provider. For a render loop, create `DimensFactors` once per changed configuration and call `resolve(_:strategy:)` to reuse its ratios.
+
+> [!NOTE]
+> watchOS 7+ supports the deterministic core, strategies, units, resize and aggregate imports. The window-level SwiftUI provider is excluded, and the Metal satellite becomes an empty compatibility module because those contracts are unavailable on watchOS.
 
 ## Complete module installation
 
