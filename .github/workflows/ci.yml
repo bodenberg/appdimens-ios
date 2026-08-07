@@ -57,14 +57,19 @@ jobs:
       matrix:
         include:
           - name: iOS
+            scheme: AppDimensDynamic
             destination: generic/platform=iOS
           - name: tvOS
+            scheme: AppDimensDynamic
             destination: generic/platform=tvOS
           - name: visionOS
+            scheme: AppDimensDynamic
             destination: generic/platform=visionOS
           - name: watchOS
+            scheme: AppDimens
             destination: generic/platform=watchOS
           - name: macOS
+            scheme: AppDimensDynamic
             destination: platform=macOS
     steps:
       - uses: actions/checkout@v5
@@ -81,7 +86,7 @@ jobs:
           log='xcodebuild-${{ matrix.name }}.log'
           set +e
           xcodebuild \
-            -scheme AppDimensDynamic \
+            -scheme '${{ matrix.scheme }}' \
             -destination '${{ matrix.destination }}' \
             -configuration Release \
             CODE_SIGNING_ALLOWED=NO \
@@ -100,7 +105,7 @@ jobs:
           exit "$status"
       - name: Upload SDK build log
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: xcodebuild-${{ matrix.name }}
           path: xcodebuild-${{ matrix.name }}.log
