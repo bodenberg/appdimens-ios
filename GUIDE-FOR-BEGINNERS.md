@@ -1,7 +1,7 @@
 # Beginner's guide
 
 ## 1. Add the package in Xcode
-Open **File → Add Package Dependencies…**, enter `https://github.com/bodenberg/appdimens-ios`, select a version rule, and add **AppDimensDynamic** to the app target.
+Open **File → Add Package Dependencies…**, enter `https://github.com/bodenberg/appdimens-ios`, select the exact version `3.1.6`, and add **AppDimensDynamic** to the app target.
 
 ## 2. Install once
 ```swift
