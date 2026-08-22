@@ -6,58 +6,77 @@ public enum DimensStrategy: String, Sendable, CaseIterable {
     case logarithmic, percent, perimeter, power, physical, plain
 }
 
+/// Resize options for [DynamicDimens.resolve]. Mirrors the 3.1.7 kernel
+/// parameters; fluid viewport/scale and interpolation are no longer
+/// configurable (fixed constants, as in dynamic-android 3.1.7).
 public struct StrategyOptions: Hashable, Sendable {
-    public var qualifier: DpQualifier; public var inverter: Inverter
+    public var qualifier: DpQualifier
+    public var inverter: Inverter
     public var applyAspectRatio, ignoreMultiWindows: Bool
-    public var sensitivity, percent, power, interpolation: Double
-    public var fluidViewport, fluidScale: ClosedRange<Double>
+    /// Custom sensitivity `k` (3.1.7 `customSensitivityK`); `nil` = default.
+    public var sensitivityK: Double?
     public init(qualifier: DpQualifier = .smallWidth, inverter: Inverter = .default,
         applyAspectRatio: Bool = false, ignoreMultiWindows: Bool = false,
-        sensitivity: Double = 0.10, percent: Double = 100, power: Double = 0.75,
-        interpolation: Double = 0.5, fluidViewport: ClosedRange<Double> = 320...768,
-        fluidScale: ClosedRange<Double> = 0.8...1.2) {
-        self.qualifier = qualifier; self.inverter = inverter; self.applyAspectRatio = applyAspectRatio
-        self.ignoreMultiWindows = ignoreMultiWindows; self.sensitivity = sensitivity
-        self.percent = percent; self.power = power; self.interpolation = interpolation
-        self.fluidViewport = fluidViewport; self.fluidScale = fluidScale
+        sensitivityK: Double? = nil) {
+        self.qualifier = qualifier; self.inverter = inverter
+        self.applyAspectRatio = applyAspectRatio; self.ignoreMultiWindows = ignoreMultiWindows
+        self.sensitivityK = sensitivityK
     }
 }
 
 public enum DynamicDimens {
     @inlinable public static func resolve(_ value: Double, strategy: DimensStrategy,
         configuration c: DimensConfiguration, options o: StrategyOptions = .init()) -> Double {
-        if o.ignoreMultiWindows && c.isMultiWindow { return value }
         switch strategy {
         case .plain, .physical: return value
-        case .scaled, .auto: return AppDimens.dp(value, configuration: c, qualifier: o.qualifier,
-            inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
-            applyAspectRatio: o.applyAspectRatio, sensitivity: o.sensitivity)
+        case .scaled:
+            return AppDimens.scaledDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
+        case .auto:
+            return AppDimens.autoDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         case .density:
-            return value * c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio * c.displayScale
-        case .diagonal: return value * hypot(c.screenWidth, c.screenHeight) / hypot(300, 533)
-        case .perimeter: return value * (c.screenWidth + c.screenHeight) / 833
-        case .fill: return value * max(c.screenWidth / 300, c.screenHeight / 533)
-        case .fit: return value * min(c.screenWidth / 300, c.screenHeight / 533)
+            return AppDimens.densityDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
+        case .diagonal:
+            return AppDimens.diagonalDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
+        case .perimeter:
+            return AppDimens.perimeterDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
+        case .fill:
+            return AppDimens.fillDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
+        case .fit:
+            return AppDimens.fitDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         case .fluid:
-            let d = c.dimension(o.qualifier, inverter: o.inverter)
-            let span = o.fluidViewport.upperBound - o.fluidViewport.lowerBound
-            if span == 0 {
-                let scale = d < o.fluidViewport.lowerBound
-                    ? o.fluidScale.lowerBound : o.fluidScale.upperBound
-                return value * scale
-            }
-            let t = min(max((d - o.fluidViewport.lowerBound) / span, 0), 1)
-            return value * (o.fluidScale.lowerBound + t * (o.fluidScale.upperBound - o.fluidScale.lowerBound))
+            return AppDimens.fluidDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         case .interpolated:
-            let linear = c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio
-            return value * (1 + (linear - 1) * min(max(o.interpolation, 0), 1))
+            return AppDimens.interpolatedDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         case .logarithmic:
-            let linear = c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio
-            return value * (linear >= 1 ? 1 + 0.4 * log(linear) : 1 - 0.4 * log(1 / linear))
+            return AppDimens.logarithmicDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         case .percent:
-            return c.dimension(o.qualifier, inverter: o.inverter) * o.percent * value / 10_000
+            return AppDimens.percentDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         case .power:
-            return value * pow(c.dimension(o.qualifier, inverter: o.inverter) / AppDimens.baseRatio, o.power)
+            return AppDimens.powerDp(value, configuration: c, qualifier: o.qualifier,
+                inverter: o.inverter, ignoreMultiWindows: o.ignoreMultiWindows,
+                applyAspectRatio: o.applyAspectRatio, sensitivityK: o.sensitivityK)
         }
     }
 }
@@ -69,22 +88,28 @@ public extension BinaryFloatingPoint {
     @inlinable func dynamic(_ strategy: DimensStrategy, _ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { DynamicDimens.resolve(Double(self), strategy: strategy, configuration: c, options: options) }
 }
 
-/// Precomputes immutable factors once per window configuration for hot loops.
+/// Precomputes immutable window factors for hot loops (3.1.7 formulas).
 @frozen public struct DimensFactors: Hashable, Sendable {
     public let configuration: DimensConfiguration
     public let smallest, width, height, diagonal, perimeter, fit, fill: Double
     @inlinable public init(_ c: DimensConfiguration) {
-        configuration = c; smallest = c.smallestScreenWidth / 300; width = c.screenWidth / 300
-        height = c.screenHeight / 300; diagonal = hypot(c.screenWidth, c.screenHeight) / hypot(300, 533)
-        perimeter = (c.screenWidth + c.screenHeight) / 833
-        fit = min(c.screenWidth / 300, c.screenHeight / 533); fill = max(c.screenWidth / 300, c.screenHeight / 533)
+        configuration = c
+        let m = c.metrics
+        smallest = m.scale
+        width = c.screenWidth * DimensConstants.invBaseRatio
+        height = c.screenHeight * DimensConstants.invBaseRatio
+        diagonal = m.diagonalScale
+        perimeter = m.perimeterScale
+        let sm = m.minDimensionDp, lg = m.maxDimensionDp
+        fit = min(sm / DimensConstants.baseWidthDp, lg / DimensConstants.baseHeightDp)
+        fill = max(sm / DimensConstants.baseWidthDp, lg / DimensConstants.baseHeightDp)
     }
 
     /// Allocation-free fast path for strategies whose factor depends only on the window.
     @inlinable public func resolve(_ value: Double, strategy: DimensStrategy) -> Double {
         switch strategy {
-        case .scaled, .auto: return value * smallest
-        case .density: return value * smallest * configuration.displayScale
+        case .scaled: return value * smallest
+        case .density: return value * configuration.displayScale
         case .diagonal: return value * diagonal
         case .perimeter: return value * perimeter
         case .fill: return value * fill
@@ -95,6 +120,7 @@ public extension BinaryFloatingPoint {
     }
 }
 
+/// Named conveniences for each satellite — Android-style strategy naming.
 public extension BinaryInteger {
     func densityDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.density, c, options: options) }
     func diagonalDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.diagonal, c, options: options) }
@@ -103,9 +129,10 @@ public extension BinaryInteger {
     func fluidDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.fluid, c, options: options) }
     func interpolatedDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.interpolated, c, options: options) }
     func logarithmicDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.logarithmic, c, options: options) }
-    func percentDp(_ c: DimensConfiguration, percent: Double, qualifier: DpQualifier = .smallWidth) -> Double { dynamic(.percent, c, options: .init(qualifier: qualifier, percent: percent)) }
+    func percentDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.percent, c, options: options) }
     func perimeterDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.perimeter, c, options: options) }
     func powerDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.power, c, options: options) }
+    func autoDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.auto, c, options: options) }
 }
 public extension BinaryFloatingPoint {
     func densityDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.density, c, options: options) }
@@ -115,7 +142,8 @@ public extension BinaryFloatingPoint {
     func fluidDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.fluid, c, options: options) }
     func interpolatedDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.interpolated, c, options: options) }
     func logarithmicDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.logarithmic, c, options: options) }
-    func percentDp(_ c: DimensConfiguration, percent: Double, qualifier: DpQualifier = .smallWidth) -> Double { dynamic(.percent, c, options: .init(qualifier: qualifier, percent: percent)) }
+    func percentDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.percent, c, options: options) }
     func perimeterDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.perimeter, c, options: options) }
     func powerDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.power, c, options: options) }
+    func autoDp(_ c: DimensConfiguration, options: StrategyOptions = .init()) -> Double { dynamic(.auto, c, options: options) }
 }

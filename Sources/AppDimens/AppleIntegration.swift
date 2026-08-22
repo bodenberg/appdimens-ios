@@ -54,9 +54,9 @@ public extension View { func appDimens() -> some View { AppDimensProvider { self
         aspect = aspectRatio; self.ignoreMultiWindow = ignoreMultiWindow
     }
     public var wrappedValue: CGFloat {
-        let result = font ? AppDimens.sp(value, configuration: configuration, qualifier: qualifier,
+        let result = font ? AppDimens.scaledSp(value, configuration: configuration, qualifier: qualifier,
             fontScale: fontScale, ignoreMultiWindows: ignoreMultiWindow, applyAspectRatio: aspect) :
-            AppDimens.dp(value, configuration: configuration, qualifier: qualifier,
+            AppDimens.scaledDp(value, configuration: configuration, qualifier: qualifier,
                 ignoreMultiWindows: ignoreMultiWindow, applyAspectRatio: aspect)
         return CGFloat(result)
     }
@@ -87,9 +87,9 @@ import UIKit
 private extension UiModeType {
     static var automaticApple: UiModeType {
         #if os(visionOS)
-        return .vision
+        return .vrHeadset
         #elseif targetEnvironment(macCatalyst)
-        return .mac
+        return .desk
         #elseif os(tvOS)
         return .television
         #else
@@ -150,9 +150,9 @@ public extension BinaryFloatingPoint {
 private extension UiModeType {
     static var automaticApple: UiModeType {
         #if os(macOS)
-        return .mac
+        return .desk
         #elseif os(visionOS)
-        return .vision
+        return .vrHeadset
         #elseif os(watchOS)
         return .watch
         #elseif os(tvOS)
