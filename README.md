@@ -265,7 +265,7 @@ vertex VertexOut vertex_main(uint vid [[vertex_id]], constant AppDimensUniforms&
 | `16.sdp` (ambient) | one uncontended `os_unfair_lock` (+ ~20 ns Observation registration on the main thread once a SwiftUI provider is installed) | thread-safe, coherent snapshot |
 | `DimensConfiguration(...)` | ~45 ns | all `log`/`pow`/`sqrt` evaluated once here |
 
-No caches to invalidate, no allocation on any resolution path, no work on the hot path that depends on the strategy's transcendental math. Run `swift test -c release --filter PerformanceTests` for local numbers; see [Performance](Documentation/PERFORMANCE.md).
+No caches to invalidate and no allocation on any resolution path. On the default smallest-width path every strategy is a precomputed factor; non-default axes of power/logarithmic/auto evaluate one `pow`/`log` per call. Run `swift test -c release --filter PerformanceTests` for local numbers; see [Performance](Documentation/PERFORMANCE.md).
 
 ## Correctness rules
 
