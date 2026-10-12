@@ -55,7 +55,8 @@ public struct AppDimensProvider<Content: View>: View {
     public var body: some View {
         let inputs = _AppDimensProviderInputs(
             displayScale: Double(displayScale), fontScale: sizeCategory.appDimensFontScale,
-            uiMode: uiMode ?? .platformDefault, screen: _AppDimensScreen.size(), publish: updatesAmbient)
+            uiMode: uiMode ?? .platformDefault, screen: _AppDimensScreen.size(),
+            candidates: _AppDimensScreen.candidates(), publish: updatesAmbient)
         let content = self.content
         return GeometryReader { proxy in
             let configuration = inputs.configuration(size: proxy.size, insets: proxy.safeAreaInsets)
@@ -69,17 +70,24 @@ public struct AppDimensProvider<Content: View>: View {
 /// Value snapshot captured on the main actor; turns a GeometryProxy into a configuration.
 struct _AppDimensProviderInputs: Sendable {
     let displayScale: Double, fontScale: Double, uiMode: UiModeType
-    let screen: CGSize?, publish: Bool
+    let screen: CGSize?
+    /// Every window with its screen; the provider's own window is the one matching the measured size.
+    let candidates: [_AppDimensScreenCandidate]
+    let publish: Bool
 
     func configuration(size: CGSize, insets: EdgeInsets) -> DimensConfiguration {
         // Full window: safe-area insets (status bar, home indicator, keyboard) are added
         // back so the keyboard or bars never rescale the UI — Android window semantics.
         let width = max(1, Double(size.width + insets.leading + insets.trailing))
         let height = max(1, Double(size.height + insets.top + insets.bottom))
+        // Bind the maximum bounds to the screen hosting *this* window (not the first active scene).
+        let hosting = candidates.first {
+            abs(Double($0.window.width) - width) < 1 && abs(Double($0.window.height) - height) < 1
+        }?.screen ?? screen
         let configuration = DimensConfiguration(
             screenWidth: width, screenHeight: height, displayScale: displayScale, fontScale: fontScale,
-            uiMode: uiMode, maximumWindowWidth: screen.map { Double($0.width) },
-            maximumWindowHeight: screen.map { Double($0.height) })
+            uiMode: uiMode, maximumWindowWidth: hosting.map { Double($0.width) },
+            maximumWindowHeight: hosting.map { Double($0.height) })
         if publish { AppDimens._updateDeferringNotification(configuration) }
         return configuration
     }

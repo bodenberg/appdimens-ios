@@ -3,6 +3,7 @@ import XCTest
 import UIKit
 import SwiftUI
 import AppDimensDynamic
+@testable import AppDimens
 
 /// Runs on the iOS Simulator: real UIWindow, real UIHostingController layout.
 @MainActor
@@ -43,6 +44,29 @@ final class UIKitIntegrationTests: XCTestCase {
         XCTAssertEqual(AppDimens.configuration.orientation, .landscape)
         XCTAssertEqual(Double(48.hdp), 48 * 390 / 300, accuracy: 1e-9)
         XCTAssertGreaterThan(UIFont.ssp(16).pointSize, 0)
+    }
+
+    func testRefreshKeepsForcedUiMode() {
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        let child = UIView(); window.addSubview(child)
+        AppDimensUIKitUpdater.forcedUiMode = .car
+        defer { AppDimensUIKitUpdater.forcedUiMode = nil }
+        AppDimens.refresh(from: child)
+        XCTAssertEqual(AppDimens.configuration.uiMode, .car, "startAutomaticUpdates(uiMode:) override survives refreshes")
+    }
+
+    func testProviderBindsMaximumBoundsToItsOwnScreen() {
+        // Two scenes: an external display is "first"; the provider's window is on the iPad screen.
+        let inputs = _AppDimensProviderInputs(
+            displayScale: 2, fontScale: 1, uiMode: .normal, screen: CGSize(width: 1920, height: 1080),
+            candidates: [.init(window: CGSize(width: 1920, height: 1080), screen: CGSize(width: 1920, height: 1080)),
+                         .init(window: CGSize(width: 1024, height: 768), screen: CGSize(width: 1024, height: 768))],
+            publish: false)
+        let c = inputs.configuration(size: CGSize(width: 1024, height: 768), insets: EdgeInsets())
+        XCTAssertEqual(c.maximumWindowWidth, 1024)
+        XCTAssertFalse(c.isMultiWindow, "full-screen iPad window must not be classified as multi-window")
+        let split = inputs.configuration(size: CGSize(width: 500, height: 768), insets: EdgeInsets())
+        XCTAssertTrue(split.isMultiWindow, "unmatched window falls back to the active screen")
     }
 
     func testSwiftUIProviderPublishesWindowAndReRendersOnRotation() throws {

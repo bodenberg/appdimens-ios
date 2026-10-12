@@ -67,3 +67,9 @@ public extension UIContentSizeCategory {
     }
 }
 #endif
+
+/// A window size paired with the size of the screen that hosts it.
+struct _AppDimensScreenCandidate: Sendable {
+    let window: CGSize
+    let screen: CGSize
+}

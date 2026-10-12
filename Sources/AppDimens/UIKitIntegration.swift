@@ -11,6 +11,18 @@ enum _AppDimensScreen {
         #endif
     }
 
+    /// `(window size, screen size)` for every window, so a SwiftUI provider can bind
+    /// its maximum bounds to the scene that actually hosts it (multi-scene, external display).
+    @MainActor static func candidates() -> [_AppDimensScreenCandidate] {
+        #if os(visionOS)
+        return []
+        #else
+        UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.flatMap { scene in
+            scene.windows.map { _AppDimensScreenCandidate(window: $0.bounds.size, screen: scene.screen.bounds.size) }
+        }
+        #endif
+    }
+
     @MainActor static func scale() -> CGFloat {
         #if os(visionOS)
         return UITraitCollection.current.displayScale > 0 ? UITraitCollection.current.displayScale : 2
@@ -126,7 +138,7 @@ final class _AppDimensTrackerView: UIView {
         #endif
         for name in names {
             observers.append(center.addObserver(forName: name, object: nil, queue: .main) { _ in
-                MainActor.assumeIsolated { attachTrackers(); AppDimens.refresh() }
+                MainActor.assumeIsolated { attachTrackers(); AppDimens.refresh() }  // honours forcedUiMode
             })
         }
         AppDimens.refresh()
@@ -157,7 +169,8 @@ public extension AppDimens {
     /// configuration. Call from `viewWillTransition(to:with:)` /
     /// `traitCollectionDidChange` if you do not use ``startAutomaticUpdates(uiMode:)``.
     @MainActor static func refresh(from view: UIView? = nil) {
-        update(.current(in: view))
+        // Keeps the UI mode forced through startAutomaticUpdates(uiMode:).
+        update(.current(window: view?.window ?? _AppDimensUIKit.keyWindow(), uiMode: AppDimensUIKitUpdater.forcedUiMode))
     }
 
     /// Keeps the ambient configuration (`16.sdp`) in sync with the key window:

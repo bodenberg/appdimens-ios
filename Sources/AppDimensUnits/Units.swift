@@ -20,10 +20,10 @@ public enum DimenPhysicalUnits {
 
     /// Best-effort points-per-inch for the current device idiom.
     public static let devicePointsPerInch: Double = {
-        #if os(iOS)
-        return _AppDimensDeviceIdiom.isPad ? 132 : 163
-        #elseif os(macOS)
+        #if targetEnvironment(macCatalyst) || os(macOS)
         return 110
+        #elseif os(iOS)
+        return _AppDimensDeviceIdiom.isPad ? 132 : 163
         #else
         return designPixelsPerInch
         #endif

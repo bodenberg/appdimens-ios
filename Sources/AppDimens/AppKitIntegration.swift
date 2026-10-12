@@ -7,6 +7,13 @@ enum _AppDimensScreen {
         (NSApp?.keyWindow?.screen ?? NSScreen.main)?.visibleFrame.size
     }
 
+    @MainActor static func candidates() -> [_AppDimensScreenCandidate] {
+        (NSApp?.windows ?? []).compactMap { window in
+            guard let screen = window.screen else { return nil }
+            return _AppDimensScreenCandidate(window: window.contentLayoutRect.size, screen: screen.visibleFrame.size)
+        }
+    }
+
     @MainActor static func scale() -> CGFloat {
         (NSApp?.keyWindow?.screen ?? NSScreen.main)?.backingScaleFactor ?? 2
     }
@@ -69,7 +76,7 @@ public extension DimensConfiguration {
 public extension AppDimens {
     /// Re-reads `window` (or the key window) into the ambient configuration.
     @MainActor static func refresh(from window: NSWindow? = nil) {
-        update(.current(window: window))
+        update(.current(window: window, uiMode: AppDimensAppKitUpdater.forcedUiMode))
     }
 
     /// Keeps the ambient configuration (`16.sdp`) in sync with the key window
@@ -96,6 +103,7 @@ import Foundation
 /// Platforms without a window/screen API (watchOS, Linux): no screen probe.
 enum _AppDimensScreen {
     @MainActor static func size() -> CGSize? { nil }
+    @MainActor static func candidates() -> [_AppDimensScreenCandidate] { [] }
     /// Every Apple Watch renders at @2x.
     @MainActor static func scale() -> CGFloat { 2 }
 }
