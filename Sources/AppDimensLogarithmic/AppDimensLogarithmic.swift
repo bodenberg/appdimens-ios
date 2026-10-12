@@ -1,1 +1,4 @@
-@_exported import AppDimensStrategies
+@_exported import AppDimens
+
+/// Android `DimenLogarithmic` — conditional builder (`16.logarithmicDp().screen(...)`).
+public typealias DimenLogarithmic = DimenBuilder

@@ -3,1855 +3,1374 @@
 @_exported import AppDimens
 import Foundation
 
-public extension BinaryInteger {
-    @inlinable func asdp(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asdpi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asdpPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahdp(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahdpaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahdpi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahdpiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahdpiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahdpLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahdpLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahdpLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahdpPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahdpPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahdpPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awdp(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awdpaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awdpi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awdpiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awdpiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awdpLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awdpLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awdpLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awdpPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awdpPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awdpPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func assp(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahsp(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspLwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspLwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspLwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspPwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspPwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspPwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awsp(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspLhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspLhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspLhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspPhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspPhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspPhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asem(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asema(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemPhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemPhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemPhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemLhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemLhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemLhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemPwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemPwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemPwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemLwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemLwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemLwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahem(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahemPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahema(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahemaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahemiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahemiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahemLwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahemLwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahemLwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahemLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahemPwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahemPwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahemPwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahemPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awem(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awemPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awema(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awemaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awemiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awemiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awemLhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awemLhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awemLhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awemLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awemPhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awemPhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awemPhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awemPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asei(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aseia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func aseii(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aseiia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahei(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aheia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func aheii(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aheiia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awei(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aweia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func aweii(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aweiia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asdpRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asspRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-}
-public extension BinaryFloatingPoint {
-    @inlinable func asdp(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asdpi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asdpPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asdpLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asdpLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asdpLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahdp(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahdpaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahdpi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahdpiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahdpiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahdpLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahdpLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahdpLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahdpPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahdpPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahdpPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awdp(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awdpaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awdpi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awdpiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awdpiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awdpLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awdpLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awdpLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awdpPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awdpPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awdpPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func assp(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspPwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspPwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspLwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspLwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func asspLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahsp(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspLwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspLwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspLwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspLwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPw(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspPwPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPwa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspPwaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPwi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspPwiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspPwia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func ahspPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awsp(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspa(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspLhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspLhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspLhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspLhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPh(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspPhPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPha(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspPhaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPhi(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspPhiPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspPhia(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale)
-    }
-    @inlinable func awspPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        (AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asem(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asema(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemPhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemPhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemPhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemLhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemLhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemLhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemPwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemPwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemPwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asemLwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func asemLwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asemLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func asemLwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asemLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func asemLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahem(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahemPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahema(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahemaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahemiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahemiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemLw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahemLwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemLwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahemLwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemLwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahemLwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemLwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahemLwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemPw(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahemPwPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemPwa(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func ahemPwaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahemPwi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func ahemPwiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahemPwia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func ahemPwiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awem(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awemPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awema(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awemaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awemiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awemiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemLh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awemLhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemLha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awemLhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemLhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awemLhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemLhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awemLhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemPh(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awemPhPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemPha(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true)
-    }
-    @inlinable func awemPhaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awemPhi(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false)
-    }
-    @inlinable func awemPhiPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awemPhia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true)
-    }
-    @inlinable func awemPhiaPx(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asei(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aseia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func aseii(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aseiia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func ahei(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aheia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func aheii(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aheiia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func awei(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aweia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func aweii(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func aweiia(_ configuration: DimensConfiguration) -> Double {
-        AppDimens.autoDp(Double(self), configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true) * configuration.displayScale
-    }
-    @inlinable func asdpRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asdpScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func asdpScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func ahdpScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func ahdpScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func awdpScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false)
-    }
-    @inlinable func awdpScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.displayScale
-    }
-    @inlinable func asspRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func asspScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func asspScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func ahspScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func ahspScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspRotate(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspRotatePx(_ rotateValue: Double, orientation: Orientation = .landscape, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.orientation == orientation ? rotateValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspMode(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspModePx(_ modeValue: Double, mode: UiModeType, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.uiMode == mode ? modeValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspQualifier(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspQualifierPx(_ qualifiedValue: Double, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = configuration.dimension(qualifier) >= minimum ? qualifiedValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
-    }
-    @inlinable func awspScreen(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale)
-    }
-    @inlinable func awspScreenPx(_ screenValue: Double, mode: UiModeType, qualifier: DpQualifier, minimum: Double, finalQualifier: DpQualifier = .smallWidth, _ configuration: DimensConfiguration) -> Double {
-        let selected = (configuration.uiMode == mode && configuration.dimension(qualifier) >= minimum) ? screenValue : Double(self)
-        return (AppDimens.autoDp(selected, configuration: configuration, qualifier: finalQualifier, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false) * configuration.fontScale) * configuration.displayScale
+public extension DimensNumber {
+    // ── dp families ─────────────────────────────────────────────────────
+    @inlinable func asdp(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdp: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpPhPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpPha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpPhaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxaPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpPhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpPhiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpPhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpPhiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiaPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpLhPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpLha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpLhaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxaLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpLhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpLhiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpLhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpLhiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiaLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpPwPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpPwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpPwaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxaPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpPwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpPwiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpPwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpPwiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiaPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpLwPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpLwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpLwaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxaLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asdpLwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asdpLwiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpLwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asdpLwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asdpLwiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpLwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func asdpPxiaLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asdpPxiaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdp(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahdp: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahdpPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahdpa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahdpaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahdpi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahdpiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahdpia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahdpiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahdpLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahdpLwPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpLwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpLwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahdpLwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahdpLwaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpLwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxaLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpLwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahdpLwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahdpLwiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpLwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxiLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxiLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpLwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahdpLwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahdpLwiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpLwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxiaLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxiaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahdpPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahdpPwPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahdpPwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahdpPwaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxaPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahdpPwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahdpPwiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxiPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxiPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahdpPwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahdpPwiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahdpPxiaPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahdpPxiaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdp(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awdp: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awdpPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awdpa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awdpaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awdpi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awdpiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awdpia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awdpiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awdpLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awdpLhPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpLhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpLha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awdpLha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awdpLhaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpLhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxaLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpLhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awdpLhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awdpLhiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpLhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxiLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxiLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpLhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awdpLhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awdpLhiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpLhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxiaLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxiaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awdpPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awdpPhPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awdpPha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awdpPhaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxaPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awdpPhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awdpPhiPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxiPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxiPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awdpPhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awdpPhiaPx(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awdpPxiaPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awdpPxiaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    // ── sp families ─────────────────────────────────────────────────────
+    @inlinable func assp(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var assp: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxa(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxa: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxi(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxi: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxia(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxia: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspPwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspPwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspLwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var asspLwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func asspLwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspLwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asspPxiaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var asspPxiaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahsp(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahsp: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxa(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxa: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxi(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxi: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxia(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxia: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspLwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspLwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspLwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspLwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspLwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspLwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspLwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspLwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspLwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspLwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxiLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxiLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspLwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspLwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspLwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspLwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxiaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxiaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspPwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspPwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspPwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspPwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspPwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxiPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxiPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var ahspPwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func ahspPwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func ahspPxiaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var ahspPxiaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awsp(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awsp: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxa(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxa: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxi(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxi: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxia(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxia: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspLhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspLhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspLha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspLha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspLhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspLhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspLhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspLhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspLhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspLhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxiLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxiLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspLhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspLhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspLhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspLhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxiaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxiaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspPhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspPha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspPhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspPhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspPhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxiPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxiPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale }
+    @inlinable var awspPhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale }) }
+    @inlinable func awspPhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func awspPxiaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.fontScale) * configuration.displayScale }
+    @inlinable var awspPxiaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.fontScale) * c.displayScale }) }
+    @inlinable func asem(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asem: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asema(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asema: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxa(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxa: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxi(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxi: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxia(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxia: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemPhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemPha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemPhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemPhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemPhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemPhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemPhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemLhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemLha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemLhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemLhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemLhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemLhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemLhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemPwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemPwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemPwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemPwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemPwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemPwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemPwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemLwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemLwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemLwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var asemLwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func asemLwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemLwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var asemLwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func asemLwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemLwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func asemPxiaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var asemPxiaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .swToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahem(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahem: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahemPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahema(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahema: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahemaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxa(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxa: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahemi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahemiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxi(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxi: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahemia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahemiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxia(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxia: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemLw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahemLw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahemLwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemLwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemLwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahemLwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahemLwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemLwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemLwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahemLwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahemLwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemLwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxiLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxiLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemLwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahemLwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahemLwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemLwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxiaLw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxiaLw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .phToLw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPw(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahemPw: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahemPwPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPwPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPwa(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahemPwa: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahemPwaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPwaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPwi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var ahemPwi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func ahemPwiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPwiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxiPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxiPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPwia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var ahemPwia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func ahemPwiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPwiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func ahemPxiaPw(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var ahemPxiaPw: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .lhToPw, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awem(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awem: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awemPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awema(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awema: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awemaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxa(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxa: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awemi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awemiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxi(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxi: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awemia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awemiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxia(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxia: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemLh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awemLh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awemLhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemLhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemLha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awemLha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awemLhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemLhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemLhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awemLhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awemLhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemLhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxiLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxiLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemLhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awemLhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awemLhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemLhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxiaLh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxiaLh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .pwToLh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPh(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awemPh: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awemPhPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPhPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPha(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awemPha: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awemPhaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPhaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPhi(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }
+    @inlinable var awemPhi: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) }) }
+    @inlinable func awemPhiPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPhiPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxiPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxiPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPhia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }
+    @inlinable var awemPhia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) }) }
+    @inlinable func awemPhiaPx(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPhiaPx: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    @inlinable func awemPxiaPh(_ configuration: DimensConfiguration) -> Double { (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * configuration.displayScale }
+    @inlinable var awemPxiaPh: CGFloat { CGFloat(AppDimens._withAmbient { c in (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .lwToPh, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil)) * c.displayScale }) }
+    // ── sei/hei/wei — pixels without font scale ─────────────────────────
+    @inlinable func asei(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var asei: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aseia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aseia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aseii(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aseii: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aseiia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aseiia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func ahei(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var ahei: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aheia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aheia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aheii(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aheii: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aheiia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aheiia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func awei(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var awei: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aweia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aweia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: false, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aweii(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aweii: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: false, sensitivityK: nil) * c.displayScale }) }
+    @inlinable func aweiia(_ configuration: DimensConfiguration) -> Double { AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * configuration.displayScale }
+    @inlinable var aweiia: CGFloat { CGFloat(AppDimens._withAmbient { c in AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: true, applyAspectRatio: true, sensitivityK: nil) * c.displayScale }) }
+    // ── facilitators (Rotate / Mode / Qualifier / Screen) ───────────────
+    @inlinable func asdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func asdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func asdpRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func asdpRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func asdpRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func asdpRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func asdpRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asdpRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func asdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func asdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func asdpModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func asdpModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func asdpModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func asdpModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func asdpModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asdpModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func asdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func asdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func asdpQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func asdpQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func asdpQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func asdpQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func asdpQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asdpQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func asdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func asdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func asdpScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func asdpScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func asdpScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func asdpScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func asdpScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asdpScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func ahdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func ahdpRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func ahdpRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func ahdpRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func ahdpRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func ahdpRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahdpRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func ahdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func ahdpModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func ahdpModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func ahdpModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func ahdpModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func ahdpModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahdpModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func ahdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func ahdpQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func ahdpQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func ahdpQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func ahdpQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func ahdpQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahdpQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func ahdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func ahdpScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func ahdpScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func ahdpScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func ahdpScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func ahdpScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahdpScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func awdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func awdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func awdpRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func awdpRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func awdpRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func awdpRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func awdpRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awdpRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func awdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func awdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func awdpModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func awdpModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func awdpModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func awdpModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func awdpModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awdpModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func awdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func awdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func awdpQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func awdpQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func awdpQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func awdpQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func awdpQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awdpQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func awdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)
+    }
+    @inlinable func awdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) })
+    }
+    @inlinable func awdpScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : (AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale
+    }
+    @inlinable func awdpScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : (AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale })
+    }
+    @inlinable func awdpScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue
+    }
+    @inlinable func awdpScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) : dimensValue })
+    }
+    @inlinable func awdpScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awdpScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) * c.displayScale : dimensValue })
+    }
+    @inlinable func asspRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func asspRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func asspRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func asspRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func asspRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func asspRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func asspRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asspRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func asspMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func asspMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func asspModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func asspModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func asspModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func asspModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func asspModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asspModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func asspQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func asspQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func asspQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func asspQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func asspQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func asspQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func asspQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asspQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func asspScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func asspScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func asspScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func asspScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func asspScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func asspScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func asspScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func asspScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .smallWidth, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahspRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func ahspRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func ahspRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func ahspRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func ahspRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func ahspRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func ahspRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahspRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .height, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahspMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func ahspMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func ahspModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func ahspModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func ahspModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func ahspModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func ahspModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahspModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahspQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func ahspQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func ahspQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func ahspQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func ahspQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func ahspQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func ahspQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahspQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func ahspScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func ahspScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func ahspScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func ahspScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func ahspScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func ahspScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func ahspScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func ahspScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .height, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func awspRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func awspRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func awspRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func awspRotatePx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func awspRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func awspRotatePlain(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? (fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func awspRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        AppDimensPlain.isOrientationMatch(configuration, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(rotationValue, configuration: configuration, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awspRotatePlainPx(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .width, orientation: Orientation = .landscape, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in AppDimensPlain.isOrientationMatch(c, orientation) ? ((fontScale ? AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(rotationValue, configuration: c, qualifier: finalQualifierResolver, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func awspMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func awspMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func awspModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func awspModePx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func awspModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func awspModePlain(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? (fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func awspModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(modeValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awspModePlainPx(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType ? ((fontScale ? AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(modeValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func awspQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func awspQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func awspQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func awspQualifierPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func awspQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func awspQualifierPlain(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func awspQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(qualifiedValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awspQualifierPlainPx(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(qualifiedValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    @inlinable func awspScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))
+    }
+    @inlinable func awspScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : (fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) })
+    }
+    @inlinable func awspScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(dimensValue, configuration: configuration, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale
+    }
+    @inlinable func awspScreenPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : ((fontScale ? AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(dimensValue, configuration: c, qualifier: .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale })
+    }
+    @inlinable func awspScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue
+    }
+    @inlinable func awspScreenPlain(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? (fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK)) : dimensValue })
+    }
+    @inlinable func awspScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil, _ configuration: DimensConfiguration) -> Double {
+        configuration.uiMode == uiModeType && configuration.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * configuration.fontScale : AppDimens.autoDp(screenValue, configuration: configuration, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * configuration.displayScale : dimensValue
+    }
+    @inlinable func awspScreenPlainPx(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, finalQualifierResolver: DpQualifier? = nil, fontScale: Bool = true, ignoreMultiWindows: Bool = false, applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat {
+        CGFloat(AppDimens._withAmbient { c in c.uiMode == uiModeType && c.dimension(qualifierType) >= qualifierValue ? ((fontScale ? AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK) * c.fontScale : AppDimens.autoDp(screenValue, configuration: c, qualifier: finalQualifierResolver ?? .width, inverter: .default, ignoreMultiWindows: ignoreMultiWindows, applyAspectRatio: applyAspectRatio, sensitivityK: customSensitivityK))) * c.displayScale : dimensValue })
+    }
+    // ── conditional builders (Android `Number.<strategy>Dp()` / `<strategy>Sp()`) ──
+    /// Android `Number.autoDp()` — conditional auto builder.
+    @inlinable func autoDp() -> DimenBuilder { DimenBuilder(dimensValue, strategy: .auto) }
+    /// Android `Number.autoScaledDp()` (code API spelling).
+    @inlinable func autoScaledDp() -> DimenBuilder { DimenBuilder(dimensValue, strategy: .auto) }
+    /// Android `Number.autoSp()` — conditional auto text builder.
+    @inlinable func autoSp(fontScale: Bool = true) -> DimenBuilder {
+        DimenBuilder(dimensValue, strategy: .auto, text: true, fontScale: fontScale)
     }
 }

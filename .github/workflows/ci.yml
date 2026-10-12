@@ -44,7 +44,31 @@ jobs:
           set -o pipefail
           swift test --parallel 2>&1 | tee unit-tests.log
       - name: Thread Sanitizer
-        run: swift test --sanitize=thread
+        run: swift test --sanitize=thread --skip PerformanceTests
+      - name: Release build
+        run: swift build -c release
+      - name: Swift 6 language mode (strict concurrency)
+        run: swift build --scratch-path .build-swift6 -Xswiftc -swift-version -Xswiftc 6
+      - name: Performance (release)
+        run: swift test -c release --filter PerformanceTests
+      - name: Generated catalogs are up to date
+        run: |
+          python3 scripts/generate_catalogs.py
+          git diff --exit-code -- Sources
+
+  linux:
+    name: Linux (Swift ${{ matrix.swift }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        swift: ['5.10', '6.1']
+    container: swift:${{ matrix.swift }}-jammy
+    steps:
+      - uses: actions/checkout@v5
+      - name: Unit tests
+        run: swift test --skip PerformanceTests
       - name: Release build
         run: swift build -c release
 
