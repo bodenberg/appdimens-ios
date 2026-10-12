@@ -13,6 +13,9 @@ public enum DimensStrategy: String, Sendable, CaseIterable {
 /// Hot paths read the factors precomputed in ``DimenMetrics`` — a branch and
 /// one multiply, no transcendental math, no allocation.
 public enum AppDimens {
+    /// Library version (matches the Android release it is at parity with).
+    public static let version = "3.2.0"
+
     // ─────────────────────────────────────────────────────────────────────────
     // SCALED (SDP / SSP)
     // ─────────────────────────────────────────────────────────────────────────

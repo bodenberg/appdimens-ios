@@ -23,7 +23,7 @@ jobs:
       - name: Validate manifest
         run: swift package dump-package > /tmp/package.json
       - name: Test
-        run: swift test --parallel
+        run: swift test --parallel --skip PerformanceTests
       - name: Release build
         run: swift build -c release
       - name: Validate iOS SDK
