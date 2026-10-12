@@ -1,1 +1,4 @@
-@_exported import AppDimensStrategies
+@_exported import AppDimens
+
+/// Android `DimenFill` — conditional builder (`16.fillDp().screen(...)`).
+public typealias DimenFill = DimenBuilder

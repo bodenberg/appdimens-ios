@@ -1,89 +1,105 @@
 # API reference
 
-## Core types
+[Documentation hub](README.md) · [Apple integration](APPLE-INTEGRATION.md) · [Strategies](STRATEGIES.md) · [Metal](METAL.md)
 
-### `DimensConfiguration`
+Every accessor exists in two forms on any number (`Int`, `Double`, `Float`, `CGFloat`, all fixed-width integers — protocol `DimensNumber`):
 
-A `Hashable`, `Sendable` snapshot of one Apple window/scene. Geometry is expressed in points.
+| Form | Example | Returns | Window |
+|---|---|---|---|
+| Ambient (Compose style) | `16.sdp` | `CGFloat` points | `AppDimens.configuration` (set by the provider / updaters) |
+| Explicit (Android `code` style) | `16.sdp(configuration)` | `Double` points | the configuration you pass |
 
-| Member | Meaning |
-|---|---|
-| `screenWidth`, `screenHeight` | current window size |
-| `smallestScreenWidth` | minimum of width and height |
-| `displayScale` | physical pixels per point |
-| `fontScale` | Dynamic Type multiplier |
-| `uiMode` | Apple adaptation of Android `UiModeType` |
-| `maximumWindowWidth/Height` | display bounds used for multi-window detection |
-| `orientation`, `aspectRatio`, `isMultiWindow` | derived values |
-
-Use `.current(in:)` in UIKit or `.appDimens()` at the SwiftUI scene root. Construct it manually only for tests, previews, headless code, or renderers.
-
-### Qualifiers
-
-- `.smallWidth`: Android `SMALL_WIDTH`.
-- `.width`: current window width.
-- `.height`: current window height.
-
-### Inverters
-
-All Android mappings are present: `.phToLw`, `.pwToLh`, `.lhToPw`, `.lwToPh`, `.swToLh`, `.swToLw`, `.swToPh`, `.swToPw`, and `.default`.
-
-## Principal numeric API
+## Window configuration
 
 ```swift
-16.sdp(configuration)
-16.sdpa(configuration)
-16.sdpi(configuration)
-16.sdpia(configuration)
-16.wdp(configuration)
-16.hdp(configuration)
-16.ssp(configuration)
-16.hsp(configuration)
-16.wsp(configuration)
-16.sem(configuration)
-16.hem(configuration)
-16.wem(configuration)
+public struct DimensConfiguration: Hashable, Sendable {
+    init(screenWidth: Double, screenHeight: Double, displayScale: Double = 1, fontScale: Double = 1,
+         uiMode: UiModeType = .undefined, maximumWindowWidth: Double? = nil,
+         maximumWindowHeight: Double? = nil, isInMultiWindowMode: Bool? = nil)
+    let metrics: DimenMetrics            // every factor, precomputed
+    var smallestScreenWidth, aspectRatio, densityDpi: Double
+    var orientation: Orientation         // .portrait / .landscape
+    var isMultiWindow: Bool              // explicit flag or window < 95 % of the screen
+    func dimension(_ q: DpQualifier, inverter: Inverter = .default) -> Double
+    static let reference                 // 300 × 533, @1x
+}
 ```
 
-Suffixes match Android semantics:
+Platform constructors: `DimensConfiguration.current(in: UIView?)`, `.current(window: UIWindow?)`, `.current(window: NSWindow?)`, `.current(in: NSView?)` (all `@MainActor`).
 
-| Suffix | Behavior |
+## Ambient store
+
+| API | Description |
 |---|---|
-| none | regular scaling |
-| `a` | aspect-ratio correction |
-| `i` | return the base value in multi-window |
-| `ia` | both flags |
+| `AppDimens.configuration` | current snapshot (thread-safe) |
+| `AppDimens.update(_:) -> Bool` | replace it (any thread); `false` if unchanged |
+| `AppDimens.observe { c in } -> AppDimensObservation` | change callbacks; cancel or release the token to stop |
+| `AppDimens.configurationVersion` | monotonic change counter |
+| `AppDimens.withConfiguration { c in }` | one coherent snapshot for several values |
+| `AppDimens.observationTrackingEnabled` | Swift Observation registration (auto-enabled by `AppDimensProvider`) |
+| `AppDimens.startAutomaticUpdates(uiMode:)` / `stopAutomaticUpdates()` | UIKit / AppKit window tracking |
+| `AppDimens.refresh(from:)` | re-read one view / window |
 
-## Branch helpers
+## Scaled catalog (module `AppDimens`)
 
-`AppDimensPlain.rotate/mode/qualifier/screen` selects a raw value without scaling. `AppDimens.rotate`, `.qualified`, and `.mode` select then apply principal scaling.
+| Family | Axis | Font scale | Inverter variants |
+|---|---|---|---|
+| `sdp` | smallest width | — | `Ph`, `Lh`, `Pw`, `Lw` |
+| `hdp` | height | — | `Lw` (`phToLw`), `Pw` (`lhToPw`) |
+| `wdp` | width | — | `Lh` (`pwToLh`), `Ph` (`lwToPh`) |
+| `ssp` / `hsp` / `wsp` | as above | × Dynamic Type | same as dp families |
+| `sem` / `hem` / `wem` | as above | ignored | same as dp families |
+| `sei` / `hei` / `wei` | as above | ignored, **pixels** | — |
+
+Suffixes: `a` aspect ratio, `i` ignore multi-window, `ia` both, `Px` pixels — e.g. `sdpLwia`, `sspaPx`; Android spellings `sdpPxaPh`, `sspPxia` are also available.
+
+Facilitators for `sdp hdp wdp ssp hsp wsp` (`Px`, `Plain` and `PlainPx` variants, ambient or with a trailing configuration):
+
+```swift
+func sdpRotate(_ rotationValue: Double, finalQualifierResolver: DpQualifier = .smallWidth,
+               orientation: Orientation = .landscape, ignoreMultiWindows: Bool = false,
+               applyAspectRatio: Bool = false, customSensitivityK: Double? = nil) -> CGFloat
+func sdpMode(_ modeValue: Double, _ uiModeType: UiModeType, finalQualifierResolver: DpQualifier? = nil, …)
+func sdpQualifier(_ qualifiedValue: Double, _ qualifierType: DpQualifier, _ qualifierValue: Double, …)
+func sdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType: DpQualifier, _ qualifierValue: Double, …)
+// text families add `fontScale: Bool = true`
+```
+
+`Plain` variants treat the receiver as an already-resolved length: it passes through unchanged when the condition does not match.
 
 ## Builders
 
-`ScaledDp` is immutable and supports `.screen`, `.mode`, `.rotate`, `.aspectRatio`, `.ignoreMultiWindows`, and `.resolve`.
-
-`AutoDp` resolves conditions by specificity (mode > qualifier > orientation), then threshold and declaration order. `AutoSp` adds optional Dynamic Type scaling.
-
-## Strategy API
+`16.scaledDp()`, `16.scaledSp(fontScale:)`, `16.<strategy>Dp()`, `16.<strategy>Sp()`, `16.<strategy>ScaledDp()`, `16.dimen(_ strategy:)`, `16.dimenSp(_:)` → `DimenBuilder` (aliases `DimenScaled`, `ScaledDp`, `ScaledSp`, `DimenPower`, `DimenAuto` …).
 
 ```swift
-DynamicDimens.resolve(16, strategy: .power, configuration: config)
-16.dynamic(.power, config)
-16.powerDp(config)
+.screen(_ mode: UiModeType, _ qualifier: DpQualifier, _ minimum: Double, customValue:, finalQualifierResolver:, orientation:, inverter:, fontScale:) // priority 1
+.screen(_ mode: UiModeType, customValue:, …)                                   // priority 2
+.screen(_ qualifier: DpQualifier, _ minimum: Double, customValue:, …)          // priority 3
+.screen(_ orientation: Orientation, customValue:, …)                           // priority 4
+.applyAspectRatio(_:) .aspectRatio(_:sensitivityK:) .ignoreMultiWindows(_:) .customSensitivity(_:)
+.sdp .hdp .wdp .ssp .hsp .wsp .sem .hem .wem .sdpPx .hdpPx .wdpPx   // ambient CGFloat
+.sdp(c) … .resolve(c, qualifier:fontScale:) .px(c, qualifier:) .sdpHdpWdpPx(c)
 ```
 
-`StrategyOptions` configures qualifier, inverter, aspect correction, multi-window, sensitivity, percentage, exponent, interpolation, and fluid ranges.
+## Kernels
 
-## Resize
+`AppDimens.scaledDp`, `scaledSp`, `percentDp`, `powerDp`, `fluidDp`, `autoDp`, `densityDp`, `diagonalDp`, `perimeterDp`, `fillDp`, `fitDp`, `interpolatedDp`, `logarithmicDp`, `resolve(_:strategy:…)`, `sp(_:strategy:…)`, `toDynamicScaledDp`, `literalPercentOfScreenDp`, `literalPercentOfReferenceDp` — all take `(value, configuration:, qualifier:, inverter:, ignoreMultiWindows:, applyAspectRatio:, sensitivityK:)`.
 
-- `ResizeBound.fixedDp`
-- `ResizeBound.fixedSp`
-- `ResizeBound.percent`
-- `DimensResize.steps`
-- `DimensResize.largestFitting`
+## Strategies module
 
-The predicate passed to binary search must be monotonic.
+`DimensStrategy` (in core), `StrategyOptions`, `DynamicDimens.resolve`, `16.dynamic(.power)` / `16.dynamic(.power, c, options:)`, named `16.powerDp(c, options:)`…, and `DimensFactors` (per-window factor table: `resolve(_:strategy:)`, `resolve(&buffer, strategy:)`, `factor(_:)`).
 
-## Units
+## SwiftUI
 
-`DimensUnits.points` and `.pixels` support inch, centimeter, millimeter, point, and pixel. Supply PPI for physically accurate pixel conversion; `displayScale` is not PPI.
+`AppDimensProvider(uiMode:updatesAmbient:content:)`, `.appDimens(uiMode:updatesAmbient:)`, `.appDimensConfiguration(_:updatesAmbient:)`, `EnvironmentValues.appDimensConfiguration`, `@ScaledDimension(_:_:strategy:aspectRatio:ignoreMultiWindow:)`, `@ScaledDimension(text:…)` (projected value = the window configuration), `ContentSizeCategory.appDimensFontScale`.
+
+## UIKit / AppKit
+
+`16.sdp(in: view)` (+ `hdp`, `wdp`, `ssp`, `sem`), `UIFont.ssp(_:weight:)`, `UIFont.sem(_:weight:)`, `NSFont.ssp(_:weight:)`, `UIContentSizeCategory.appDimensFontScale`, `UiModeType.platformDefault`.
+
+## Other modules
+
+* Percent: `spaceW`, `spaceH`, `spaceSw` (+`i`, `Px`, `Pxi`, `Sp…`), `space(_ reference:)`, `spacePx`, explicit `spaceW(c)`.
+* Units: `DimenPhysicalUnits.toDpFromMm/Cm/Inch`, `toPxFrom…`, `toSpFrom…`, `radiusFromDiameter`, `radiusFromCircumference`, `unitSizeInDp`, `devicePointsPerInch`, ambient `5.mm`, `1.cm`, `1.inch`, `mmPx`…, conversions `mmToCm()`….
+* Resize: `ResizeBound` (`.fixedDp`, `.fixedSp`, `.percent`), `resizeFixedDp/Sp`, `resizePercentSw/W/H`, `DimensResize.steps`, `largestFitting`, `autoResizeText`, `autoResizeTextPercent`, `autoResizeSquareSize`, `autoResizeSize`.
+* Metal: see [Metal](METAL.md).

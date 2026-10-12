@@ -39,17 +39,20 @@ c.dimension(.height)     // 844
 | Strategy | Result | Mathematical character |
 |---|---|---|
 | scaled | `v × d/300` | linear |
-| density | `v × d/300 × σ` | linear, expressed in pixels |
+| density | `v × σ` | window-independent; follows the display scale |
+| auto | `v × d/300` for `d ≤ 480`; `v × [480/300 + 0.4 ln(1+(d−480)/300)]` beyond | linear on phones, damped on tablets |
 | diagonal | `v × hypot(w,h)/hypot(300,533)` | Euclidean geometry |
 | perimeter | `v × (w+h)/833` | arithmetic combination of axes |
-| fit | `v × min(w/300,h/533)` | contain; limiting axis wins |
-| fill | `v × max(w/300,h/533)` | cover; expanding axis wins |
-| interpolated | `v × [1+(r−1)t]`, `t∈[0,1]` | affine blend |
+| fit | `v × min(sm/300,lg/533)` (sm/lg = smaller/larger window side) | contain; limiting axis wins |
+| fill | `v × max(sm/300,lg/533)` | cover; expanding axis wins |
+| interpolated | `v × [1+(r−1)t]`, `t = 0.5` | affine blend |
 | power | `v × rᵖ` | sublinear for `0<p<1`, linear at `p=1` |
-| percent | `d × percent × v / 10,000` | literal axis percentage |
+| percent | `v × d/300` (same curve as scaled); literal `spaceW`: `percent/100 × d` | proportional / literal axis percentage |
 | fluid | `v × lerp(a,b,clamp((d−L)/(U−L),0,1))` | bounded linear ramp |
 | logarithmic | `v × [1+0.4 ln(r)]` if `r≥1`; `v × [1−0.4 ln(1/r)]` otherwise | strongly damped |
-| plain / physical | `v` | identity; conversion is handled by `DimensUnits` |
+| plain / physical | `v` | identity; conversion is handled by `DimenPhysicalUnits` |
+
+Constants are fixed exactly as on Android: `p = 0.75`, `t = 0.5`, fluid `a = 0.8`, `b = 1.2`, `L = 320`, `U = 768`; auto is linear up to 480 and adds `0.4·ln(1 + (d−480)/300)` beyond. Fit/fill use the window's smaller/larger side (`sm/lg`), not width/height.
 
 ### Worked example: a 16-point token
 
@@ -59,7 +62,7 @@ For a `390 × 844` window and the default smallest-width qualifier, `r = 390/300
 * power with `p=0.75`: `16 × 1.3⁰·⁷⁵ ≈ 19.48 pt`;
 * interpolated with `t=0.5`: `16 × (1 + 0.3×0.5) = 18.4 pt`;
 * logarithmic: `16 × (1 + 0.4 ln(1.3)) ≈ 17.68 pt`;
-* 10 literal percent: set `v=10`, `percent=100`; `390×100×10/10,000 = 39 pt`.
+* literal percent `10.spaceW`: `10/100 × 390 = 39 pt`.
 
 ## 4. Aspect-ratio correction
 
@@ -67,9 +70,9 @@ The optional scaled branch computes `aspect = max(w,h)/min(w,h)`, normalizes it 
 
 ## 5. Continuity, monotonicity, and derivatives
 
-For positive dimensions, scaled, diagonal, perimeter, fit, and fill are continuous. Fit/fill are not differentiable exactly where `w/300 = h/533`, because the controlling axis changes, but their values do not jump.
+For positive dimensions, scaled, diagonal, perimeter, fit, and fill are continuous. Fit/fill are not differentiable exactly where `sm/300 = lg/533`, because the controlling axis changes, but their values do not jump.
 
-For power, `f(r)=v rᵖ` and `f′(r)=vp rᵖ⁻¹`. A `p` below one progressively reduces the slope; a negative power reverses monotonicity and is rarely appropriate for UI sizing. For the large-screen logarithmic branch, `f′(r)=0.4v/r`, so growth continually slows. Interpolated has constant derivative `vt`; `t=0` is fixed and `t=1` is scaled.
+For power, `f(r)=v rᵖ` and `f′(r)=vp rᵖ⁻¹`. A `p` below one progressively reduces the slope; a negative power reverses monotonicity and is rarely appropriate for UI sizing. For the large-screen logarithmic branch, `f′(r)=0.4v/r`, so growth continually slows. Interpolated has constant derivative `vt` with `t = 0.5` (halfway between fixed and scaled).
 
 Fluid is continuous at both clamps. Inside the interval its derivative is `v(b−a)/(U−L)`; outside it is zero. If the viewport span is zero, the implementation selects the lower scale below the threshold and the upper scale at or above it, avoiding division by zero.
 

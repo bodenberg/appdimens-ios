@@ -1,1 +1,4 @@
-@_exported import AppDimensStrategies
+@_exported import AppDimens
+
+/// Android `DimenPercent` — conditional builder (`16.percentDp().screen(...)`).
+public typealias DimenPercent = DimenBuilder

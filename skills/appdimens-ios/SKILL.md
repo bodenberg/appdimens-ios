@@ -15,13 +15,14 @@ description: Implement, migrate, review, or troubleshoot responsive SwiftUI and 
 ## Implement
 
 1. Add the GitHub package and select `AppDimensDynamic` unless binary size requires an individual product.
-2. For SwiftUI, install `.appDimens()` once at the `WindowGroup` content root. Never create a configuration from child-view bounds.
-3. For UIKit, resolve `DimensConfiguration.current(in:)`; the view is only a route to its `UIWindowScene`.
+2. For SwiftUI, install `.appDimens()` once at the `WindowGroup` content root, then write `16.sdp` / `16.ssp` like Compose. Never create a configuration from child-view bounds. In multi-window apps or iOS < 17, resolve with `@Environment(\.appDimensConfiguration)` + `16.sdp(dimens)` or `@ScaledDimension`.
+3. For UIKit/AppKit, call `AppDimens.startAutomaticUpdates()` once, then use `16.sdp`; `16.sdp(in: view)` resolves against a specific window.
 4. Start with smallest-width `sdp`; use `wdp` or `hdp` only for an axis-driven requirement.
 5. Use `ssp` for Dynamic Type-aware text and `sem` only when font scaling must intentionally be disabled.
 6. Start with `.scaled`. Select another strategy only against a stated visual acceptance criterion.
 7. Use resize only for fit-to-container selection, not as a global scaling curve.
-8. Precompute `DimensFactors` for hot loops; update configuration only when window/environment metrics change.
+8. Precompute `DimensFactors` for hot loops; for Metal bind `AppDimensUniforms` and use the `appdimens_*` MSL helpers.
+9. Regenerate catalogs with `python3 scripts/generate_catalogs.py` after changing the generator; never edit `Catalog.swift` by hand.
 
 ## Validate
 

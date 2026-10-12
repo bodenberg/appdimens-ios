@@ -85,7 +85,7 @@ public enum DimensResize {
     /// Auto-resize text (Android `autoResizeTextSp`): finds the largest sp in
     /// `min…max` that satisfies `fits`. `fits` receives candidate sp values.
     @inlinable public static func autoResizeText(min minimum: ResizeBound, max maximum: ResizeBound,
-        step: ResizeBound = .fixedSp(1), configuration: DimensConfiguration,
+        step: ResizeBound = .fixedSp(1), configuration: DimensConfiguration = AppDimens.configuration,
         maxLines: Int? = nil, fits: (Double) -> Bool) -> Double {
         let ladder = steps(minimum: boundEngineValue(minimum, configuration: configuration),
             maximum: boundEngineValue(maximum, configuration: configuration),
@@ -96,7 +96,7 @@ public enum DimensResize {
     /// Percent-bounded auto-resize (Android `autoResizeTextSpPercent`).
     @inlinable public static func autoResizeTextPercent(minPercent: Double, maxPercent: Double,
         stepSp: Double = 2, percentBasis: AutoResizePercentBasis = .height,
-        configuration: DimensConfiguration, maxLines: Int? = nil, fits: (Double) -> Bool) -> Double {
+        configuration: DimensConfiguration = AppDimens.configuration, maxLines: Int? = nil, fits: (Double) -> Bool) -> Double {
         let basis: Double
         switch percentBasis {
         case .height: basis = configuration.screenHeight
@@ -113,7 +113,7 @@ public enum DimensResize {
     /// Auto-resize square size (Android `autoResizeSquareSize`) — largest side
     /// in dp satisfying `fits`.
     @inlinable public static func autoResizeSquareSize(min minimum: ResizeBound, max maximum: ResizeBound,
-        step: ResizeBound = .fixedDp(1), configuration: DimensConfiguration,
+        step: ResizeBound = .fixedDp(1), configuration: DimensConfiguration = AppDimens.configuration,
         fits: (Double) -> Bool) -> Double {
         let ladder = steps(minimum: boundEngineValue(minimum, configuration: configuration),
             maximum: boundEngineValue(maximum, configuration: configuration),
@@ -123,7 +123,7 @@ public enum DimensResize {
 
     /// Auto-resize width/height size — same ladder search with explicit bounds.
     @inlinable public static func autoResizeSize(min: ResizeBound, max: ResizeBound,
-        step: ResizeBound = .fixedDp(1), configuration: DimensConfiguration,
+        step: ResizeBound = .fixedDp(1), configuration: DimensConfiguration = AppDimens.configuration,
         fits: (Double) -> Bool) -> Double {
         autoResizeSquareSize(min: min, max: max, step: step, configuration: configuration, fits: fits)
     }

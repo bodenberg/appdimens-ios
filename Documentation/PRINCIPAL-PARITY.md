@@ -1,35 +1,26 @@
-# Principal artifact parity audit
+# Android parity
 
-> **Audit scope:** public concepts and modules exposed by AppDimens Dynamic for Android are mapped to native Apple equivalents. Platform UI plumbing is intentionally adapted rather than copied: Android `Configuration` becomes an immutable Apple window configuration, and watchOS uses the deterministic form.
+[Documentation hub](README.md) · [Migration](MIGRATION.md) · [Mathematics](MATHEMATICS-AND-CALCULUS.md)
 
-This phase inventories only Android `library/`, not the satellite modules.
+Reference: [appdimens-dynamic](https://github.com/bodenberg/appdimens-dynamic) 3.2.0.
 
-| Android principal area | Apple port |
-|---|---|
-| `common/DpQualifier` | `DpQualifier` |
-| `common/Inverter` (8 mappings + default) | `Inverter` |
-| `common/Orientation` | `DimensOrientation` |
-| `common/UiModeType` | `UiModeType` adapted to Apple families |
-| `core/DesignScaleConstants` | `AppDimens.baseRatio`, reference AR |
-| `core/DimenCalculationPlumbing` | `DimensConfiguration.dimension` |
-| `code/compose scaled dp` | numeric APIs + `@ScaledDimension` |
-| `code/compose scaled sp/em` | `ssp/hsp/wsp` and `sem/hem/wem` |
-| `scaledDp()` builder | `ScaledDp` value type |
-| `Configuration` / `LocalConfiguration` | shared window/scene `DimensConfiguration` |
+| Area | Android | Apple | Status |
+|---|---|---|---|
+| Constants | `DesignScaleConstants`, `DimenCache` constants | `DimensConstants` | identical |
+| Window snapshot | `DimenMetrics` (eager factors) | `DimenMetrics` (eager factors, `Double`) | identical formulas |
+| Scaled kernel | `calculateScaledDpCompose` | `AppDimens.scaledDp` | identical, incl. custom k |
+| Inverters | `effectiveQualifier` | `DimensConfiguration.effectiveQualifier` | identical (`DEFAULT` never swaps) |
+| Satellites | 11 `calculate<Strategy>DpCompose` | 11 kernels | identical |
+| Catalog names | `sdp`…`wemPhia`, `Px`, `sei` | same names | identical (+ `<name>Px` spellings) |
+| Facilitators | `Rotate/Mode/Qualifier/Screen` + `Px` + `Plain` | same, same argument order | identical semantics |
+| Builders | `DimenScaled`, `ScaledSp`, `Dimen<Strategy>` | `DimenBuilder` (+ aliases) | priorities 1–4, threshold ordering |
+| Percent space | `spaceW/H/Sw`, `space(ref)` + variants | same | identical |
+| Resize | `ResizeBound`, auto-resize ladders | same | identical ladder semantics |
+| Units | `DimenPhysicalUnits` | same names | uses points-per-inch (Apple has no physical DPI API) |
+| Provider | `AppDimensProvider` | `AppDimensProvider` / `.appDimens()` | + automatic SwiftUI invalidation |
+| Multi-window | `Activity.isInMultiWindowMode` | window vs screen (or explicit flag) | equivalent |
+| Font scale | `Configuration.fontScale` | Dynamic Type body ratio | equivalent |
+| Results | `Float` | `Double` | agree to Float rounding (tested, 2e-6 relative) |
+| Metal | — | `AppDimensMetal` | Apple-only addition |
 
-## Invariant
-
-For a given window and configuration, a base value has one result. UIKit child bounds are never used as the global configuration. SwiftUI installs one provider at the scene root. Explicit `DimensConfiguration` exists for tests/headless use, not as a routine UI requirement.
-
-## Intentional Apple adaptations
-
-- Android dp maps to Apple points.
-- Android density conversion maps to explicit `displayScale`; normal layout remains in points.
-- Android font scale maps to Dynamic Type size categories.
-- Android `Configuration` maps to the active `UIWindowScene`/SwiftUI root window container.
-- Global mutable cache is omitted because the formula is O(1) and the configuration is a small `Hashable`, `Sendable` value.
-- Repeated frame calculations can reuse `DimensFactors`; strategy branches avoid calculating ratios they do not consume.
-
-## Satellite boundary
-
-The principal remains independently importable. All satellite strategies are now implemented as separate SwiftPM products and share this accepted window invariant; see `MODULES.md`.
+`AndroidFloatParityTests` recomputes every factor with the Kotlin `Float` code path for twelve windows (240×320 … 1920×1080) and compares.
