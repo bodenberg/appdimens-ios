@@ -44,7 +44,8 @@ public extension DimensConfiguration {
 
     /// Builds the configuration of `window` (Android `Configuration` of an Activity).
     @MainActor static func current(window: UIWindow?, uiMode: UiModeType? = nil) -> DimensConfiguration {
-        let scene = window?.windowScene ?? _AppDimensUIKit.activeScene()
+        // A given window never routes through UIApplication (unavailable in extensions/test hosts).
+        let scene = window.map { $0.windowScene } ?? _AppDimensUIKit.activeScene()
         let fallback = CGSize(width: DimensConstants.baseWidthDp, height: DimensConstants.baseHeightDp)
         let size = window?.bounds.size ?? scene?.coordinateSpace.bounds.size ?? fallback
         let traits = window?.traitCollection ?? scene?.traitCollection ?? UITraitCollection.current
