@@ -13,7 +13,8 @@ This is the complete documentation set for the direct Swift port. The public bas
 | Use UIKit with automatic scene discovery | [Apple integration](APPLE-INTEGRATION.md#uikit) |
 | Select a scaling curve | [Strategy catalog](STRATEGIES.md) |
 | Understand every formula | [Mathematics and calculus](MATHEMATICS-AND-CALCULUS.md) |
-| Optimize a hot loop or Metal renderer | [Performance](PERFORMANCE.md) |
+| Optimize a hot loop | [Performance](PERFORMANCE.md) |
+| Render with Metal | [Metal](METAL.md) |
 | Migrate Android names | [Migration](MIGRATION.md) |
 | Diagnose incorrect output | [Troubleshooting](TROUBLESHOOTING.md) |
 
@@ -38,10 +39,13 @@ flowchart TD
 
 | Platform | Minimum | Automatic UI integration | Core and strategies | Metal bridge |
 |---|---:|---|---|---|
-| iOS / iPadOS | 13 | SwiftUI + UIKit | Yes | Yes |
-| tvOS | 13 | SwiftUI + UIKit | Yes | Yes |
-| macOS | 10.15 | SwiftUI | Yes | Yes |
-| visionOS | 1 | SwiftUI + UIKit | Yes | Yes |
-| watchOS | 7 | Deterministic API (no window provider) | Yes | Not included |
+| iOS / iPadOS | 13 | SwiftUI provider + UIKit updater | Yes | Yes |
+| tvOS | 13 | SwiftUI provider + UIKit updater | Yes | Yes |
+| macOS / Mac Catalyst | 10.15 / 13 | SwiftUI provider + AppKit / UIKit updater | Yes | Yes |
+| visionOS | 1 | SwiftUI provider + UIKit updater | Yes | Yes |
+| watchOS | 7 | SwiftUI provider | Yes | Uniforms only |
+| Linux | Swift 5.9 | — | Yes | Uniforms only |
 
-The watchOS contract intentionally excludes `AppDimensProvider`, `@ScaledDimension`, automatic window discovery, and Metal APIs. Supply a `DimensConfiguration` and use the deterministic API; `AppDimensMetal` is an empty compatibility module on watchOS so the aggregate product remains importable without compiling SIMD or Metal declarations for the device SDK. The minimum is watchOS 7, the oldest deployment target supported by the Xcode 16 toolchain used by CI.
+Automatic SwiftUI invalidation of `16.sdp` uses Swift Observation (iOS 17, macOS 14, tvOS 17, watchOS 10, visionOS 1). Earlier versions use the environment value or `@ScaledDimension` — see [Apple integration](APPLE-INTEGRATION.md).
+
+More: [Metal](METAL.md) · [Android parity](PRINCIPAL-PARITY.md) · [Modules](MODULES.md)

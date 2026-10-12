@@ -30,7 +30,7 @@ final class StrategyModuleTests: XCTestCase {
             }
             var buffer = [1.0, 2.0, 4.0]
             factors.resolve(&buffer, strategy: .power)
-            XCTAssertEqual(buffer[2], 4 * c.metrics.powerScale, accuracy: 1e-12)
+            do { let expected: Double = 4 * c.metrics.powerScale; XCTAssertEqual(buffer[2], expected, accuracy: 1e-12) }
         }
     }
 }

@@ -76,8 +76,8 @@ final class AmbientTests: XCTestCase {
             let portraitHeight = 48.hdp
             AppDimens.update(Fixture.phoneLandscape)
             XCTAssertNotEqual(48.hdp, portraitHeight)
-            XCTAssertEqual(Double(48.hdp), 48 * 390 / 300, accuracy: 1e-9)
-            XCTAssertEqual(Double(16.sdp), 16 * 1.3, accuracy: 1e-9, "sdp is rotation-invariant")
+            do { let expected: Double = 48 * 390 / 300; XCTAssertEqual(Double(48.hdp), expected, accuracy: 1e-9) }
+            do { let expected: Double = 16 * 1.3; XCTAssertEqual(Double(16.sdp), expected, accuracy: 1e-9, "sdp is rotation-invariant") }
         }
     }
 

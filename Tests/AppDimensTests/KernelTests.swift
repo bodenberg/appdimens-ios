@@ -19,7 +19,7 @@ final class KernelTests: XCTestCase {
     func testBaselineIsIdentity() {
         XCTAssertEqual(16.sdp(baseline), 16, accuracy: 1e-12)
         XCTAssertEqual(16.wdp(baseline), 16, accuracy: 1e-12)
-        XCTAssertEqual(16.hdp(baseline), 16 * 533 / 300, accuracy: 1e-12)
+        do { let expected: Double = 16 * 533 / 300; XCTAssertEqual(16.hdp(baseline), expected, accuracy: 1e-12) }
         XCTAssertEqual(16.ssp(baseline), 20, accuracy: 1e-12)
         XCTAssertEqual(16.sem(baseline), 16, accuracy: 1e-12)
         XCTAssertEqual(16.sdpi(baseline), 16, accuracy: 1e-12)
@@ -33,8 +33,8 @@ final class KernelTests: XCTestCase {
         let landscape = DimensConfiguration(screenWidth: 800, screenHeight: 400)
         XCTAssertEqual(landscape.dimension(.height), 400)
         XCTAssertEqual(landscape.dimension(.width), 800)
-        XCTAssertEqual(10.hdp(landscape), 10 * 400 / 300, accuracy: 1e-12)
-        XCTAssertEqual(10.wdp(landscape), 10 * 800 / 300, accuracy: 1e-12)
+        do { let expected: Double = 10 * 400 / 300; XCTAssertEqual(10.hdp(landscape), expected, accuracy: 1e-12) }
+        do { let expected: Double = 10 * 800 / 300; XCTAssertEqual(10.wdp(landscape), expected, accuracy: 1e-12) }
         XCTAssertEqual(AppDimens.scaledDp(10, configuration: landscape, qualifier: .height, applyAspectRatio: true),
                        10 * (1 + 100 * (DimensConstants.adjustmentScale +
                              DimensConstants.sensitivityDefault * landscape.metrics.logNormalizedAspectRatio)),
@@ -59,12 +59,12 @@ final class KernelTests: XCTestCase {
 
     func testInverterCatalogVariants() {
         let landscape = DimensConfiguration(screenWidth: 800, screenHeight: 400)
-        XCTAssertEqual(10.hdpLw(landscape), 10 * 800 / 300, accuracy: 1e-12)
-        XCTAssertEqual(10.wdpLh(landscape), 10 * 400 / 300, accuracy: 1e-12)
-        XCTAssertEqual(10.sdpLw(landscape), 10 * 800 / 300, accuracy: 1e-12)
+        do { let expected: Double = 10 * 800 / 300; XCTAssertEqual(10.hdpLw(landscape), expected, accuracy: 1e-12) }
+        do { let expected: Double = 10 * 400 / 300; XCTAssertEqual(10.wdpLh(landscape), expected, accuracy: 1e-12) }
+        do { let expected: Double = 10 * 800 / 300; XCTAssertEqual(10.sdpLw(landscape), expected, accuracy: 1e-12) }
         let portrait = DimensConfiguration(screenWidth: 800, screenHeight: 1200)
-        XCTAssertEqual(10.sdpPh(portrait), 10 * 1200 / 300, accuracy: 1e-12)
-        XCTAssertEqual(10.sdpPw(portrait), 10 * 800 / 300, accuracy: 1e-12)
+        do { let expected: Double = 10 * 1200 / 300; XCTAssertEqual(10.sdpPh(portrait), expected, accuracy: 1e-12) }
+        do { let expected: Double = 10 * 800 / 300; XCTAssertEqual(10.sdpPw(portrait), expected, accuracy: 1e-12) }
         XCTAssertEqual(10.sdpPxPh(portrait), 10.sdpPhPx(portrait), "Android and iOS Px spellings agree")
     }
 
@@ -92,31 +92,31 @@ final class KernelTests: XCTestCase {
 
     func testSatelliteKernels() {
         XCTAssertEqual(16.dsdp(baseline), 48, "density = base × displayScale")
-        XCTAssertEqual(16.dgsdp(wide), 16 * (600.0 * 600.0 + 800.0 * 800.0).squareRoot() / 611.6305, accuracy: 1e-9)
-        XCTAssertEqual(16.prsdp(wide), 16 * (600 + 800) / 833, accuracy: 1e-12)
-        XCTAssertEqual(16.flsdp(wide), 16 * max(600 / 300, 800 / 533), accuracy: 1e-12)
-        XCTAssertEqual(16.ftsdp(wide), 16 * min(600 / 300, 800 / 533), accuracy: 1e-12)
-        XCTAssertEqual(16.pwsdp(small), 16 * pow(600 / 300, 0.75), accuracy: 1e-12)
-        XCTAssertEqual(16.isdp(small), 16 * (1 + (600 / 300 - 1) * 0.5), accuracy: 1e-12)
-        XCTAssertEqual(16.logsdp(small), 16 * (1 + 0.4 * log(2)), accuracy: 1e-12)
-        XCTAssertEqual(16.logsdp(DimensConfiguration(screenWidth: 200, screenHeight: 400)), 16 * (1 - 0.4 * log(300.0 / 200)), accuracy: 1e-12)
-        XCTAssertEqual(16.asdp(small), 16 * (480 / 300 + 0.4 * log(1 + (600 - 480) / 300)), accuracy: 1e-12)
+        do { let expected: Double = 16 * (600.0 * 600.0 + 800.0 * 800.0).squareRoot() / 611.6305; XCTAssertEqual(16.dgsdp(wide), expected, accuracy: 1e-9) }
+        do { let expected: Double = 16 * (600 + 800) / 833; XCTAssertEqual(16.prsdp(wide), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * max(600 / 300, 800 / 533); XCTAssertEqual(16.flsdp(wide), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * min(600 / 300, 800 / 533); XCTAssertEqual(16.ftsdp(wide), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * pow(600 / 300, 0.75); XCTAssertEqual(16.pwsdp(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * (1 + (600 / 300 - 1) * 0.5); XCTAssertEqual(16.isdp(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * (1 + 0.4 * log(2)); XCTAssertEqual(16.logsdp(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * (1 - 0.4 * log(300.0 / 200)); XCTAssertEqual(16.logsdp(DimensConfiguration(screenWidth: 200, screenHeight: 400)), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * (480 / 300 + 0.4 * log(1 + (600 - 480) / 300)); XCTAssertEqual(16.asdp(small), expected, accuracy: 1e-12) }
         XCTAssertEqual(16.asdp(baseline), 16, accuracy: 1e-12, "auto linear branch ≤ 480")
-        XCTAssertEqual(16.fsdp(baseline), 16 * 0.8, accuracy: 1e-12, "fluid clamps to ×0.8 below 320")
-        XCTAssertEqual(16.fsdp(DimensConfiguration(screenWidth: 1000, screenHeight: 1400)), 16 * 1.2, accuracy: 1e-12)
-        XCTAssertEqual(16.fsdp(DimensConfiguration(screenWidth: 400, screenHeight: 700)), 16 * (0.8 + 0.4 * 80 / 448), accuracy: 1e-12)
-        XCTAssertEqual(16.psdp(small), 16 * 600 / 300, accuracy: 1e-12)
+        do { let expected: Double = 16 * 0.8; XCTAssertEqual(16.fsdp(baseline), expected, accuracy: 1e-12, "fluid clamps to ×0.8 below 320") }
+        do { let expected: Double = 16 * 1.2; XCTAssertEqual(16.fsdp(DimensConfiguration(screenWidth: 1000, screenHeight: 1400)), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * (0.8 + 0.4 * 80 / 448); XCTAssertEqual(16.fsdp(DimensConfiguration(screenWidth: 400, screenHeight: 700)), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * 600 / 300; XCTAssertEqual(16.psdp(small), expected, accuracy: 1e-12) }
     }
 
     func testSatelliteNonDefaultAxisUsesAxisFormula() {
         let c = small // 600 × 1032
-        XCTAssertEqual(16.pwhdp(c), 16 * pow(1032 / 300, 0.75), accuracy: 1e-9)
-        XCTAssertEqual(16.loghdp(c), 16 * (1 + 0.4 * log(1032 / 300)), accuracy: 1e-9)
-        XCTAssertEqual(16.ahdp(c), 16 * (480 / 300 + 0.4 * log(1 + (1032 - 480) / 300)), accuracy: 1e-9)
-        XCTAssertEqual(16.fhdp(c), 16 * 1.2, accuracy: 1e-9)
+        do { let expected: Double = 16 * pow(1032 / 300, 0.75); XCTAssertEqual(16.pwhdp(c), expected, accuracy: 1e-9) }
+        do { let expected: Double = 16 * (1 + 0.4 * log(1032 / 300)); XCTAssertEqual(16.loghdp(c), expected, accuracy: 1e-9) }
+        do { let expected: Double = 16 * (480 / 300 + 0.4 * log(1 + (1032 - 480) / 300)); XCTAssertEqual(16.ahdp(c), expected, accuracy: 1e-9) }
+        do { let expected: Double = 16 * 1.2; XCTAssertEqual(16.fhdp(c), expected, accuracy: 1e-9) }
         let linear: Double = 16.0 * 1032.0 / 300.0
-        XCTAssertEqual(16.ihdp(c), 16 + (linear - 16) * 0.5, accuracy: 1e-9)
-        XCTAssertEqual(16.phdp(c), 16 * 1032 / 300, accuracy: 1e-9)
+        do { let expected: Double = 16 + (linear - 16) * 0.5; XCTAssertEqual(16.ihdp(c), expected, accuracy: 1e-9) }
+        do { let expected: Double = 16 * 1032 / 300; XCTAssertEqual(16.phdp(c), expected, accuracy: 1e-9) }
         // Window-shape satellites ignore the qualifier (Android parity).
         XCTAssertEqual(16.dghdp(c), 16.dgsdp(c))
         XCTAssertEqual(16.flwdp(c), 16.flsdp(c))
@@ -125,21 +125,21 @@ final class KernelTests: XCTestCase {
     func testSatelliteAspectRatioMultiplier() {
         let m = wide.metrics
         let ar = 1 + DimensConstants.sensitivityDefault * m.logNormalizedAspectRatio
-        XCTAssertEqual(16.pwsdpa(wide), 16 * pow(2, 0.75) * ar, accuracy: 1e-12)
+        do { let expected: Double = 16 * pow(2, 0.75) * ar; XCTAssertEqual(16.pwsdpa(wide), expected, accuracy: 1e-12) }
         XCTAssertEqual(16.powerDp(wide, options: .init(applyAspectRatio: true, sensitivityK: 0.01)),
                        16 * pow(2, 0.75) * (1 + 0.01 * m.logNormalizedAspectRatio), accuracy: 1e-12)
-        XCTAssertEqual(16.dgsdpa(wide), 16.dgsdp(wide) * ar, accuracy: 1e-12)
+        do { let expected: Double = 16.dgsdp(wide) * ar; XCTAssertEqual(16.dgsdpa(wide), expected, accuracy: 1e-12) }
     }
 
     func testTextFamilies() {
-        XCTAssertEqual(16.ssp(small), 16 * 2 * 1.25, accuracy: 1e-12)
-        XCTAssertEqual(16.sem(small), 16 * 2, accuracy: 1e-12)
-        XCTAssertEqual(16.hsp(small), 16 * 1032 / 300 * 1.25, accuracy: 1e-12)
-        XCTAssertEqual(16.wem(small), 16 * 2, accuracy: 1e-12)
-        XCTAssertEqual(16.sspPx(small), 16 * 2 * 1.25 * 3, accuracy: 1e-12)
+        do { let expected: Double = 16 * 2 * 1.25; XCTAssertEqual(16.ssp(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * 2; XCTAssertEqual(16.sem(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * 1032 / 300 * 1.25; XCTAssertEqual(16.hsp(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * 2; XCTAssertEqual(16.wem(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * 2 * 1.25 * 3; XCTAssertEqual(16.sspPx(small), expected, accuracy: 1e-12) }
         XCTAssertEqual(16.sspPxa(small), 16.sspaPx(small))
-        XCTAssertEqual(16.pwssp(small), 16 * pow(2, 0.75) * 1.25, accuracy: 1e-12)
-        XCTAssertEqual(16.pwsei(small), 16 * pow(2, 0.75) * 3, accuracy: 1e-12)
+        do { let expected: Double = 16 * pow(2, 0.75) * 1.25; XCTAssertEqual(16.pwssp(small), expected, accuracy: 1e-12) }
+        do { let expected: Double = 16 * pow(2, 0.75) * 3; XCTAssertEqual(16.pwsei(small), expected, accuracy: 1e-12) }
     }
 
     func testInvalidInputsAreNormalizedNotTrapped() {
