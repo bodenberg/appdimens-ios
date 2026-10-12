@@ -8,13 +8,13 @@ Use **interpolated** for gradual migration from fixed values to linear scaling.
 
 ## Mathematical theory
 
-**Formula:** `result = v × [1 + (d/300−1)t]`, with `t` clamped to `0...1`.
+**Formula:** `result = v × (1 + (d/300 − 1) × 0.5)`.
 
-Linear interpolation blends the identity scale (`t=0`) and scaled (`t=1`). Intermediate values reduce responsiveness without introducing breakpoints.
+The blend is fixed at 50 %, so the result is halfway between the identity (`v`) and linear scaling (`v × d/300`). Intermediate values reduce responsiveness without introducing breakpoints. With `applyAspectRatio`, the result is also multiplied by the aspect-ratio factor `1 + k × ln(AR / 1.78)`.
 
 ## Worked calculation
 
-For `v=16`, `d=390`, `t=0.5`, the scale is `1.15` and the result is `18.4 pt`.
+For `v=16` and `d=390`, `d/300 − 1 = 0.3`, the scale is `1 + 0.3 × 0.5 = 1.15`, and the result is `16 × 1.15 = 18.4 pt`.
 
 ## Swift usage
 
@@ -22,11 +22,9 @@ For `v=16`, `d=390`, `t=0.5`, the scale is `1.15` and the result is `18.4 pt`.
 import AppDimensDynamic
 
 let c = DimensConfiguration(screenWidth: 390, screenHeight: 844, displayScale: 3)
-`let options = StrategyOptions(interpolation: 0.35)`
-`let radius = 16.interpolatedDp(c, options: options)`
+let radius = 16.interpolatedDp(c)                                                  // 18.4
+let runtime = DynamicDimens.resolve(16, strategy: .interpolated, configuration: c) // 18.4
 ```
-
-Use the numeric extension for concise token code or `DynamicDimens.resolve` when the strategy is selected at runtime. Both return `Double`; convert to `CGFloat` at the view boundary.
 
 ## Recommended use
 
@@ -40,11 +38,11 @@ Use when a fixed design feels too rigid but full linear scaling is too aggressiv
 
 ## Trade-offs and misuse
 
-It is still unbounded as the window grows. Choose fluid when hard visual limits are required.
+It is still unbounded as the window grows, and the 50 % blend is fixed. Choose fluid when hard visual limits are required.
 
 ## Validation checklist
 
-1. Verify the identity/reference behavior at `300 × 533`.
+1. Verify the identity/reference behavior at `300 × 533`: the factor is 1.
 2. Compare phone portrait and landscape.
 3. Test iPad full screen and a narrow split-view window.
 4. Resize continuously on macOS or iPadOS and look for unintended jumps.
@@ -52,4 +50,4 @@ It is still unbounded as the window grows. Choose fluid when hard visual limits 
 
 ## Performance
 
-Resolution is `O(1)`. For repeated rendering, construct `DimensFactors` once per window configuration where the strategy has a precomputed fast path; otherwise reuse `DimensConfiguration` and avoid rediscovering window metrics per element.
+Resolution is `O(1)`. On the default path the interpolated factor is precomputed once per window, and width or height resolutions are linear with no transcendental math. An explicit default-path call is a branch and a multiply once inlined, which is sub-nanosecond on current hardware; ambient calls take one uncontended lock. For hot loops, `DimensFactors(c)` holds the default factor for `.interpolated`.
