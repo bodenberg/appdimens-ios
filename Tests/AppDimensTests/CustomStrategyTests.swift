@@ -86,7 +86,7 @@ final class CustomStrategyTests: XCTestCase {
         XCTAssertTrue(message(#"[{"id":"a","extends":"b"},{"id":"b","extends":"a"}]"#).contains("Cyclic"))
         XCTAssertTrue(message(#"{"id":"a","curve":{"type":"wave"}}"#).contains("type 'wave'"))
         XCTAssertTrue(message(#"{"id":"a","extends":"nope"}"#).contains("unknown strategy 'nope'"))
-        XCTAssertTrue(message(#"{"id":"a",}"#).contains("Invalid JSON"))
+        XCTAssertTrue(message(#"{"id": a}"#).contains("Invalid JSON"))
         XCTAssertThrowsError(try ScalingStrategies.require("missing"))
     }
 
