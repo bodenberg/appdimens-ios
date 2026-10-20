@@ -11,7 +11,7 @@ When none of the built-in curves fits, or one growth law must be shared by sever
 ```
 ratio  = axis(window) / axis(reference)
 factor = clamp( curve(ratio) × multiplier × AR , minFactor, maxFactor )
-pt     = transform( clampValue( base × factor , minValue, maxValue ) )
+pt     = formula( clampValue( base × factor , minValue, maxValue ) )
 ```
 
 Rules override any field per **device class** (`phone`, `tablet`, `desktop`, `tv`, `watch`, `car`, `vr`), **screen range** (smallest width, width, height, aspect ratio), **orientation** and **multi-window**.
@@ -70,14 +70,15 @@ ContentView()
 |---|---|---|---|
 | Reference frame | `ReferenceScreen(width:height:)` | `"reference": {"width", "height"}` | 300 × 533 |
 | Axis | `.smallestWidth` `.width` `.height` `.min` `.max` `.diagonal` `.perimeter` | `"axis": "height"` | `.smallestWidth` |
-| Curve | `.linear` `.power(e)` `.logarithmic(k)` `.interpolated(t)` `.constant(f)` `.breakpoints([Breakpoint(360, 1), …])` `.custom { ratio, screen in … }` | `"curve": {"type": "power", "exponent": 0.8}` … | `.linear` |
+| Curve | `.linear` `.power(e)` `.logarithmic(k)` `.interpolated(t)` `.constant(f)` `.breakpoints([Breakpoint(360, 1), …])` `try .expression("…")` (free-form text, see below) `.custom { ratio, screen in … }` | `"curve": {"type": "power", "exponent": 0.8}` … | `.linear` |
 | Multiplier | `multiplier: 0.9` | `"multiplier"` | 1 |
 | Factor bounds | `minFactor` / `maxFactor` | `"clamp": {"min", "max"}` | none |
 | Value bounds (magnitude) | `minValue` / `maxValue` | `"valueClamp": {"min", "max"}` | none |
 | Aspect ratio | `aspectRatio: true, sensitivity: 0.004` | `"aspectRatio": {"enabled", "sensitivity"}` | off, k = 0.08/30 |
 | Font scale | `.follow` `.ignore` `.clamp(1.3)` | `"follow"` `"ignore"` `{"max": 1.3}` | `.follow` |
 | Multi-window | `ignoreMultiWindow: true` | `"ignoreMultiWindow": true` | false |
-| Per-value hook | `transform: { base, scaled, screen in … }` | — | none |
+| Per-value formula | `formula: "max(scaled, base)"` | `"formula": "max(scaled, base)"` | none |
+| Per-value hook (code) | `transform: { base, scaled, screen in … }` | — | none |
 | Rules | `rules: [ScalingRule]` | `"rules": [{"when", "set"}]` | none |
 | Parent | `extending:` / `parent.extend("x", …)` | `"extends": "power"` | — |
 
@@ -86,6 +87,34 @@ How rules apply:
 - Matching rules apply in order, and a later rule overrides the fields an earlier one set.
 - If combined bounds cross, the max bound wins.
 - `explain()` lists the applied rules, with `#index` for unnamed ones.
+
+## Free-form formulas (no limits from the built-in curves)
+
+You are not limited to the built-in curves. Write the formula yourself, as **text** that also works in JSON and gives the same result on every AppDimens platform:
+
+- **Curve expression** returns the **factor** from the screen. It is computed once per window, like any curve, and stays on the one-multiply fast path.
+  `"curve": {"type": "expression", "expression": "pow(ratio, 0.8) * (tablet ? 0.9 : 1)"}`
+- **Formula** returns the **final value** for each input. It can use `base`, `scaled` and `factor`, and replaces or post-processes the result. The strategy then becomes value-dependent, so results are cached per window.
+  `"formula": "base * pow(sw / 360, 0.7) + 2"` · `"formula": "max(scaled, base)"`
+
+| | |
+|---|---|
+| Operators | `+ - * / % ^` (`^` = power, right-associative; `%` keeps the dividend's sign), `== != < <= > >=`, `&& \|\| !`, `cond ? a : b`, `( )` |
+| Functions | `min(a, b, …)` `max(a, b, …)` `clamp(x, lo, hi)` `pow` `sqrt` `ln`/`log` `log10` `log2` `exp` `abs` `sign` `floor` `ceil` `round` (half up) `lerp(a, b, t)` `step(edge, x)` `smoothstep(e0, e1, x)` |
+| Screen variables | `sw` `width` `height` `shortSide` `longSide` `diagonal` `perimeter` `aspectRatio` `density` `fontScale`; flags (1/0): `landscape` `portrait` `multiWindow` `phone` `tablet` `desktop` `tv` `watch` `car` `vr`; constants `pi` `e`, `true` / `false` |
+| Curve variables | screen variables + `ratio` (axis / reference), `axis` (dp), `ref` (reference dp), `refWidth`, `refHeight` |
+| Formula variables | curve variables + `base` (input), `scaled` (base × factor after `valueClamp`), `factor` |
+
+Expressions are parsed when the strategy is created. Unknown variables or functions, wrong arity and syntax errors fail early with the position and the JSON path (e.g. `brand.rules[0].set.curve.expression`). On Apple platforms a non-finite factor (for example, a division by zero) falls back to factor 1, so a layout pass is never poisoned. Rules can swap expressions per device like any other field, and `"formula": null` clears an inherited formula.
+
+For anything the language cannot express, use a code-only closure: `.custom { ratio, screen in … }` (factor) or `transform: { base, scaled, screen in … }` (value). Both have full access to your code, but they cannot be serialized to JSON.
+
+```swift
+let hud = try ScalingStrategy.define("hud",
+    curve: try .expression("clamp(pow(shortSide / 360, 0.85) * (1 + 0.05 * log(aspectRatio / 1.78)), 0.8, 2)"),
+    formula: "round(scaled)",                                  // whole points only
+    rules: [.on([.tv], ScalingPatch(curve: try .expression("height / 540")))])
+```
 
 ## JSON, presets, built-ins
 

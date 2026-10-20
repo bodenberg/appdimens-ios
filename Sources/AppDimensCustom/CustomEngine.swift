@@ -6,7 +6,7 @@ import Foundation
 //
 //   ratio  = axis(window) / axis(reference)
 //   factor = clamp(curve(ratio) × multiplier × AR, minFactor, maxFactor)
-//   value  = transform(clampValue(base × factor, minValue, maxValue))
+//   value  = formula(clampValue(base × factor, minValue, maxValue))
 //
 // The JSON format is shared with every AppDimens platform (`custom-strategy.schema.json`).
 
@@ -122,8 +122,16 @@ public enum ScalingCurve: Sendable, Equatable, CustomStringConvertible {
     case constant(Double)
     /// Piecewise linear over the **absolute** axis value (pt).
     case breakpoints([Breakpoint])
+    /// Free formula written as text (JSON-serializable, same result on every platform).
+    /// Build it with `try .expression("pow(ratio, 0.8)")`.
+    case expressionCurve(ScalingExpression)
     /// Pure user formula `(ratio, screen) -> factor` (not JSON-serializable).
     case custom(@Sendable (Double, ScreenSnapshot) -> Double)
+
+    /// Free-form curve from text; see `ScalingExpression` for variables and functions.
+    public static func expression(_ source: String) throws -> ScalingCurve {
+        .expressionCurve(try ScalingExpression.parse(source, allowed: ScalingExpression.curveVariables))
+    }
 
     public static func == (lhs: ScalingCurve, rhs: ScalingCurve) -> Bool {
         switch (lhs, rhs) {
@@ -132,6 +140,7 @@ public enum ScalingCurve: Sendable, Equatable, CustomStringConvertible {
              let (.interpolated(a), .interpolated(b)), let (.constant(a), .constant(b)):
             return a == b
         case let (.breakpoints(a), .breakpoints(b)): return a == b
+        case let (.expressionCurve(a), .expressionCurve(b)): return a == b
         default: return false
         }
     }
@@ -144,21 +153,26 @@ public enum ScalingCurve: Sendable, Equatable, CustomStringConvertible {
         case let .interpolated(t): return "interpolated(\(t))"
         case let .constant(f): return "constant(\(f))"
         case let .breakpoints(p): return "breakpoints(\(p.count))"
+        case let .expressionCurve(e): return "expression(\(e.source))"
         case .custom: return "custom"
         }
     }
 
     var isValid: Bool {
         switch self {
-        case .linear, .custom: return true
+        case .linear, .custom, .expressionCurve: return true
         case let .power(v), let .logarithmic(v), let .interpolated(v), let .constant(v): return v.isFinite
         case let .breakpoints(p):
             return !p.isEmpty && p.allSatisfy { $0.at.isFinite && $0.at >= 0 && $0.factor.isFinite }
         }
     }
 
-    func evaluate(ratio: Double, axisDp: Double, screen: ScreenSnapshot) -> Double {
+    func evaluate(ratio: Double, axisDp: Double, screen: ScreenSnapshot,
+                  refDp: Double = .nan, reference: ReferenceScreen = .standard) -> Double {
         switch self {
+        case let .expressionCurve(e):
+            return e.evaluate(ScalingExpression.variables(screen: screen, ratio: ratio, axisDp: axisDp,
+                                                          refDp: refDp, reference: reference))
         case .linear: return ratio
         case let .power(e): return ratio > 0 ? pow(ratio, e) : 0
         case let .logarithmic(k): return ratio > 0 ? 1 + k * log(ratio) : 1
@@ -257,12 +271,15 @@ public struct ScalingPatch: Sendable {
     public var fontScale: FontScalePolicy?
     public var ignoreMultiWindow: Bool?
     public var transform: ValueTransform?
+    /// Per-value text formula (JSON-serializable); replaces `transform`.
+    public var formula: ScalingExpression?
 
     public init(reference: ReferenceScreen? = nil, axis: ScalingAxis? = nil, curve: ScalingCurve? = nil,
                 multiplier: Double? = nil, minFactor: Double? = nil, maxFactor: Double? = nil,
                 minValue: Double? = nil, maxValue: Double? = nil, aspectRatio: Bool? = nil,
                 sensitivity: Double? = nil, fontScale: FontScalePolicy? = nil,
-                ignoreMultiWindow: Bool? = nil, transform: ValueTransform? = nil) {
+                ignoreMultiWindow: Bool? = nil, transform: ValueTransform? = nil,
+                formula: ScalingExpression? = nil) {
         self.reference = reference
         self.axis = axis
         self.curve = curve
@@ -276,9 +293,10 @@ public struct ScalingPatch: Sendable {
         self.fontScale = fontScale
         self.ignoreMultiWindow = ignoreMultiWindow
         self.transform = transform
+        self.formula = formula
     }
 
-    var isValueDependent: Bool { minValue != nil || maxValue != nil || transform != nil }
+    var isValueDependent: Bool { minValue != nil || maxValue != nil || transform != nil || formula != nil }
 }
 
 /// When `condition` matches, apply `patch`. Matching rules apply in declaration order.
@@ -314,12 +332,15 @@ public struct ScalingConfig: Sendable {
     public var fontScale: FontScalePolicy = .follow
     public var ignoreMultiWindow: Bool = false
     public var transform: ValueTransform?
+    /// Per-value text formula; takes the place of `transform`.
+    public var formula: ScalingExpression?
     public var rules: [ScalingRule] = []
 
     public init() {}
 
     public var isValueDependent: Bool {
-        minValue != nil || maxValue != nil || transform != nil || rules.contains { $0.patch.isValueDependent }
+        minValue != nil || maxValue != nil || transform != nil || formula != nil ||
+            rules.contains { $0.patch.isValueDependent }
     }
 
     /// Returns this config with `patch` applied (nil fields keep their value).
@@ -337,7 +358,13 @@ public struct ScalingConfig: Sendable {
         if let v = p.sensitivity { c.sensitivity = v }
         if let v = p.fontScale { c.fontScale = v }
         if let v = p.ignoreMultiWindow { c.ignoreMultiWindow = v }
-        if let v = p.transform { c.transform = v }
+        if let v = p.formula {
+            c.formula = v
+            c.transform = nil
+        } else if let v = p.transform {
+            c.transform = v
+            c.formula = nil
+        }
         return c
     }
 
@@ -390,7 +417,14 @@ public struct ResolvedScaling: Sendable {
             if let max = config.maxValue, magnitude > max { magnitude = max }
             out = out < 0 ? -magnitude : magnitude
         }
-        if let transform = config.transform { out = transform(base, out, screen) }
+        if let formula = config.formula {
+            let ratio = referenceDp > 0 ? axisDp / referenceDp : 1
+            out = formula.evaluate(ScalingExpression.variables(screen: screen, ratio: ratio, axisDp: axisDp,
+                                                               refDp: referenceDp, reference: config.reference,
+                                                               base: base, scaled: out, factor: factor))
+        } else if let transform = config.transform {
+            out = transform(base, out, screen)
+        }
         return out
     }
 
@@ -442,7 +476,8 @@ public enum ScalingEngine {
                                    axisDp: axisDp, referenceDp: refDp, curveFactor: 1, aspectRatioMultiplier: 1)
         }
         let ratio = refDp > 0 ? axisDp / refDp : 1
-        let curveFactor = cfg.curve.evaluate(ratio: ratio, axisDp: axisDp, screen: screen)
+        let curveFactor = cfg.curve.evaluate(ratio: ratio, axisDp: axisDp, screen: screen,
+                                             refDp: refDp, reference: cfg.reference)
         var factor = curveFactor * cfg.multiplier
         var arMul = 1.0
         if cfg.aspectRatio {

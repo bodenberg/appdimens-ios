@@ -128,6 +128,64 @@ final class CustomStrategyTests: XCTestCase {
         }
     }
 
+    // ── free-form expressions ─────────────────────────────────────────────────
+
+    private func eval(_ src: String, _ screen: ScreenSnapshot? = nil) throws -> Double {
+        try ScalingExpression.parse(src).evaluate(
+            ScalingExpression.variables(screen: screen ?? phone, ratio: 1.5, axisDp: 411, refDp: 300,
+                                        reference: .standard, base: 16, scaled: 20, factor: 1.25))
+    }
+
+    func testExpressionsEvaluate() throws {
+        let cases: [(String, Double)] = [
+            ("1 + 2 * 3", 7), ("(1 + 2) * 3", 9), ("2 ^ 3 ^ 2", 512), ("-2 ^ 2", -4), ("-7 % 3", -1),
+            ("1 < 2 && 2 <= 2 && !(3 == 4) && 3 != 4", 1), ("0 || 5", 1), ("0 ? 2 : 1 ? 3 : 4", 3),
+            ("true && !false", 1), ("1.5e3", 1500), ("min(3, 1, 2) + max(3, 1, 2)", 4), ("clamp(5, 0, 2)", 2),
+            ("round(2.5) + round(-2.5)", 1), ("smoothstep(0, 10, 5)", 0.5), ("step(1, 1) + lerp(10, 20, 0.5)", 16),
+            ("sw", 411), ("phone && portrait && !landscape && !tablet", 1), ("base + scaled + ratio", 37.5),
+        ]
+        for (src, expected) in cases {
+            XCTAssertEqual(try eval(src), expected, accuracy: 1e-9, src)
+        }
+    }
+
+    func testExpressionParseErrors() {
+        let cases: [(String, String)] = [
+            ("sw +", "unexpected end"), ("foo * 2", "unknown variable 'foo'"), ("wave(1)", "unknown function 'wave'"),
+            ("clamp(1, 2)", "'clamp' takes 3"), ("(1 + 2", "expected ')'"), ("1 ? 2", "expected ':'"), ("", "empty"),
+        ]
+        for (src, message) in cases {
+            XCTAssertThrowsError(try ScalingExpression.parse(src), src) { error in
+                XCTAssertTrue("\(error)".contains(message), "\(src): \(error)")
+            }
+        }
+        XCTAssertThrowsError(try ScalingCurve.expression("base"))
+    }
+
+    func testExpressionCurveAndFormula() throws {
+        let curve = try ScalingStrategy.define("e", curve: try .expression("pow(ratio, 0.75)"), register: false)
+        XCTAssertFalse(curve.isValueDependent)
+        XCTAssertEqual(curve.resolve(screen: tablet).factor, BuiltInStrategies.power.resolve(screen: tablet).factor, accuracy: 1e-9)
+        let free = try ScalingStrategy.define("f", formula: "base * pow(sw / 360, 0.7) + 2", register: false)
+        XCTAssertTrue(free.isValueDependent)
+        XCTAssertEqual(free.resolve(screen: tablet).scale(16), 16 * pow(800.0 / 360, 0.7) + 2, accuracy: 1e-9)
+
+        let loaded = try ScalingStrategies.load(json: """
+        [{"id": "a", "curve": {"type": "expression", "expression": "ratio * (tablet ? 0.9 : 1)"}, "formula": "max(scaled, 12)"},
+         {"id": "b", "extends": "a", "formula": null}]
+        """)
+        let a = try XCTUnwrap(loaded["a"])
+        let back = try ScalingStrategyJSON.parse(try a.toJSON()).configs["a"]!
+        XCTAssertEqual(try ScalingStrategy("a2", config: back).resolve(screen: tablet).scale(4),
+                       a.resolve(screen: tablet).scale(4), accuracy: 1e-9)
+        XCTAssertEqual(a.resolve(screen: phone).scale(1), 12)
+        XCTAssertFalse(try XCTUnwrap(loaded["b"]).isValueDependent)
+        XCTAssertThrowsError(try ScalingStrategyJSON.parse(#"{"id":"x","curve":{"type":"expression","expression":"base"}}"#)) { error in
+            XCTAssertTrue("\(error)".contains("x.curve.expression"), "\(error)")
+            XCTAssertTrue("\(error)".contains("unknown variable 'base'"), "\(error)")
+        }
+    }
+
     // ── Apple binding ─────────────────────────────────────────────────────────
 
     func testNumberExtensionsAndDefault() throws {

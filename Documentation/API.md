@@ -107,7 +107,7 @@ func sdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType:
 ## AppDimensCustom
 
 * **Define:** `ScalingStrategy.define(_:extending:reference:axis:curve:multiplier:minFactor:maxFactor:minValue:maxValue:aspectRatio:sensitivity:fontScale:ignoreMultiWindow:transform:rules:register:) throws`, or `ScalingStrategy(_:config:) throws`.
-* **Model:** `ScalingConfig`, `ScalingPatch`, `ScalingRule` (`.on(_:_:name:)`), `ScreenCondition`, `ScalingCurve` (`.linear`, `.power`, `.logarithmic`, `.interpolated`, `.constant`, `.breakpoints`, `.custom`), `FontScalePolicy`, `ReferenceScreen`, `ScalingAxis`, `DeviceClass`, `ScreenSnapshot`.
+* **Model:** `ScalingConfig`, `ScalingPatch`, `ScalingRule` (`.on(_:_:name:)`), `ScreenCondition`, `ScalingCurve` (`.linear`, `.power`, `.logarithmic`, `.interpolated`, `.constant`, `.breakpoints`, `.expression(_:)` / `.expressionCurve`, `.custom`), `ScalingExpression` (free-form text formulas: `parse`, `evaluate`, `variables`), `ScalingConfig.formula` / `ScalingPatch.formula`, `FontScalePolicy`, `ReferenceScreen`, `ScalingAxis`, `DeviceClass`, `ScreenSnapshot`.
 * **Strategy:** `resolve(_:)` / `resolve(screen:)` → `ResolvedScaling` (`factor`, `appliedRules`, `scale`, `scaleSpDp`, `explain`). Also `factor`, `dp`, `px`, `sp`, `spPx`, `explain`, `extend`, `withAxis`, `toJSON`.
 * **Registry:**
   - `ScalingStrategies[id]`, `require(_:)`, `register`, `unregister`, `registered`.

@@ -159,8 +159,19 @@ public enum ScalingStrategyJSON {
             return .breakpoints(try pts.enumerated().map { i, p in
                 Breakpoint(try req(p["at"], "\(path).points[\(i)].at"), try req(p["factor"], "\(path).points[\(i)].factor"))
             })
+        case "expression":
+            guard let src = o["expression"]?.stringValue else { throw ScalingStrategyError("\(path).expression is required") }
+            return try at("\(path).expression") { try ScalingCurve.expression(src) }
         default:
-            throw ScalingStrategyError("\(path).type '\(type)' is not one of linear, power, logarithmic, interpolated, constant, breakpoints")
+            throw ScalingStrategyError("\(path).type '\(type)' is not one of linear, power, logarithmic, interpolated, constant, breakpoints, expression")
+        }
+    }
+
+    static func at<T>(_ path: String, _ create: () throws -> T) throws -> T {
+        do {
+            return try create()
+        } catch let e as ScalingStrategyError {
+            throw ScalingStrategyError("\(path): \(e.description)")
         }
     }
 
@@ -206,6 +217,14 @@ public enum ScalingStrategyJSON {
         if p.sensitivity == nil { p.sensitivity = try num(o["sensitivity"], "\(path).sensitivity") }
         if let fs = o["fontScale"], fs != .null { p.fontScale = try readFontScale(fs, "\(path).fontScale") }
         p.ignoreMultiWindow = o["ignoreMultiWindow"]?.boolValue
+        switch o["formula"] {
+        case nil, .null?: break
+        case let .string(src)?:
+            p.formula = try at("\(path).formula") {
+                try ScalingExpression.parse(src, allowed: ScalingExpression.formulaVariables)
+            }
+        default: throw ScalingStrategyError("\(path).formula must be a string")
+        }
         return p
     }
 
@@ -246,6 +265,7 @@ public enum ScalingStrategyJSON {
         var cfg = parent.applying(try readPatch(o, path))
         if o["clamp"] == JSONValue.null { cfg.minFactor = nil; cfg.maxFactor = nil }
         if o["valueClamp"] == JSONValue.null { cfg.minValue = nil; cfg.maxValue = nil }
+        if o["formula"] == JSONValue.null { cfg.formula = nil }
         var rules = parent.rules
         if let list = o["rules"]?.arrayValue {
             for (i, r) in list.enumerated() {
@@ -274,6 +294,7 @@ public enum ScalingStrategyJSON {
         case let .breakpoints(p):
             return .object(["type": .string("breakpoints"),
                             "points": .array(p.map { .object(["at": .number($0.at), "factor": .number($0.factor)]) })])
+        case let .expressionCurve(e): return .object(["type": .string("expression"), "expression": .string(e.source)])
         case .custom: throw ScalingStrategyError("Custom curve functions cannot be encoded to JSON")
         }
     }
@@ -309,6 +330,7 @@ public enum ScalingStrategyJSON {
             }
         }
         if let mw = p.ignoreMultiWindow, !defaults || mw { o["ignoreMultiWindow"] = .bool(mw) }
+        if let f = p.formula { o["formula"] = .string(f.source) }
         return o
     }
 
@@ -333,6 +355,7 @@ public enum ScalingStrategyJSON {
                              maxValue: c.maxValue, aspectRatio: c.aspectRatio, sensitivity: c.sensitivity,
                              fontScale: c.fontScale, ignoreMultiWindow: c.ignoreMultiWindow)
         p.transform = c.transform
+        p.formula = c.formula
         var o = try patchJSON(p, defaults: true)
         o["id"] = .string(id)
         if !c.rules.isEmpty {

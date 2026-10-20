@@ -74,14 +74,18 @@ public final class ScalingStrategy: @unchecked Sendable, CustomStringConvertible
                               minValue: Double? = nil, maxValue: Double? = nil,
                               aspectRatio: Bool? = nil, sensitivity: Double? = nil,
                               fontScale: FontScalePolicy? = nil, ignoreMultiWindow: Bool? = nil,
-                              transform: ValueTransform? = nil, rules: [ScalingRule] = [],
+                              transform: ValueTransform? = nil, formula: String? = nil,
+                              rules: [ScalingRule] = [],
                               register: Bool = true) throws -> ScalingStrategy {
         let base = parent?.config ?? ScalingConfig()
+        let parsedFormula = try formula.map {
+            try ScalingExpression.parse($0, allowed: ScalingExpression.formulaVariables)
+        }
         var cfg = base.applying(ScalingPatch(reference: reference, axis: axis, curve: curve, multiplier: multiplier,
                                              minFactor: minFactor, maxFactor: maxFactor, minValue: minValue,
                                              maxValue: maxValue, aspectRatio: aspectRatio, sensitivity: sensitivity,
                                              fontScale: fontScale, ignoreMultiWindow: ignoreMultiWindow,
-                                             transform: transform))
+                                             transform: transform, formula: parsedFormula))
         cfg.rules = base.rules + rules
         let strategy = try ScalingStrategy(id, config: cfg)
         if register { ScalingStrategies.register(strategy) }
@@ -142,14 +146,15 @@ public final class ScalingStrategy: @unchecked Sendable, CustomStringConvertible
                        minValue: Double? = nil, maxValue: Double? = nil,
                        aspectRatio: Bool? = nil, sensitivity: Double? = nil,
                        fontScale: FontScalePolicy? = nil, ignoreMultiWindow: Bool? = nil,
-                       transform: ValueTransform? = nil, rules: [ScalingRule] = [],
+                       transform: ValueTransform? = nil, formula: String? = nil,
+                       rules: [ScalingRule] = [],
                        register: Bool = true) throws -> ScalingStrategy {
         try ScalingStrategy.define(id, extending: self, reference: reference, axis: axis, curve: curve,
                                    multiplier: multiplier, minFactor: minFactor, maxFactor: maxFactor,
                                    minValue: minValue, maxValue: maxValue, aspectRatio: aspectRatio,
                                    sensitivity: sensitivity, fontScale: fontScale,
                                    ignoreMultiWindow: ignoreMultiWindow, transform: transform,
-                                   rules: rules, register: register)
+                                   formula: formula, rules: rules, register: register)
     }
 
     /// Same strategy on another axis. Id `"<id>@<axis>"`, cached.
