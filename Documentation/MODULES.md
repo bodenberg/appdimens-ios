@@ -9,6 +9,7 @@
 | `AppDimensPercent`, `AppDimensPower`, `AppDimensFluid`, `AppDimensAuto`, `AppDimensDensity`, `AppDimensDiagonal`, `AppDimensFill`, `AppDimensFit`, `AppDimensInterpolated`, `AppDimensLogarithmic`, `AppDimensPerimeter` | `AppDimens` (+ strategies for most) | generated catalog for one strategy + builders |
 | `AppDimensResize` | `AppDimens` | resize bounds and ladders |
 | `AppDimensUnits` | `AppDimens` | physical units |
+| `AppDimensCustom` | `AppDimens` | user-defined strategies: engine, `ScalingStrategy.define`, JSON (shared format), presets, `cdp`/`csp`, `@CustomDimension`, `.scalingStrategy(_:)` |
 | `AppDimensMetal` | `AppDimens`, `AppDimensStrategies` | GPU uniforms, MSL source, encoder helpers |
 | `AppDimensDynamic` | all of the above except the satellite catalogs | aggregate import |
 

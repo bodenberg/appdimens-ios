@@ -1,6 +1,13 @@
 import SwiftUI
 import AppDimensDynamic
 import AppDimensPower
+import AppDimensCustom
+
+// Your own strategy (same JSON shape on every AppDimens platform).
+let brand = try! ScalingStrategy.define("brand",
+    reference: ReferenceScreen(width: 360, height: 640),
+    curve: .power(0.8), minFactor: 0.85, maxFactor: 1.6,
+    rules: [.on([.tablet, .desktop], ScalingPatch(curve: .logarithmic(0.4)), name: "large")])
 
 // Install once per window: WindowGroup { ExampleView().appDimens() }
 struct ExampleView: View {
@@ -25,6 +32,9 @@ struct ExampleView: View {
             }
             Text("Tablet-only copy")
                 .font(.system(size: 14.sspQualifier(18, .smallWidth, 600)))
+            Text("Custom strategy")
+                .font(.system(size: 14.csp(brand)))                        // your own curve
+                .padding(8.cdp(brand))
         }
         .padding(cardPadding.sdp(dimens))
         .frame(maxWidth: 480.wdp(dimens))

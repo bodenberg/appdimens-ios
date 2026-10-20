@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- **`AppDimensCustom`: custom scaling strategies**, a port of Android `appdimens-dynamic-custom`.
+  - **Config format:** the same JSON as every AppDimens platform (`custom-strategy.schema.json`). It covers reference frame, axis, curves (linear, power, logarithmic, interpolated, constant, breakpoints, closure), factor/value bounds, aspect ratio, font-scale policy, and rules per device class / screen range / orientation / multi-window.
+  - **Composition:** `extend` from built-ins and presets.
+  - **APIs:** `ScalingStrategy.define`, `ScalingStrategies.load(json:|data:|resource:)`, `16.cdp(brand)` / `14.csp(brand)` / `16.cdp`, `@CustomDimension`, `.scalingStrategy(_:)`, `explain()`.
+  - **Device class** comes from UI mode, platform and size, and can be overridden.
+  - **Tests:** `CustomStrategyTests`, including the cross-platform parity fixture.
+
 ## 3.2.0 — Android 3.2 parity, zero-argument API, production hardening
 
 ### Fixed

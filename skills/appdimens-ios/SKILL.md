@@ -1,6 +1,6 @@
 ---
 name: appdimens-ios
-description: Implement, migrate, review, or troubleshoot responsive SwiftUI and UIKit layouts using AppDimens Dynamic for Apple. Use when a request mentions AppDimens, sdp/hdp/wdp/ssp, ScaledDimension, DimensConfiguration, responsive points, multi-window scaling, scaling strategies, resize, physical units, or AppDimens Metal.
+description: Implement, migrate, review, or troubleshoot responsive SwiftUI and UIKit layouts using AppDimens Dynamic for Apple. Use when a request mentions AppDimens, sdp/hdp/wdp/ssp, ScaledDimension, DimensConfiguration, responsive points, multi-window scaling, scaling strategies, resize, physical units, or AppDimens Metal. Also use for custom scaling strategies (AppDimensCustom: ScalingStrategy.define, cdp/csp, @CustomDimension, per-device rules, scaling JSON shared across platforms).
 ---
 
 # AppDimens Dynamic for Apple workflow
@@ -22,7 +22,13 @@ description: Implement, migrate, review, or troubleshoot responsive SwiftUI and 
 6. Start with `.scaled`. Select another strategy only against a stated visual acceptance criterion.
 7. Use resize only for fit-to-container selection, not as a global scaling curve.
 8. Precompute `DimensFactors` for hot loops; for Metal bind `AppDimensUniforms` and use the `appdimens_*` MSL helpers.
-9. Regenerate catalogs with `python3 scripts/generate_catalogs.py` after changing the generator; never edit `Catalog.swift` by hand.
+9. Custom strategies (`AppDimensCustom`): use them only when no built-in curve meets the acceptance criteria, or when one law must be shared across platforms.
+   - Start from `BuiltInStrategies.*` / `CustomPresets.*` (`extend`) or JSON `"extends"`.
+   - Keep strategies in one place: a bundle JSON loaded with `ScalingStrategies.load(resource:)`, or one `Strategies.swift`. Reuse the ids from `appdimens.config.json` (`customStrategies`) when it exists.
+   - Express device or screen differences as `ScalingRule`s, not call-site `if`s.
+   - Use `@CustomDimension` / `16.cdp(brand, dimens)` per window, `.scalingStrategy(_:)` to scope, and `csp` for text.
+   - Verify with `brand.explain(dimens)`. See [`Documentation/strategies/custom.md`](../../Documentation/strategies/custom.md).
+10. Regenerate catalogs with `python3 scripts/generate_catalogs.py` after changing the generator; never edit `Catalog.swift` by hand.
 
 ## Validate
 

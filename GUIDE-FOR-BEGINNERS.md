@@ -42,5 +42,23 @@ Use `sdp` (smallest width) for general spacing, `wdp` for width-driven compositi
 80.sdpRotate(50)                                   // 50 in landscape
 ```
 
+### Your own rule (custom strategy)
+
+When no built-in curve feels right, describe your own. You set the design frame, how fast sizes grow, the limits and the per-device tweaks:
+
+```swift
+import AppDimensCustom
+
+let brand = try ScalingStrategy.define("brand",
+    reference: ReferenceScreen(width: 360, height: 640),
+    curve: .power(0.8), minFactor: 0.9, maxFactor: 1.5,
+    rules: [.on([.tablet], ScalingPatch(curve: .logarithmic(0.4)))])
+
+Text("Hello").font(.system(size: 14.csp(brand))).padding(16.cdp(brand))
+print(brand.explain())   // shows the factor and which rules applied
+```
+
+Guide: [custom strategies](Documentation/strategies/custom.md).
+
 ## 6. Test representative windows
 Validate portrait, landscape, iPad Split View, Stage Manager, large Dynamic Type, and the 300-point baseline. In previews, pin a window with `.appDimensConfiguration(DimensConfiguration(screenWidth: 390, screenHeight: 844, displayScale: 3))`. See the [documentation hub](Documentation/README.md).
