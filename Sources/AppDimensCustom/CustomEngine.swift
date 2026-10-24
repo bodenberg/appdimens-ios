@@ -296,7 +296,10 @@ public struct ScalingPatch: Sendable {
         self.formula = formula
     }
 
-    var isValueDependent: Bool { minValue != nil || maxValue != nil || transform != nil || formula != nil }
+    /// A proportional text formula (`base * E`) is screen-only.
+    var isValueDependent: Bool {
+        minValue != nil || maxValue != nil || transform != nil || formula?.isProportional == false
+    }
 }
 
 /// When `condition` matches, apply `patch`. Matching rules apply in declaration order.
@@ -338,8 +341,10 @@ public struct ScalingConfig: Sendable {
 
     public init() {}
 
+    /// True when some path depends on the value itself (not only on the screen). A proportional
+    /// text formula (`base * E`) is screen-only.
     public var isValueDependent: Bool {
-        minValue != nil || maxValue != nil || transform != nil || formula != nil ||
+        minValue != nil || maxValue != nil || transform != nil || formula?.isProportional == false ||
             rules.contains { $0.patch.isValueDependent }
     }
 
@@ -406,6 +411,9 @@ public struct ResolvedScaling: Sendable {
     public let referenceDp: Double
     public let curveFactor: Double
     public let aspectRatioMultiplier: Double
+    /// `E` of a proportional formula (`base * E`), evaluated once for this window; NaN when the
+    /// formula (if any) needs the value. `base * E` then costs one multiply, like a curve.
+    let formulaCoefficient: Double
 
     /// `base` → scaled value (pt).
     public func scale(_ base: Double) -> Double {
@@ -417,7 +425,9 @@ public struct ResolvedScaling: Sendable {
             if let max = config.maxValue, magnitude > max { magnitude = max }
             out = out < 0 ? -magnitude : magnitude
         }
-        if let formula = config.formula {
+        if let formula = config.formula, formula.isProportional {
+            out = base * formulaCoefficient
+        } else if let formula = config.formula {
             let ratio = referenceDp > 0 ? axisDp / referenceDp : 1
             out = formula.evaluate(ScalingExpression.variables(screen: screen, ratio: ratio, axisDp: axisDp,
                                                                refDp: referenceDp, reference: config.reference,
@@ -452,6 +462,11 @@ public struct ResolvedScaling: Sendable {
             out += " clamp[\(c.minFactor.map(f) ?? "-"), \(c.maxFactor.map(f) ?? "-")]"
         }
         out += " => factor \(f(factor))"
+        if let formula = c.formula {
+            out += " then formula(\(formula.source))"
+        } else if c.transform != nil {
+            out += " then transform"
+        }
         if !appliedRules.isEmpty { out += " rules=[\(appliedRules.joined(separator: ", "))]" }
         return out
     }
@@ -471,11 +486,15 @@ public enum ScalingEngine {
         }
         let axisDp = screen.read(cfg.axis)
         let refDp = cfg.reference.read(cfg.axis)
+        let ratio = refDp > 0 ? axisDp / refDp : 1
+        let coefficient = cfg.formula?.baseCoefficient?.eval(
+            ScalingExpression.variables(screen: screen, ratio: ratio, axisDp: axisDp, refDp: refDp,
+                                        reference: cfg.reference)) ?? .nan
         if cfg.ignoreMultiWindow && screen.isMultiWindow {
             return ResolvedScaling(screen: screen, config: cfg, factor: 1, appliedRules: applied,
-                                   axisDp: axisDp, referenceDp: refDp, curveFactor: 1, aspectRatioMultiplier: 1)
+                                   axisDp: axisDp, referenceDp: refDp, curveFactor: 1, aspectRatioMultiplier: 1,
+                                   formulaCoefficient: coefficient)
         }
-        let ratio = refDp > 0 ? axisDp / refDp : 1
         let curveFactor = cfg.curve.evaluate(ratio: ratio, axisDp: axisDp, screen: screen,
                                              refDp: refDp, reference: cfg.reference)
         var factor = curveFactor * cfg.multiplier
@@ -490,6 +509,6 @@ public enum ScalingEngine {
         if !factor.isFinite { factor = 1 } // a broken custom curve must never poison a layout pass
         return ResolvedScaling(screen: screen, config: cfg, factor: factor, appliedRules: applied,
                                axisDp: axisDp, referenceDp: refDp, curveFactor: curveFactor,
-                               aspectRatioMultiplier: arMul)
+                               aspectRatioMultiplier: arMul, formulaCoefficient: coefficient)
     }
 }

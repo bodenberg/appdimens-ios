@@ -114,6 +114,7 @@ func sdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType:
   - `defaultStrategy`, `deviceClassResolver`.
   - `load(json:)`, `load(data:)`, `load(resource:bundle:)`, `exportJSON(_:)`.
 * **Numbers:** `16.cdp`, `16.cdpPx`, `14.csp`, `14.cspPx` (default strategy, ambient), `16.cdp(c)`, `16.cdp(strategy)`, `16.cdp(strategy, c)`, `14.csp(strategy[, c])`, `cdpPx(strategy)`, `cspPx(strategy)`.
-* **SwiftUI:** `@CustomDimension(_:strategy:)`, `@CustomDimension(text:strategy:)`, `.scalingStrategy(_:)`, `\.scalingStrategy`.
+* **Formulas (simplest form):** `scalingFormula(_:id:register:) throws` (text, shared per text without an id), `scalingFormula(id:register:_:)` (closure `(FormulaScope) -> value`), `CustomScaleStrategy(id:register:_:)` (closure `(ScreenScope) -> factor`), scopes `ScalingScope` / `ScreenScope` / `FormulaScope` (`base sw width height shortSide longSide diagonal perimeter aspectRatio ratio density fontScale device screen`, flags, `pow sqrt ln log10 exp abs round min max clamp lerp smoothstep`), `ScalingStrategy.formula(_:)`, `ScalingStrategies.formula(_:)`, `ScalingExpression.isProportional`, number helpers `cdp(_ formula: String)` / `cdpPx` / `csp` / `cspPx` (`throws`, ambient or explicit window).
+* **SwiftUI:** `@CustomDimension(_:strategy:)`, `@CustomDimension(text:strategy:)`, `@CustomDimension(_:formula:)`, `@CustomDimension(text:formula:)`, `.scalingStrategy(_:)`, `\.scalingStrategy`.
 * **Presets / built-ins / JSON:** `CustomPresets.*`, `BuiltInStrategies.*`, `ScalingStrategyJSON.parse` / `encode` / `text`, `JSONValue`.
 * Guide: [custom strategies](strategies/custom.md).

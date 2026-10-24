@@ -238,6 +238,8 @@ public enum ScalingStrategies {
         let lock = NSLock()
         var byId: [String: ScalingStrategy] = [:]
         var derived: [String: ScalingStrategy] = [:]
+        var formulas: [String: ScalingStrategy] = [:]
+        var codeIds = 0
         var defaultStrategy: ScalingStrategy?
         var resolver: (@Sendable (DimensConfiguration) -> DeviceClass)?
     }
@@ -342,11 +344,38 @@ public enum ScalingStrategies {
         }
     }
 
+    /// Bound for distinct inline formula texts; past it, strategies are built per call (still correct).
+    static let maxSharedFormulas = 256
+
+    /// Strategy whose value is the text `formula` (`"base * pow(sw / 360, 0.8)"`), shared per text
+    /// and not registered (id `formula:<text>`). Same as ``scalingFormula(_:id:register:)`` without
+    /// an id. Throws the parse error (with its position) for an invalid formula.
+    public static func formula(_ formula: String) throws -> ScalingStrategy {
+        if let hit = locked({ $0.formulas[formula] }) { return hit }
+        let made = try ScalingStrategy.textFormula(id: "formula:\(formula)", formula)
+        return locked { s in
+            if let hit = s.formulas[formula] { return hit }
+            if s.formulas.count >= maxSharedFormulas { return made }
+            s.formulas[formula] = made
+            return made
+        }
+    }
+
+    /// Next unique id for a code strategy (`formula#N`, `scale#N`).
+    static func nextCodeId(_ prefix: String) -> String {
+        let n: Int = locked { s in
+            s.codeIds += 1
+            return s.codeIds
+        }
+        return "\(prefix)#\(n)"
+    }
+
     /// Test helper — clears the registry, the default and the resolver.
     public static func resetForTesting() {
         locked { s in
             s.byId = [:]
             s.derived = [:]
+            s.formulas = [:]
             s.defaultStrategy = nil
             s.resolver = nil
         }

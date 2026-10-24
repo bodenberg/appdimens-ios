@@ -6,6 +6,63 @@
 
 When none of the built-in curves fits, or one growth law must be shared by several apps and platforms, define **your own** strategy. The configuration is identical on every AppDimens platform (Android, KMP, Flutter, React Native, Web, Games, .NET) and can be loaded from JSON.
 
+## Quick start: just write the formula
+
+The easiest way is to write the math yourself, as ordinary Swift on one line. The closure gets a scope with everything you can use (`base`, `sw`, `width`, `tablet`, `pow`, `clamp`…), Xcode autocompletes it, and a typo is a compile error. There is nothing to configure.
+
+```swift
+import AppDimensCustom
+
+// 1. Formula: the result is the final value (`base` = the value you pass, e.g. 16)
+let hud = scalingFormula { $0.base * $0.pow($0.sw / 360, 0.8) }
+let card = scalingFormula { s in s.tablet ? s.base * 1.2 : s.base * s.ratio }
+
+// 2. Factor: the result multiplies every value
+let product = CustomScaleStrategy { s in s.clamp(s.width / 360, 0.85, 1.80) }
+let living = CustomScaleStrategy { s in s.tv ? s.height / 540 : s.ratio }
+
+Text("Body").padding(16.cdp(product))                    // 16 × factor
+Text("Score").font(.system(size: 18.csp(hud)))           // text follows Dynamic Type per policy
+```
+
+Declare each strategy once (for example as a `static let`), then use it anywhere. `ScalingStrategy.formula { … }` is the same as `scalingFormula { … }`; pass `id:` to name and register one.
+
+### What you can use in the closure
+
+| Name | Meaning |
+|---|---|
+| `base` | the value you pass (`16` in `16.cdp(hud)`), only in `scalingFormula { }` (`FormulaScope`) |
+| `sw` · `width` · `height` | smallest width · window width · window height (pt) |
+| `shortSide` · `longSide` · `diagonal` · `perimeter` · `aspectRatio` | other window measures |
+| `ratio` | `sw / 300`, the ratio `sdp` uses (`base * ratio` is the same as `sdp`) |
+| `phone` `tablet` `desktop` `tv` `watch` `car` `vr` · `landscape` `portrait` `multiWindow` | `Bool` |
+| `density` · `fontScale` · `device` · `screen` | display scale · Dynamic Type scale · `DeviceClass` · the whole `ScreenSnapshot` |
+| `pow` `sqrt` `ln` `log10` `exp` `abs` `round` `min` `max` `clamp` `lerp` `smoothstep` | math, same names as the text formulas |
+
+Anything else from Swift or your own code also works (`switch`, your helpers). Strategies must be pure: they must not read mutable state, because results are memoized per window. A non-finite factor falls back to 1.
+
+| Form | You return | Cost per value | JSON |
+|---|---|---|---|
+| `CustomScaleStrategy { … }` | the **factor** | one multiply (runs once per window) | no |
+| `scalingFormula { … }` | the final value | your closure, per value | no |
+| `try scalingFormula("…")` / `try 16.cdp("…")` | the final value, as text | one multiply when shaped `base * (…)`, otherwise the formula is evaluated | yes |
+
+### Text formulas (for JSON and remote config)
+
+When the formula has to live outside the code, in a JSON file, a remote config or an A/B test, write the same thing as text. It uses the same names (flags are 1/0), and it `throws` on a typo:
+
+```swift
+let remote = try scalingFormula("base * pow(sw / 360, 0.8)")
+Text("Title").padding(try 16.cdp("base * (tablet ? 0.9 : 1) * clamp(sw / 360, 0.85, 1.6)"))   // inline
+@CustomDimension(16, formula: "base * (sw / 360)") private var gap                          // SwiftUI, per window
+```
+
+Text is checked when the strategy is created: an unknown name fails right away with its position and the list of valid names (e.g. `unknown variable 'sww' (allowed: aspectRatio, base, …)`). The same text works in the strategies JSON (`{"id": "hud", "formula": "base * pow(sw / 360, 0.8)"}`) and gives the same numbers on every AppDimens platform. Operators and functions are listed in [Free-form formulas](#free-form-formulas-no-limits-from-the-built-in-curves). Also: `try ScalingStrategies.formula("…")` / `try ScalingStrategy.formula("…")` (the shared strategy for a text), `try scalingFormula("…", id: "hud")` (named, registered), `cdpPx` / `cspPx`, and the explicit-window forms `try 16.cdp("…", configuration)` / `try 14.csp("…", configuration)`.
+
+**Fast path.** A text formula shaped `base * (…)`, where the `(…)` part does not read `base`, costs one multiply per value, because the `(…)` part is computed once per window. `base * sw / 360` is evaluated as written, `(base * sw) / 360`, so write `base * (sw / 360)` to get the fast path. In code, prefer `CustomScaleStrategy { … }` for the same effect.
+
+For rules per device, factor bounds or a font-scale policy, use the full configuration below.
+
 ## What it computes
 
 ```

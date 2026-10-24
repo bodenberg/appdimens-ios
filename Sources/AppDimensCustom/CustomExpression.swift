@@ -22,6 +22,34 @@ public struct ScalingExpression: Sendable, Hashable, CustomStringConvertible {
 
     public let source: String
     let root: ExpressionNode
+    /// `E` when the whole formula is `base`, `base * E` or `E * base` and `E` reads no value
+    /// variable (`base`, `scaled`, `factor`); `nil` otherwise. Such a formula is a pure screen
+    /// factor, so strategies evaluate `E` once per window (same result, bit for bit).
+    let baseCoefficient: ExpressionNode?
+
+    init(source: String, root: ExpressionNode) {
+        self.source = source
+        self.root = root
+        self.baseCoefficient = Self.coefficient(of: root)
+    }
+
+    private static let valueVariables: Set<String> = ["base", "scaled", "factor"]
+
+    private static func coefficient(of root: ExpressionNode) -> ExpressionNode? {
+        switch root {
+        case .variable("base"):
+            return .number(1)
+        case .binary("*", .variable("base"), let e) where !e.reads(valueVariables):
+            return e
+        case .binary("*", let e, .variable("base")) where !e.reads(valueVariables):
+            return e
+        default:
+            return nil
+        }
+    }
+
+    /// True when the formula is `base × (screen-only E)`: it depends on the screen only.
+    public var isProportional: Bool { baseCoefficient != nil }
 
     /// Parses `source`; every identifier must be in `allowed`. Errors carry the position.
     public static func parse(_ source: String, allowed: Set<String> = formulaVariables) throws -> ScalingExpression {
@@ -90,6 +118,18 @@ indirect enum ExpressionNode: Sendable {
     case binary(String, ExpressionNode, ExpressionNode)
     case ternary(ExpressionNode, ExpressionNode, ExpressionNode)
     case call(String, [ExpressionNode])
+
+    /// True when this subtree reads any of `names`.
+    func reads(_ names: Set<String>) -> Bool {
+        switch self {
+        case .number: return false
+        case let .variable(name): return names.contains(name)
+        case let .negate(a), let .not(a): return a.reads(names)
+        case let .binary(_, a, b): return a.reads(names) || b.reads(names)
+        case let .ternary(c, a, b): return c.reads(names) || a.reads(names) || b.reads(names)
+        case let .call(_, args): return args.contains { $0.reads(names) }
+        }
+    }
 
     func eval(_ v: (String) -> Double) -> Double {
         switch self {

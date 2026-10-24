@@ -236,11 +236,21 @@ Each satellite has the full catalog: `16.pwsdp`, `16.pwhdpLw`, `16.pwsspa`, `30.
 
 ### Custom strategies (`AppDimensCustom`)
 
-When none of the curves above fits, define your own. The same JSON works on Android, Flutter, Web, RN, KMP, Games and .NET:
+When none of the curves above fits, define your own. The simplest way is to write the math as ordinary Swift on one line. Xcode autocompletes `base`, `sw`, `width`, `tablet`, `pow`, `clamp`…, and typos fail at compile time:
 
 ```swift
 import AppDimensCustom
 
+let product = CustomScaleStrategy { s in s.clamp(s.width / 360, 0.85, 1.80) }   // factor × every value
+let hud = scalingFormula { $0.base * $0.pow($0.sw / 360, 0.8) }                 // final value (base = 16 in 16.cdp)
+Text("Hi").padding(16.cdp(product))
+Text("Score").font(.system(size: 18.csp(hud)))
+let remote = try scalingFormula("base * pow(sw / 360, 0.8)")                     // same thing as text, for JSON / remote config
+```
+
+For rules per device, factor bounds or a font-scale policy, use the full configuration. The same JSON works on Android, Flutter, Web, RN, KMP, Games and .NET:
+
+```swift
 let brand = try ScalingStrategy.define("brand",
     reference: ReferenceScreen(width: 360, height: 640),
     curve: .power(0.8), minFactor: 0.85, maxFactor: 1.6,

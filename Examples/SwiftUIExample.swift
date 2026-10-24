@@ -9,6 +9,11 @@ let brand = try! ScalingStrategy.define("brand",
     curve: .power(0.8), minFactor: 0.85, maxFactor: 1.6,
     rules: [.on([.tablet, .desktop], ScalingPatch(curve: .logarithmic(0.4)), name: "large")])
 
+// The simplest form, typed and autocompleted: the formula is the value (`base` = the value you pass).
+let hud = scalingFormula { s in s.base * (s.tablet ? 0.9 : 1) * s.clamp(s.sw / 360, 0.85, 1.6) }
+// Programmable factor in plain Swift: runs once per window, then one multiply per value.
+let product = CustomScaleStrategy { s in s.clamp(s.width / 360, 0.85, 1.8) }
+
 // Install once per window: WindowGroup { ExampleView().appDimens() }
 struct ExampleView: View {
     // Per-window values (multi-window safe on every OS version)
@@ -35,6 +40,9 @@ struct ExampleView: View {
             Text("Custom strategy")
                 .font(.system(size: 14.csp(brand)))                        // your own curve
                 .padding(8.cdp(brand))
+            Text("Formula strategy")
+                .font(.system(size: 14.csp(hud)))                          // formula is the value
+                .padding(8.cdp(product))                                   // factor closure
         }
         .padding(cardPadding.sdp(dimens))
         .frame(maxWidth: 480.wdp(dimens))

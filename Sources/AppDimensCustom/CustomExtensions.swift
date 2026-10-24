@@ -44,6 +44,27 @@ public extension DimensNumber {
     }
     /// `14.cspPx(brand)` · ambient window · text physical pixels.
     func cspPx(_ strategy: ScalingStrategy) -> CGFloat { CGFloat(strategy.spPx(dimensValue)) }
+
+    // ── inline formula ──────────────────────────────────────────────────────
+    // The formula **is** the value, shared per text (``ScalingStrategies/formula(_:)``); write
+    // `base * (…)` for the one-multiply fast path. Invalid formulas throw the parse error.
+
+    /// `try 16.cdp("base * pow(sw / 360, 0.8)")` · ambient window · points.
+    func cdp(_ formula: String) throws -> CGFloat { try cdp(ScalingStrategies.formula(formula)) }
+    /// `try 16.cdp("…", configuration)` · explicit window · points.
+    func cdp(_ formula: String, _ configuration: DimensConfiguration) throws -> Double {
+        try cdp(ScalingStrategies.formula(formula), configuration)
+    }
+    /// `try 16.cdpPx("…")` · ambient window · physical pixels.
+    func cdpPx(_ formula: String) throws -> CGFloat { try cdpPx(ScalingStrategies.formula(formula)) }
+    /// `try 14.csp("base * min(sw / 360, 1.3)")` · ambient window · final text point size.
+    func csp(_ formula: String) throws -> CGFloat { try csp(ScalingStrategies.formula(formula)) }
+    /// `try 14.csp("…", configuration)` · explicit window · final text point size.
+    func csp(_ formula: String, _ configuration: DimensConfiguration) throws -> Double {
+        try csp(ScalingStrategies.formula(formula), configuration)
+    }
+    /// `try 14.cspPx("…")` · ambient window · text physical pixels.
+    func cspPx(_ formula: String) throws -> CGFloat { try cspPx(ScalingStrategies.formula(formula)) }
 }
 
 #if canImport(SwiftUI)
@@ -91,6 +112,28 @@ public extension View {
         self.value = value
         self.strategy = strategy
         self.text = true
+    }
+
+    /// `@CustomDimension(16, formula: "base * pow(sw / 360, 0.8)") var padding` — the formula
+    /// **is** the value (shared per text). Write `base * (…)` for the one-multiply fast path.
+    /// Prefer a strategy built with `try scalingFormula(_:)` to handle parse errors; here an
+    /// invalid formula stops in debug builds and returns the value unscaled in release builds.
+    public init(_ value: Double, formula: String) {
+        self.init(value, strategy: Self.formulaStrategy(formula))
+    }
+
+    /// `@CustomDimension(text: 14, formula: "base * min(sw / 360, 1.3)") var bodySize`.
+    public init(text value: Double, formula: String) {
+        self.init(text: value, strategy: Self.formulaStrategy(formula))
+    }
+
+    private static func formulaStrategy(_ formula: String) -> ScalingStrategy {
+        do {
+            return try ScalingStrategies.formula(formula)
+        } catch {
+            assertionFailure("\(error)")
+            return BuiltInStrategies.fixed
+        }
     }
 
     public var wrappedValue: CGFloat {
