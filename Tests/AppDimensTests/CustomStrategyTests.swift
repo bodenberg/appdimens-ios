@@ -313,7 +313,7 @@ final class CustomStrategyTests: XCTestCase {
         let s = try scalingFormula("base * (sw / 360)")
         XCTAssertEqual(try 16.cdp("base * (sw / 360)", c), s.dp(16, c))
         XCTAssertEqual(try 14.csp("base * (sw / 360)", c), s.sp(14, c))
-        withAmbient(Fixture.tablet) {
+        try withAmbient(Fixture.tablet) {
             XCTAssertEqual(try? 16.cdp("base * (sw / 360)"), CGFloat(s.dp(16)))
             XCTAssertEqual(try? 8.cdpPx("base"), CGFloat(try scalingFormula("base").px(8)))
             XCTAssertEqual(try? 14.csp("base"), CGFloat(try scalingFormula("base").sp(14)))
