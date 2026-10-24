@@ -103,3 +103,18 @@ func sdpScreen(_ screenValue: Double, _ uiModeType: UiModeType, _ qualifierType:
 * Units: `DimenPhysicalUnits.toDpFromMm/Cm/Inch`, `toPxFrom…`, `toSpFrom…`, `radiusFromDiameter`, `radiusFromCircumference`, `unitSizeInDp`, `devicePointsPerInch`, ambient `5.mm`, `1.cm`, `1.inch`, `mmPx`…, conversions `mmToCm()`….
 * Resize: `ResizeBound` (`.fixedDp`, `.fixedSp`, `.percent`), `resizeFixedDp/Sp`, `resizePercentSw/W/H`, `DimensResize.steps`, `largestFitting`, `autoResizeText`, `autoResizeTextPercent`, `autoResizeSquareSize`, `autoResizeSize`.
 * Metal: see [Metal](METAL.md).
+
+## AppDimensCustom
+
+* **Define:** `ScalingStrategy.define(_:extending:reference:axis:curve:multiplier:minFactor:maxFactor:minValue:maxValue:aspectRatio:sensitivity:fontScale:ignoreMultiWindow:transform:rules:register:) throws`, or `ScalingStrategy(_:config:) throws`.
+* **Model:** `ScalingConfig`, `ScalingPatch`, `ScalingRule` (`.on(_:_:name:)`), `ScreenCondition`, `ScalingCurve` (`.linear`, `.power`, `.logarithmic`, `.interpolated`, `.constant`, `.breakpoints`, `.expression(_:)` / `.expressionCurve`, `.custom`), `ScalingExpression` (free-form text formulas: `parse`, `evaluate`, `variables`), `ScalingConfig.formula` / `ScalingPatch.formula`, `FontScalePolicy`, `ReferenceScreen`, `ScalingAxis`, `DeviceClass`, `ScreenSnapshot`.
+* **Strategy:** `resolve(_:)` / `resolve(screen:)` → `ResolvedScaling` (`factor`, `appliedRules`, `scale`, `scaleSpDp`, `explain`). Also `factor`, `dp`, `px`, `sp`, `spPx`, `explain`, `extend`, `withAxis`, `toJSON`.
+* **Registry:**
+  - `ScalingStrategies[id]`, `require(_:)`, `register`, `unregister`, `registered`.
+  - `defaultStrategy`, `deviceClassResolver`.
+  - `load(json:)`, `load(data:)`, `load(resource:bundle:)`, `exportJSON(_:)`.
+* **Numbers:** `16.cdp`, `16.cdpPx`, `14.csp`, `14.cspPx` (default strategy, ambient), `16.cdp(c)`, `16.cdp(strategy)`, `16.cdp(strategy, c)`, `14.csp(strategy[, c])`, `cdpPx(strategy)`, `cspPx(strategy)`.
+* **Formulas (simplest form):** `scalingFormula(_:id:register:) throws` (text, shared per text without an id), `scalingFormula(id:register:_:)` (closure `(FormulaScope) -> value`), `CustomScaleStrategy(id:register:_:)` (closure `(ScreenScope) -> factor`), scopes `ScalingScope` / `ScreenScope` / `FormulaScope` (`base sw width height shortSide longSide diagonal perimeter aspectRatio ratio density fontScale device screen`, flags, `pow sqrt ln log10 exp abs round min max clamp lerp smoothstep`), `ScalingStrategy.formula(_:)`, `ScalingStrategies.formula(_:)`, `ScalingExpression.isProportional`, number helpers `cdp(_ formula: String)` / `cdpPx` / `csp` / `cspPx` (`throws`, ambient or explicit window).
+* **SwiftUI:** `@CustomDimension(_:strategy:)`, `@CustomDimension(text:strategy:)`, `@CustomDimension(_:formula:)`, `@CustomDimension(text:formula:)`, `.scalingStrategy(_:)`, `\.scalingStrategy`.
+* **Presets / built-ins / JSON:** `CustomPresets.*`, `BuiltInStrategies.*`, `ScalingStrategyJSON.parse` / `encode` / `text`, `JSONValue`.
+* Guide: [custom strategies](strategies/custom.md).

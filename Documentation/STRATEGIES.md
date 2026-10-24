@@ -20,9 +20,10 @@ Every strategy answers a different design question; they are not quality levels.
 | Partial responsiveness | [interpolated](strategies/interpolated.md) | Fixed 50 % blend, still unbounded |
 | Strong large-screen damping | [logarithmic](strategies/logarithmic.md) | Validate very small synthetic windows |
 | Literal percentage of an axis (`spaceW`, `spaceH`) | [percent](strategies/percent.md) | Protect accessibility minima |
-| Smooth damped growth | [power](strategies/power.md) | Exponent is fixed at 0.75 and cannot be tuned |
+| Smooth damped growth | [power](strategies/power.md) | Exponent is fixed at 0.75; tune it with a [custom strategy](strategies/custom.md) |
 | Largest size that fits measured content | [resize](strategies/resize.md) | Predicate must be monotonic |
 | Print/calibrated measurement | [physical units](strategies/physical-units.md) | Display scale is not PPI |
+| Your own law (design frame, exponent, bounds, TV/watch/iPad rules), shared across platforms | [custom](strategies/custom.md) | Start from a built-in or preset; keep strategies in one place |
 
 ## Runtime selection example
 
