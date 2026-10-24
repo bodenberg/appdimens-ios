@@ -103,6 +103,44 @@ final class CustomStrategyTests: XCTestCase {
         XCTAssertEqual(s.resolve(screen: phone).scale(16), 48)
     }
 
+    func testMalformedJSONFailsLoudlyAndLoadIsAtomic() throws {
+        func message(_ body: () throws -> Void) -> String {
+            do {
+                try body()
+                return ""
+            } catch {
+                return "\(error)"
+            }
+        }
+        XCTAssertTrue(message { _ = try ScalingStrategies.load(json: #"{"strategies":[{"id":"x","rules":[{"when":"tablet","set":{"multiplier":2}}]}]}"#) }
+            .contains("when must be an object"))
+        XCTAssertTrue(message { _ = try ScalingStrategies.load(json: #"{"strategies":[{"id":"x","ignoreMultiWindow":"true"}]}"#) }
+            .contains("must be a boolean"))
+        XCTAssertTrue(message { _ = try ScalingStrategies.load(json: #"{"strategies":[{"id":"x","clamp":1.5}]}"#) }
+            .contains("clamp must be an object"))
+        XCTAssertTrue(message { _ = try ScalingStrategy.define("neg", maxValue: -1, register: false) }
+            .contains("maxValue must be >= 0"))
+        XCTAssertTrue(message { _ = try ScalingStrategies.load(json: #"{"default":"missing","strategies":[{"id":"atomic","multiplier":2}]}"#) }
+            .contains("missing"))
+        XCTAssertNil(ScalingStrategies["atomic"]) // nothing registered by the failed load
+        XCTAssertTrue(message { _ = try ScalingStrategyJSON.parse(#"{"version":1e300,"strategies":[]}"#) }
+            .contains("Unsupported strategies format version"))
+        // withAxis is cached per source instance, not per id.
+        let a = try ScalingStrategy.define("same", multiplier: 1, register: false)
+        let b = try ScalingStrategy.define("same", multiplier: 2, register: false)
+        XCTAssertEqual(a.withAxis(.height).config.multiplier, 1)
+        XCTAssertEqual(b.withAxis(.height).config.multiplier, 2)
+        XCTAssertTrue(b.withAxis(.height) === b.withAxis(.height))
+        // A sensitivity-only rule patch survives export + import.
+        let loaded = try ScalingStrategies.load(json: #"{"strategies":[{"id":"sens","aspectRatio":true,"rules":[{"when":{"device":"tablet"},"set":{"sensitivity":0.01}}]}]}"#)
+        let s = try XCTUnwrap(loaded["sens"])
+        let doc = try ScalingStrategyJSON.parse(JSONValue.object(["strategies": .array([try s.toJSON()])]))
+        let again = try ScalingStrategy("sens", config: try XCTUnwrap(doc.configs["sens"]))
+        XCTAssertEqual(again.resolve(screen: tablet).factor, s.resolve(screen: tablet).factor)
+        let plain = try ScalingStrategy.define("plain", aspectRatio: true, register: false)
+        XCTAssertNotEqual(s.resolve(screen: tablet).factor, plain.resolve(screen: tablet).factor)
+    }
+
     func testCrossPlatformFixture() throws {
         let url = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
             .appendingPathComponent("Fixtures/custom-strategy-fixture.json")

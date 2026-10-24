@@ -389,6 +389,9 @@ public struct ScalingConfig: Sendable {
             if let a = c.minValue, let b = c.maxValue, a > b {
                 throw ScalingStrategyError("\(where_): minValue must be <= maxValue")
             }
+            // Value bounds clamp the magnitude, so they must not be negative.
+            if let a = c.minValue, a < 0 { throw ScalingStrategyError("\(where_): minValue must be >= 0") }
+            if let b = c.maxValue, b < 0 { throw ScalingStrategyError("\(where_): maxValue must be >= 0") }
             if case let .clamp(max) = c.fontScale, !(max.isFinite && max > 0) {
                 throw ScalingStrategyError("\(where_): fontScale max must be > 0")
             }

@@ -80,8 +80,14 @@ public enum ScalingStrategyJSON {
         case let .array(a):
             items = a
         case let .object(o) where o["strategies"] != nil:
-            if case let .number(v)? = o["version"], Int(v) > formatVersion {
-                throw ScalingStrategyError("Unsupported strategies format version \(Int(v))")
+            if case let .number(v)? = o["version"] {
+                // Check the range first: Int(v) traps outside Int's range.
+                guard v >= Double(Int.min), v < Double(Int.max) else {
+                    throw ScalingStrategyError("Unsupported strategies format version \(v)")
+                }
+                if Int(v) > formatVersion {
+                    throw ScalingStrategyError("Unsupported strategies format version \(Int(v))")
+                }
             }
             guard let list = o["strategies"]?.arrayValue else { throw ScalingStrategyError("strategies must be an array") }
             items = list
@@ -134,6 +140,24 @@ public enum ScalingStrategyJSON {
             guard n.isFinite else { throw ScalingStrategyError("\(path) must be finite") }
             return n
         default: throw ScalingStrategyError("\(path) must be a number")
+        }
+    }
+
+    /// Present values must be objects; `null` / absent → nil.
+    static func obj(_ v: JSONValue?, _ path: String) throws -> [String: JSONValue]? {
+        switch v {
+        case nil, .null?: return nil
+        case let .object(o)?: return o
+        default: throw ScalingStrategyError("\(path) must be an object")
+        }
+    }
+
+    /// Present values must be booleans; `null` / absent → nil.
+    static func bool(_ v: JSONValue?, _ path: String) throws -> Bool? {
+        switch v {
+        case nil, .null?: return nil
+        case let .bool(b)?: return b
+        default: throw ScalingStrategyError("\(path) must be a boolean")
         }
     }
 
@@ -198,11 +222,11 @@ public enum ScalingStrategyJSON {
         }
         if let curve = o["curve"], curve != .null { p.curve = try readCurve(curve, "\(path).curve") }
         p.multiplier = try num(o["multiplier"], "\(path).multiplier")
-        if let clamp = o["clamp"]?.objectValue {
+        if let clamp = try obj(o["clamp"], "\(path).clamp") {
             p.minFactor = try num(clamp["min"], "\(path).clamp.min")
             p.maxFactor = try num(clamp["max"], "\(path).clamp.max")
         }
-        if let clamp = o["valueClamp"]?.objectValue {
+        if let clamp = try obj(o["valueClamp"], "\(path).valueClamp") {
             p.minValue = try num(clamp["min"], "\(path).valueClamp.min")
             p.maxValue = try num(clamp["max"], "\(path).valueClamp.max")
         }
@@ -210,13 +234,13 @@ public enum ScalingStrategyJSON {
         case nil, .null?: break
         case let .bool(b)?: p.aspectRatio = b
         case let .object(ar)?:
-            p.aspectRatio = ar["enabled"]?.boolValue ?? true
+            p.aspectRatio = try bool(ar["enabled"], "\(path).aspectRatio.enabled") ?? true
             p.sensitivity = try num(ar["sensitivity"], "\(path).aspectRatio.sensitivity")
         default: throw ScalingStrategyError("\(path).aspectRatio must be a boolean or object")
         }
         if p.sensitivity == nil { p.sensitivity = try num(o["sensitivity"], "\(path).sensitivity") }
         if let fs = o["fontScale"], fs != .null { p.fontScale = try readFontScale(fs, "\(path).fontScale") }
-        p.ignoreMultiWindow = o["ignoreMultiWindow"]?.boolValue
+        p.ignoreMultiWindow = try bool(o["ignoreMultiWindow"], "\(path).ignoreMultiWindow")
         switch o["formula"] {
         case nil, .null?: break
         case let .string(src)?:
@@ -262,7 +286,7 @@ public enum ScalingStrategyJSON {
         (c.minWidth, c.maxWidth) = try range("width")
         (c.minHeight, c.maxHeight) = try range("height")
         (c.minAspectRatio, c.maxAspectRatio) = try range("aspectRatio")
-        c.multiWindow = o["multiWindow"]?.boolValue
+        c.multiWindow = try bool(o["multiWindow"], "\(path).multiWindow")
         return c
     }
 
@@ -275,10 +299,14 @@ public enum ScalingStrategyJSON {
         var rules = parent.rules
         if let list = o["rules"]?.arrayValue {
             for (i, r) in list.enumerated() {
-                guard let rule = r.objectValue, let set = rule["set"]?.objectValue else {
+                guard let rule = r.objectValue else {
+                    throw ScalingStrategyError("\(path).rules[\(i)] must be an object")
+                }
+                guard let set = try obj(rule["set"], "\(path).rules[\(i)].set") else {
                     throw ScalingStrategyError("\(path).rules[\(i)].set is required")
                 }
-                rules.append(ScalingRule(try readCondition(rule["when"]?.objectValue ?? [:], "\(path).rules[\(i)].when"),
+                let when = try obj(rule["when"], "\(path).rules[\(i)].when") ?? [:]
+                rules.append(ScalingRule(try readCondition(when, "\(path).rules[\(i)].when"),
                                          try readPatch(set, "\(path).rules[\(i)].set"),
                                          name: rule["name"]?.stringValue))
             }
@@ -327,6 +355,8 @@ public enum ScalingStrategyJSON {
             var a: [String: JSONValue] = ["enabled": .bool(ar)]
             if let s = p.sensitivity { a["sensitivity"] = .number(s) }
             o["aspectRatio"] = .object(a)
+        } else if p.aspectRatio == nil, let s = p.sensitivity {
+            o["sensitivity"] = .number(s) // sensitivity-only patch
         }
         if let f = p.fontScale, !defaults || f != .follow {
             switch f {

@@ -54,6 +54,8 @@ public final class ScalingStrategy: @unchecked Sendable, CustomStringConvertible
     private var memoKey: DimensConfiguration?
     private var memoDevice: DeviceClass?
     private var memo: ResolvedScaling?
+    /// ``withAxis(_:)`` variants of this instance (guarded by `lock`).
+    private var axisVariants: [ScalingAxis: ScalingStrategy] = [:]
 
     public init(_ id: String, config: ScalingConfig) throws {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else {
@@ -157,16 +159,23 @@ public final class ScalingStrategy: @unchecked Sendable, CustomStringConvertible
                                    formula: formula, rules: rules, register: register)
     }
 
-    /// Same strategy on another axis. Id `"<id>@<axis>"`, cached.
+    /// Same strategy on another axis. Id `"<id>@<axis>"`, cached per instance (so a re-registered
+    /// id never returns another config's variant; a race only builds an equivalent variant twice).
     public func withAxis(_ axis: ScalingAxis) -> ScalingStrategy {
         if axis == config.axis { return self }
+        lock.lock()
+        let hit = axisVariants[axis]
+        lock.unlock()
+        if let hit = hit { return hit }
         var cfg = config
         cfg.axis = axis
-        let derivedConfig = cfg
-        return ScalingStrategies.derived("\(id)@\(axis.rawValue)") {
-            // The derived config differs only by axis, so it is valid whenever `config` is.
-            try! ScalingStrategy("\(self.id)@\(axis.rawValue)", config: derivedConfig)
-        }
+        // The derived config differs only by axis, so it is valid whenever `config` is.
+        let made = try! ScalingStrategy("\(id)@\(axis.rawValue)", config: cfg)
+        lock.lock()
+        defer { lock.unlock() }
+        if let raced = axisVariants[axis] { return raced }
+        axisVariants[axis] = made
+        return made
     }
 
     /// JSON value (throws for function curves / transforms).
@@ -237,7 +246,6 @@ public enum ScalingStrategies {
     private final class Store: @unchecked Sendable {
         let lock = NSLock()
         var byId: [String: ScalingStrategy] = [:]
-        var derived: [String: ScalingStrategy] = [:]
         var formulas: [String: ScalingStrategy] = [:]
         var codeIds = 0
         var defaultStrategy: ScalingStrategy?
@@ -317,11 +325,15 @@ public enum ScalingStrategies {
     }
 
     private static func install(_ doc: ScalingStrategyJSON.Document) throws -> [String: ScalingStrategy] {
+        // Build everything and resolve the default before registering, so a bad document
+        // registers nothing.
         var out: [String: ScalingStrategy] = [:]
         for id in doc.ids {
-            out[id] = register(try ScalingStrategy(id, config: doc.configs[id]!))
+            out[id] = try ScalingStrategy(id, config: doc.configs[id]!)
         }
-        if let d = doc.defaultId { defaultStrategy = try out[d] ?? require(d) }
+        let newDefault = try doc.defaultId.map { try out[$0] ?? require($0) }
+        for id in doc.ids { if let s = out[id] { register(s) } }
+        if let d = newDefault { defaultStrategy = d }
         return out
     }
 
@@ -332,16 +344,6 @@ public enum ScalingStrategies {
                                         "strategies": .array(try list.map { try $0.toJSON() })]
         if let d = locked({ $0.defaultStrategy }) { doc["default"] = .string(d.id) }
         return .object(doc)
-    }
-
-    static func derived(_ id: String, _ create: () -> ScalingStrategy) -> ScalingStrategy {
-        if let hit = locked({ $0.derived[id] }) { return hit }
-        let made = create()
-        return locked { s in
-            if let hit = s.derived[id] { return hit }
-            s.derived[id] = made
-            return made
-        }
     }
 
     /// Bound for distinct inline formula texts; past it, strategies are built per call (still correct).
@@ -374,7 +376,6 @@ public enum ScalingStrategies {
     public static func resetForTesting() {
         locked { s in
             s.byId = [:]
-            s.derived = [:]
             s.formulas = [:]
             s.defaultStrategy = nil
             s.resolver = nil
