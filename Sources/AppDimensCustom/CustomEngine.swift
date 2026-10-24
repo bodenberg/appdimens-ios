@@ -414,6 +414,9 @@ public struct ResolvedScaling: Sendable {
     /// `E` of a proportional formula (`base * E`), evaluated once for this window; NaN when the
     /// formula (if any) needs the value. `base * E` then costs one multiply, like a curve.
     let formulaCoefficient: Double
+    /// True when `ignoreMultiWindow` applied: in multi-window the value stays unscaled (only value
+    /// bounds apply); formulas and transforms are skipped.
+    public let multiWindowIgnored: Bool
 
     /// `base` → scaled value (pt).
     public func scale(_ base: Double) -> Double {
@@ -425,6 +428,7 @@ public struct ResolvedScaling: Sendable {
             if let max = config.maxValue, magnitude > max { magnitude = max }
             out = out < 0 ? -magnitude : magnitude
         }
+        if multiWindowIgnored { return out }
         if let formula = config.formula, formula.isProportional {
             out = base * formulaCoefficient
         } else if let formula = config.formula {
@@ -493,7 +497,7 @@ public enum ScalingEngine {
         if cfg.ignoreMultiWindow && screen.isMultiWindow {
             return ResolvedScaling(screen: screen, config: cfg, factor: 1, appliedRules: applied,
                                    axisDp: axisDp, referenceDp: refDp, curveFactor: 1, aspectRatioMultiplier: 1,
-                                   formulaCoefficient: coefficient)
+                                   formulaCoefficient: coefficient, multiWindowIgnored: true)
         }
         let curveFactor = cfg.curve.evaluate(ratio: ratio, axisDp: axisDp, screen: screen,
                                              refDp: refDp, reference: cfg.reference)
@@ -509,6 +513,7 @@ public enum ScalingEngine {
         if !factor.isFinite { factor = 1 } // a broken custom curve must never poison a layout pass
         return ResolvedScaling(screen: screen, config: cfg, factor: factor, appliedRules: applied,
                                axisDp: axisDp, referenceDp: refDp, curveFactor: curveFactor,
-                               aspectRatioMultiplier: arMul, formulaCoefficient: coefficient)
+                               aspectRatioMultiplier: arMul, formulaCoefficient: coefficient,
+                               multiWindowIgnored: false)
     }
 }

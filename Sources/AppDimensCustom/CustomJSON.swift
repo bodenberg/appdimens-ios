@@ -230,8 +230,14 @@ public enum ScalingStrategyJSON {
 
     static func readCondition(_ o: [String: JSONValue], _ path: String) throws -> ScreenCondition {
         func range(_ key: String) throws -> (Double?, Double?) {
-            guard let r = o[key]?.objectValue else { return (nil, nil) }
-            return (try num(r["min"], "\(path).\(key).min"), try num(r["max"], "\(path).\(key).max"))
+            switch o[key] {
+            case nil, .null?:
+                return (nil, nil)
+            case let .object(r)?:
+                return (try num(r["min"], "\(path).\(key).min"), try num(r["max"], "\(path).\(key).max"))
+            default:
+                throw ScalingStrategyError("\(path).\(key) must be an object with min/max")
+            }
         }
         var c = ScreenCondition()
         func device(_ s: String) throws -> DeviceClass {

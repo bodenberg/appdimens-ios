@@ -87,7 +87,20 @@ final class CustomStrategyTests: XCTestCase {
         XCTAssertTrue(message(#"{"id":"a","curve":{"type":"wave"}}"#).contains("type 'wave'"))
         XCTAssertTrue(message(#"{"id":"a","extends":"nope"}"#).contains("unknown strategy 'nope'"))
         XCTAssertTrue(message(#"{"id": a}"#).contains("Invalid JSON"))
+        XCTAssertTrue(message(#"{"strategies":[{"id":"x","rules":[{"when":{"width":600},"set":{"multiplier":2}}]}]}"#)
+            .contains("must be an object"))
         XCTAssertThrowsError(try ScalingStrategies.require("missing"))
+    }
+
+    func testIgnoreMultiWindowSkipsFormula() throws {
+        let doc = try ScalingStrategyJSON.parse(#"{"id":"mw","ignoreMultiWindow":true,"formula":"base * 3"}"#)
+        let s = try ScalingStrategy("mw", config: try XCTUnwrap(doc.configs["mw"]))
+        let multi = ScreenSnapshot(widthDp: 411, heightDp: 891, smallestWidthDp: 411, density: 2.625,
+                                   isMultiWindow: true)
+        let r = s.resolve(screen: multi)
+        XCTAssertTrue(r.multiWindowIgnored)
+        XCTAssertEqual(r.scale(16), 16)
+        XCTAssertEqual(s.resolve(screen: phone).scale(16), 48)
     }
 
     func testCrossPlatformFixture() throws {
