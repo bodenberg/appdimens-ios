@@ -11,4 +11,4 @@
 | Custom | `AppDimensCustom` | `CustomScaleStrategy { s in … }` (factor), `scalingFormula { $0.base * … }` (value), text `try scalingFormula("…")` / `try 16.cdp("…")`, `ScalingStrategy.define`, `ScalingStrategies`, `CustomPresets`, `16.cdp(brand)`, `14.csp(brand)`, `@CustomDimension`, `.scalingStrategy(_:)` |
 | GPU uniforms | `AppDimensMetal` | `AppDimensUniforms`, `AppDimensMetal`, `setAppDimensUniforms` |
 
-Source of truth: `Package.swift` and declarations under `Sources/`. User docs: `Documentation/README.md`.
+Source of truth: `Package.swift` and declarations under `Sources/`. User docs: `Documentation/README.md`. Custom strategies: [`custom.md`](custom.md) (agent notes) and [`Documentation/strategies/custom/`](../../../Documentation/strategies/custom/README.md) (guides).

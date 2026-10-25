@@ -260,7 +260,7 @@ Text("Hi").font(.system(size: 14.csp(brand))).padding(16.cdp(brand))
 ContentView().scalingStrategy(brand)        // scope for @CustomDimension(16)
 ```
 
-Presets (`CustomPresets.tvSafe`, `tabletFriendly`, …), `BuiltInStrategies.power.extend(…)` and `ScalingStrategies.load(resource:)`. Guide: [Documentation/strategies/custom.md](Documentation/strategies/custom.md).
+Presets (`CustomPresets.tvSafe`, `tabletFriendly`, …), `BuiltInStrategies.power.extend(…)` and `ScalingStrategies.load(resource:)`. Guide: [Documentation/strategies/custom.md](Documentation/strategies/custom.md) · full documentation: [Documentation/strategies/custom/](Documentation/strategies/custom/README.md).
 
 ## Metal
 

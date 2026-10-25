@@ -9,6 +9,7 @@ description: Implement, migrate, review, or troubleshoot responsive SwiftUI and 
 
 1. Read [`references/library-map.md`](references/library-map.md) to select the smallest product and correct API.
 2. Read [`references/decision-guide.md`](references/decision-guide.md) before selecting any non-default strategy.
+   For custom strategies (`AppDimensCustom`), also read [`references/custom.md`](references/custom.md).
 3. Inspect the actual declarations under `Sources/`; never invent a suffix or initializer.
 4. Establish whether the UI is SwiftUI, UIKit, headless, or Metal.
 
@@ -29,7 +30,7 @@ description: Implement, migrate, review, or troubleshoot responsive SwiftUI and 
    - Express device or screen differences as `ScalingRule`s, not call-site `if`s.
    - When no curve fits, write the law as text: `curve: try .expression("pow(ratio, 0.8) * (tablet ? 0.9 : 1)")` or `formula: "base * pow(sw / 360, 0.7) + 2"` (JSON `"type": "expression"` / `"formula"`; same results on every platform). Variables `sw width height shortSide longSide diagonal perimeter aspectRatio density fontScale`, flags `landscape portrait multiWindow phone tablet desktop tv watch car vr`, `ratio axis ref refWidth refHeight`, `base scaled factor`.
    - Use `@CustomDimension` / `16.cdp(brand, dimens)` per window, `.scalingStrategy(_:)` to scope, and `csp` for text.
-   - Verify with `brand.explain(dimens)`. See [`Documentation/strategies/custom.md`](../../Documentation/strategies/custom.md).
+   - Verify with `brand.explain(dimens)`. See [`Documentation/strategies/custom.md`](../../Documentation/strategies/custom.md), the [`custom/`](../../Documentation/strategies/custom/README.md) guides and the agent notes in [`references/custom.md`](references/custom.md).
 10. Regenerate catalogs with `python3 scripts/generate_catalogs.py` after changing the generator; never edit `Catalog.swift` by hand.
 
 ## Validate

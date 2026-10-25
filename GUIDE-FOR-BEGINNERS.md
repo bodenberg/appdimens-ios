@@ -58,7 +58,7 @@ Text("Hello").font(.system(size: 14.csp(brand))).padding(16.cdp(brand))
 print(brand.explain())   // shows the factor and which rules applied
 ```
 
-Guide: [custom strategies](Documentation/strategies/custom.md).
+Guide: [custom strategies](Documentation/strategies/custom.md) · step by step: [quick start](Documentation/strategies/custom/quick-start.md).
 
 ## 6. Test representative windows
 Validate portrait, landscape, iPad Split View, Stage Manager, large Dynamic Type, and the 300-point baseline. In previews, pin a window with `.appDimensConfiguration(DimensConfiguration(screenWidth: 390, screenHeight: 844, displayScale: 3))`. See the [documentation hub](Documentation/README.md).

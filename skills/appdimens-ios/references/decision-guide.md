@@ -10,4 +10,4 @@
 8. Use density only for pixel-aware legacy behavior.
 9. Use physical units only for calibrated/print-like requirements.
 10. Use resize only when a monotonic predicate determines whether a candidate fits.
-11. Use a custom strategy (`AppDimensCustom`) only when no built-in curve passes visual QA, or when one law (reference frame, exponent, bounds, TV / watch / iPad rules) must be shared with other platforms. Start from a built-in or preset.
+11. Use a custom strategy (`AppDimensCustom`) only when no built-in curve passes visual QA, or when one law (reference frame, exponent, bounds, TV / watch / iPad rules) must be shared with other platforms. Start from a built-in or preset. Pick the form with [`custom.md`](custom.md).
