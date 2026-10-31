@@ -33,7 +33,7 @@ flowchart TD
 
 ## Strategy pages
 
-[Scaled](strategies/scaled.md) · [Density](strategies/density.md) · [Diagonal](strategies/diagonal.md) · [Fill](strategies/fill.md) · [Fit](strategies/fit.md) · [Fluid](strategies/fluid.md) · [Interpolated](strategies/interpolated.md) · [Logarithmic](strategies/logarithmic.md) · [Percent](strategies/percent.md) · [Perimeter](strategies/perimeter.md) · [Power](strategies/power.md) · [Auto](strategies/auto.md) · [Resize](strategies/resize.md) · [Physical units](strategies/physical-units.md)
+[Scaled](strategies/scaled.md) · [Density](strategies/density.md) · [Diagonal](strategies/diagonal.md) · [Fill](strategies/fill.md) · [Fit](strategies/fit.md) · [Fluid](strategies/fluid.md) · [Interpolated](strategies/interpolated.md) · [Logarithmic](strategies/logarithmic.md) · [Percent](strategies/percent.md) · [Perimeter](strategies/perimeter.md) · [Power](strategies/power.md) · [Auto](strategies/auto.md) · [Resize](strategies/resize.md) · [Physical units](strategies/physical-units.md) · [Custom](strategies/custom.md) ([full guide](strategies/custom/README.md))
 
 ## Platform support
 
