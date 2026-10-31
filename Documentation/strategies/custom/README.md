@@ -30,7 +30,8 @@ The built-in strategies (`sdp`, `pwsdp`, `asdp`…) cover most apps. When yours 
 ```
 ratio  = axis(window) / axis(reference)                  // e.g. sw / 300
 factor = clamp( curve(ratio) × multiplier × AR , min, max )   // once per window
-value  = formula( clampValue( base × factor ) )           // per value, only if needed
+scaled = clampValue( base × factor )   // the configured result
+value  = formula ? formula(base, scaled, factor) : scaled   // a formula replaces the result (it gets the original base)
 ```
 
 `CustomScaleStrategy { … }` replaces the whole `factor` line. `scalingFormula { … }` replaces the whole `value` line. The full configuration lets you set each piece and change it per device with rules. All values are points (pt). The numbers are the same on every AppDimens platform: a shared 540-case fixture checks it.
