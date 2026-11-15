@@ -1,6 +1,6 @@
 ---
 name: appdimens-ios
-description: Implement, migrate, review, or troubleshoot responsive SwiftUI and UIKit layouts using AppDimens Dynamic for Apple. Use when a request mentions AppDimens, sdp/hdp/wdp/ssp, ScaledDimension, DimensConfiguration, responsive points, multi-window scaling, scaling strategies, resize, physical units, or AppDimens Metal.
+description: Implement, migrate, review, or troubleshoot responsive SwiftUI and UIKit layouts using AppDimens Dynamic for Apple. Use when a request mentions AppDimens, sdp/hdp/wdp/ssp, ScaledDimension, DimensConfiguration, responsive points, multi-window scaling, scaling strategies, resize, physical units, or AppDimens Metal. Also use for custom scaling strategies (AppDimensCustom: ScalingStrategy.define, cdp/csp, @CustomDimension, per-device rules, scaling JSON shared across platforms).
 ---
 
 # AppDimens Dynamic for Apple workflow
@@ -9,6 +9,7 @@ description: Implement, migrate, review, or troubleshoot responsive SwiftUI and 
 
 1. Read [`references/library-map.md`](references/library-map.md) to select the smallest product and correct API.
 2. Read [`references/decision-guide.md`](references/decision-guide.md) before selecting any non-default strategy.
+   For custom strategies (`AppDimensCustom`), also read [`references/custom.md`](references/custom.md).
 3. Inspect the actual declarations under `Sources/`; never invent a suffix or initializer.
 4. Establish whether the UI is SwiftUI, UIKit, headless, or Metal.
 
@@ -22,7 +23,15 @@ description: Implement, migrate, review, or troubleshoot responsive SwiftUI and 
 6. Start with `.scaled`. Select another strategy only against a stated visual acceptance criterion.
 7. Use resize only for fit-to-container selection, not as a global scaling curve.
 8. Precompute `DimensFactors` for hot loops; for Metal bind `AppDimensUniforms` and use the `appdimens_*` MSL helpers.
-9. Regenerate catalogs with `python3 scripts/generate_catalogs.py` after changing the generator; never edit `Catalog.swift` by hand.
+9. Custom strategies (`AppDimensCustom`): use them only when no built-in curve meets the acceptance criteria, or when one law must be shared across platforms.
+   - If the user just wants to write the math, use one line of typed Swift, autocompleted, with the same names as the text language: `CustomScaleStrategy { s in s.clamp(s.width / 360, 0.85, 1.8) }` (factor, runs once per window, one multiply per value) or `scalingFormula { $0.base * $0.pow($0.sw / 360, 0.8) }` (final value; `base` = the value passed). Scope names: `base sw width height shortSide longSide diagonal perimeter aspectRatio ratio density fontScale`, Booleans `phone tablet desktop tv watch car vr landscape portrait multiWindow`, math `pow sqrt ln log10 exp abs round min max clamp lerp smoothstep`. Use text (`try scalingFormula("base * pow(sw / 360, 0.8)")`, `try 16.cdp("…")`) only when the formula must live in JSON or remote config; text shaped `base * (…)` stays on the one-multiply fast path.
+   - Start from `BuiltInStrategies.*` / `CustomPresets.*` (`extend`) or JSON `"extends"`.
+   - Keep strategies in one place: a bundle JSON loaded with `ScalingStrategies.load(resource:)`, or one `Strategies.swift`. Reuse the ids from `appdimens.config.json` (`customStrategies`) when it exists.
+   - Express device or screen differences as `ScalingRule`s, not call-site `if`s.
+   - When no curve fits, write the law as text: `curve: try .expression("pow(ratio, 0.8) * (tablet ? 0.9 : 1)")` or `formula: "base * pow(sw / 360, 0.7) + 2"` (JSON `"type": "expression"` / `"formula"`; same results on every platform). Variables `sw width height shortSide longSide diagonal perimeter aspectRatio density fontScale`, flags `landscape portrait multiWindow phone tablet desktop tv watch car vr`, `ratio axis ref refWidth refHeight`, `base scaled factor`.
+   - Use `@CustomDimension` / `16.cdp(brand, dimens)` per window, `.scalingStrategy(_:)` to scope, and `csp` for text.
+   - Verify with `brand.explain(dimens)`. See [`Documentation/strategies/custom.md`](../../Documentation/strategies/custom.md), the [`custom/`](../../Documentation/strategies/custom/README.md) guides and the agent notes in [`references/custom.md`](references/custom.md).
+10. Regenerate catalogs with `python3 scripts/generate_catalogs.py` after changing the generator; never edit `Catalog.swift` by hand.
 
 ## Validate
 

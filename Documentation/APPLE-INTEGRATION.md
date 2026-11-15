@@ -24,6 +24,15 @@ WindowGroup { ContentView().appDimens() }      // AppDimensProvider { ContentVie
 
 Multi-window apps (iPad scenes, macOS windows) should resolve per window: `16.sdp(dimens)` with `@Environment(\.appDimensConfiguration) var dimens`, or `@ScaledDimension`. The ambient store follows the most recently laid-out window.
 
+### Custom strategies
+
+`AppDimensCustom` follows the same window model:
+- `@CustomDimension(16)` reads `\.appDimensConfiguration` and `\.scalingStrategy`.
+- `.scalingStrategy(brand)` scopes a subtree.
+- `16.cdp(brand)` reads the ambient store, and `16.cdp(brand, dimens)` takes an explicit window.
+
+See [custom strategies](strategies/custom.md).
+
 ## UIKit
 
 ```swift

@@ -21,6 +21,7 @@ let package = Package(
         .library(name: "AppDimensPower", targets: ["AppDimensPower"]),
         .library(name: "AppDimensResize", targets: ["AppDimensResize"]),
         .library(name: "AppDimensUnits", targets: ["AppDimensUnits"]),
+        .library(name: "AppDimensCustom", targets: ["AppDimensCustom"]),
         .library(name: "AppDimensMetal", targets: ["AppDimensMetal"])
     ],
     targets: [
@@ -39,11 +40,13 @@ let package = Package(
         .target(name: "AppDimensAuto", dependencies: ["AppDimens"]),
         .target(name: "AppDimensResize", dependencies: ["AppDimens"]),
         .target(name: "AppDimensUnits", dependencies: ["AppDimens"]),
+        .target(name: "AppDimensCustom", dependencies: ["AppDimens"]),
         .target(name: "AppDimensMetal", dependencies: ["AppDimens", "AppDimensStrategies"]),
         .target(name: "AppDimensDynamic", dependencies: ["AppDimens", "AppDimensStrategies", "AppDimensAuto", "AppDimensResize", "AppDimensUnits", "AppDimensMetal"]),
         .testTarget(name: "AppDimensTests", dependencies: ["AppDimensDynamic", "AppDimens", "AppDimensStrategies",
             "AppDimensAuto", "AppDimensResize", "AppDimensUnits", "AppDimensPercent", "AppDimensPower",
             "AppDimensFluid", "AppDimensDensity", "AppDimensDiagonal", "AppDimensFill", "AppDimensFit",
-            "AppDimensInterpolated", "AppDimensLogarithmic", "AppDimensPerimeter"])
+            "AppDimensInterpolated", "AppDimensLogarithmic", "AppDimensPerimeter", "AppDimensCustom"],
+            exclude: ["Fixtures"])
     ]
 )

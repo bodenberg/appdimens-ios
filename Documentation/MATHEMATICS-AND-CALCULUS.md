@@ -82,6 +82,20 @@ Apple layout uses points. A pixel result is `points × displayScale`; it should 
 
 Physical conversion uses `72 pt = 1 in`, `2.54 cm = 1 in`, and `25.4 mm = 1 in`. Device `displayScale` is not physical PPI. Supply calibrated `pixelsPerInch` when a physical measurement must become pixels.
 
+### Custom strategies
+
+`AppDimensCustom` evaluates once per window configuration:
+
+```
+r   = A(window) / A(reference),   A ∈ {sw, w, h, min, max, √(w²+h²), w+h}
+F   = clamp( c(r) · m · (1 + k·ln(AR/1.78))^[ar], Fmin, Fmax )   (crossed bounds → Fmax)
+pt  = T( clamp_|·|( v · F, Vmin, Vmax ) )
+c(r) ∈ { r, r^e, 1 + k·ln r, 1 + (r−1)·t, f, piecewise linear over A(window) }
+text = pt · φ(fontScale),  φ ∈ { follow: s, ignore: 1, clamp(M): min(s, M) }
+```
+
+With reference 300×533 and axis `sw`, the curves `r`, `r^0.75`, `1+0.4·ln r` and `1+(r−1)/2` reproduce scaled, power, logarithmic and interpolated. Matching rules patch the configuration in declaration order, with ranges `[min, max)`.
+
 ## 7. Precision and rounding
 
 The engine returns IEEE-754 `Double`. Preserve it through calculations, convert to `CGFloat` only at the UI boundary, and let the renderer place the result on the device pixel grid. Repeated integer rounding creates accumulated drift in stacks and grids. For explicit pixel alignment, round in pixel space: `round(points × σ) / σ`.
