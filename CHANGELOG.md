@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## Latest — in production (`main`)
 
 ### Added
 - **`AppDimensCustom`: custom scaling strategies**, a port of Android `appdimens-dynamic-custom`.
